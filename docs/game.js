@@ -4381,10 +4381,10 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
   k.loadSprite("bean", "sprites/bean.png");
   k.loadSprite("sword", "sprites/sword.png");
   k.loadAseprite("apple", "sprites/apple.png", "sprites/apple.json");
-  k.loadSound("michelle", "sounds/michelle.mp3");
-  k.loadSound("Mus_ex", "sounds/Mus_ex.ogg");
+  k.loadSound("michelle", "sounds/music/michelle.mp3");
+  k.loadSound("Mus_ex", "sounds/music/death_of_glamour.ogg");
   k.loadSound("koi_no_mahou", "sounds/music/koi_no_mahou.mp3");
-  k.loadSound("metronome", "sounds/metronome.wav");
+  k.loadSound("metronome", "sounds/effects/metronome.wav");
   k.loadBitmapFont("happy", "sprites/happy_28x36.png", 28, 36);
   gameScene();
   sceneSongSelection();
