@@ -14,6 +14,7 @@ const deathByGlamour = {
     "offset": -0.13,
     "artist": "Toby Fox",
     "bpm": 148,
+    "demoStart": 60,
     "chart": `
 0000000000000,
 323232,
@@ -39,6 +40,7 @@ const koiNoMahou = {
     "artist": "ICHIKO",
     "bpm": 152,
     "offset": 1.380,
+    "demoStart": 56.464,
     "chart": `
     ,
     1331,
@@ -105,6 +107,7 @@ const songs = [koiNoMahou, deathByGlamour];
 
 export const sceneSongSelection = () => k.scene("song_selection", () => {
     let selectedSong = 0;
+    let demoSong = null;
 
     k.add([
         k.pos(0),
@@ -115,18 +118,38 @@ export const sceneSongSelection = () => k.scene("song_selection", () => {
     k.add([
         k.pos(k.center().x, 90),
         k.anchor("center"),
-        k.text("AppleBeat ALPHA 0", { size: 32 }),
+        k.text("AppleBeat", { size: 32 }),
+    ]);
+
+    k.add([
+        k.pos(10, k.height() - 10),
+        k.anchor("botleft"),
+        k.text("AppleBeat 1.1.0 - 12/11/2023 - dev by lajbel", { size: 18 })
     ]);
 
     // Song List
     songs.forEach((song, i) => {
         k.add([
-            k.pos(k.center().x, 290 + (i * 40)),
-            k.anchor("center"),
-            k.text(song.name, { size: 28 }),
+            k.pos(40, 290 + (i * 40)),
+            k.anchor("left"),
+            k.text(song.name, { size: 28, align: "left" }),
             "song",
             {
                 songData: song,
+                select() {
+                    demoSong = k.play(song.fileName, { loop: true, volume: 0.5, seek: this.songData.demoStart });
+
+                    k.tween(this.pos.x, 70, 0.2, (v) => {
+                        this.pos.x = v;
+                    }, k.easings.easeInOutQuad);
+                },
+                unselect() {
+                    demoSong?.stop();
+
+                    k.tween(this.pos.x, 40, 0.2, (v) => {
+                        this.pos.x = v;
+                    }, k.easings.easeInOutQuad);
+                }
             }
         ]);
     });
@@ -142,15 +165,23 @@ export const sceneSongSelection = () => k.scene("song_selection", () => {
     // Input
     k.onUpdate(() => {
         if (k.isKeyPressed("down")) {
+            k.get("song")[selectedSong].unselect();
             selectedSong = (selectedSong + 1) % songs.length;
+            k.get("song")[selectedSong].select();
             arrow.pos = k.vec2(k.center().x + 200, 290 + (selectedSong * 40));
         }
         if (k.isKeyPressed("up")) {
+            k.get("song")[selectedSong].unselect();
             selectedSong = (selectedSong - 1 + songs.length) % songs.length
+            k.get("song")[selectedSong].select();
             arrow.pos = k.vec2(k.center().x + 200, 290 + (selectedSong * 40));
         }
         if (k.isKeyPressed("enter")) {
+            demoSong?.stop();
             k.go("game", songs[selectedSong]);
         }
     });
+
+    // Select the first song
+    k.get("song")[selectedSong].select();
 });

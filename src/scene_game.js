@@ -4,10 +4,13 @@ import { waitMs, loopMs } from "./util";
 const noteVel = 400;
 
 export const gameScene = () => k.scene("game", (songData) => {
+    const notes = [];
     let playingAudio;
     let gameData = {
         score: 0,
         combo: 0,
+        noteIndex: 0,
+        oldestNote: null,
     }
 
     // Backround
@@ -27,64 +30,162 @@ export const gameScene = () => k.scene("game", (songData) => {
 
     // Swords
     const sep = 60;
-    const swordPoints = {
+    const swordAnimationPoints = {
         "0": {
-            pos: k.vec2(-sep, 0),
-            angle: -90,
+            "first": {
+                "start": {
+                    pos: k.vec2(-50, 0),
+                    angle: -20,
+                },
+                "end": {
+                    pos: k.vec2(-30, 20),
+                    angle: -94,
+                }
+            },
+            "second": {
+                "start": {
+                    pos: k.vec2(-70, 0),
+                    angle: 0,
+                },
+                "end": {
+                    pos: k.vec2(5, 20),
+                    angle: -120,
+                }
+            },
+
         },
         "1": {
-            pos: k.vec2(0, -sep),
-            angle: 0,
+            "first": {
+                "start": {
+                    pos: k.vec2(-10, 0),
+                    angle: -43,
+                },
+                "end": {
+                    pos: k.vec2(10, -60),
+                    angle: 43,
+                },
+            },
+            "second": {
+                "start": {
+                    pos: k.vec2(-10, 0),
+                    angle: 43,
+                },
+                "end": {
+                    pos: k.vec2(10, -60),
+                    angle: -43,
+                },
+            }
+
         },
         "2": {
-            pos: k.vec2(sep, 0),
-            angle: 90,
+            "first": {
+                "start": {
+                    pos: k.vec2(50, 0),
+                    angle: 20,
+                },
+                "end": {
+                    pos: k.vec2(30, 20),
+                    angle: 94,
+                }
+            },
+            "second": {
+                "start": {
+                    pos: k.vec2(70, 0),
+                    angle: 0,
+                },
+                "end": {
+                    pos: k.vec2(-5, 20),
+                    angle: 120,
+                }
+            },
         },
-        "o": {
-            pos: k.vec2(0),
-            angle: 0,
-        }
     }
 
     const sword = player.add([
-        k.pos(),
+        k.pos(-20, 20),
         k.z(100),
-        k.rotate(),
+        k.rotate(90),
         k.anchor(k.vec2(0, 0.8)),
         k.sprite("sword"),
+        k.area(),
+        "sword",
+        {
+            lastPoint: null,
+            variantUsed: true,
+            pointStatus: "start",
+
+            hit(point) {
+                if(this.lastPoint !== point) this.variantUsed = true;
+                const swordAnimationPoint = swordAnimationPoints[point][this.variantUsed ? "first" : "second"];
+
+                k.tween(swordAnimationPoint.start.angle, swordAnimationPoint.end.angle, 0.1, (v) => {
+                    sword.angle = v;
+                }, k.easings.easeInOutCubic);
+            
+                k.tween(swordAnimationPoint.start.pos, swordAnimationPoint.end.pos, 0.1, (v) => {
+                    sword.pos = v;
+                }, k.easings.easeInOutCubic);
+
+                this.lastPoint = point;
+                this.variantUsed = !this.variantUsed;
+            }
+        }
     ]);
 
     // Action Points
     const actionPointSize = 80;
 
-    const applePoints = k.add([
+    const noteHitPoints = k.add([
         k.pos(k.center()),
         k.anchor("center"),
     ]);
 
-    applePoints.add([
-        k.pos(-100, 0),
-        k.z(50),
-        k.anchor("center"),
-        k.circle(20),
-        k.area({ shape: new Rect(vec2(0), actionPointSize, actionPointSize) }),
-    ]);
+    function addNoteHitPoint(pos, point) {
+        const noteHitPoint = noteHitPoints.add([
+            k.pos(pos),
+            k.z(50),
+            k.anchor("center"),
+            k.circle(20),
+            k.color(k.BLACK),
+            k.opacity(0.1),
+            k.area({ shape: new Rect(vec2(0), actionPointSize, actionPointSize) }),
+        ]);
 
-    applePoints.add([
-        k.pos(0, -100),
-        k.z(50),
-        k.anchor("center"),
-        k.circle(20),
-        k.area({ shape: new Rect(vec2(0), actionPointSize, actionPointSize) }),
-    ]);
+        noteHitPoint.add([
+            k.pos(),
+            {
+                cradius: 20,
+                copacity: 0,
+                playNiceAnim() {
+                    this.copacity = 0.2;
+                    k.tween(this.cradius, 30, 0.1, (v) => {
+                        this.cradius = v;
+                    }).onEnd(() => {
+                        this.copacity = 0;
+                        k.tween(this.cradius, 20, 0.1, (v) => {
+                            this.cradius = v;
+                        });
+                    });
+                },
+                draw() {
+                    k.drawCircle({
+                        radius: this.cradius,
+                        opacity: this.copacity,
+                        outline: {
+                            color: k.BLACK,
+                            width: 4,
+                        },
+                        fill: false,
+                    });
+                }
+            },
+            "corner"
+        ]);
+    }
 
-    applePoints.add([
-        k.pos(100, 0),
-        k.z(50),
-        k.anchor("center"),
-        k.circle(20),
-        k.area({ shape: new Rect(vec2(0), actionPointSize, actionPointSize) }),
-    ]);
+    addNoteHitPoint(k.vec2(-100, 0), 0);
+    addNoteHitPoint(k.vec2(0, -100), 1);
+    addNoteHitPoint(k.vec2(100, 0), 2);
 
     // Notes spawn points
     const spawnPoints = k.add([
@@ -115,7 +216,10 @@ export const gameScene = () => k.scene("game", (songData) => {
     ]);
 
     function addScore(amount, message = "") {
-        gameData.score += amount;
+        let comboBonus = 0;
+        if(combo.comboBonus >= 10) comboBonus = 10;
+    
+        gameData.score += amount + comboBonus;
         score.text = gameData.score;
 
         k.add([
@@ -128,6 +232,24 @@ export const gameScene = () => k.scene("game", (songData) => {
         ]);
     }
 
+    // Combo
+    const combo = k.add([
+        k.pos(k.center().x, 60),
+        k.anchor("top"),
+        k.text("x0", { size: 28 }),
+    ]);
+
+    function addCombo(amount) {
+        gameData.combo += amount;
+        combo.text = "x" + gameData.combo;
+    }
+
+    function resetCombo() {
+        gameData.combo = 0;
+        gameData.oldestNote = notes[gameData.noteIndex];
+        combo.text = "x" + gameData.combo;
+    }
+
     // Song Data
     const songInfo = k.add([
         k.pos(k.center().x, k.height() - 20),
@@ -135,47 +257,43 @@ export const gameScene = () => k.scene("game", (songData) => {
         k.text("", { size: 22 }),
     ]);
 
-    function hitNote(point) {
-        const applePoint = applePoints.children[point];
+    function tryHitNote(point) {
+        const hitPoint = noteHitPoints.children[point];
 
-        k.get("apple").forEach((note) => {
-            if (applePoint.isColliding(note)) {
+        k.get("note").forEach((note) => {
+            if (hitPoint.isColliding(note)) {
                 note.play("cut", { loop: false });
                 note.unuse("move");
                 note.use(lifespan(0.1, { fade: 0.1 }));
+                note.removeNote();
 
-                const noteDis = note.worldPos().dist(applePoint.worldPos());
+                const noteDis = note.worldPos().dist(hitPoint.worldPos());
 
                 if (noteDis < 10) {
                     addScore(300, "Great!");
+                    hitPoint.get("corner")[0].playNiceAnim();
                 }
                 else {
                     addScore(100, "Good");
                 }
+
+                if(note?.id === gameData.oldestNote?.id) {
+                    addCombo(1);
+                }
+                else {
+                    resetCombo();
+                }
+    
+                gameData.noteIndex++;
+                gameData.oldestNote = notes[gameData.noteIndex];
             }
         });
 
         // Sword animation
-        const angleTween = k.tween(sword.angle, swordPoints[point].angle, 0.05, (v) => {
-            sword.angle = v;
-        }, k.easings.easeInOutCubic);
-
-        const posTween = k.tween(sword.pos, swordPoints[point].pos, 0.05, (v) => {
-            sword.pos = v;
-        }, k.easings.easeInOutCubic);
-
-        angleTween.onEnd(() => {
-            k.tween(sword.angle, swordPoints["o"].angle, 0.05, (v) => {
-                sword.angle = v;
-            }, k.easings.easeInOutCubic);
-
-            k.tween(sword.pos, swordPoints["o"].pos, 0.05, (v) => {
-                sword.pos = v;
-            }, k.easings.easeInOutCubic);
-        });
+        sword.hit(point);
     }
 
-    function addNote(point) {
+    function makeNote(point) {
         const spawnPoint = spawnPoints.children[point];
 
         const moveTo = {
@@ -184,22 +302,42 @@ export const gameScene = () => k.scene("game", (songData) => {
             "2": LEFT,
         };
 
-        const note = k.add([
+        const note = k.make([
             k.pos(spawnPoint.worldPos()),
             k.z(50),
-            k.anchor("center"),
+            k.anchor(k.vec2(0, 0.28)),
             k.sprite("apple"),
             k.area(),
             k.move(moveTo[point.toString()], noteVel),
             k.opacity(1),
-            "apple",
+            "note",
+            {
+                point: point,
+                removeNote() {
+                    k.play("slice", { loop: false, volume: 0.5 });
+                    k.add([
+                        k.pos(note.worldPos()),
+                        k.anchor("center"),
+                        k.sprite("apple_break"),
+                        k.move(k.vec2(moveTo[point.toString()].x * -1, point.toString() == "1" ? -1 : 1), 1000),
+                        k.opacity(),
+                        k.lifespan(0.05, { fade: 0.05 }),
+                    ]);
+                }
+            }
         ]);
 
         note.onUpdate(() => {
             if (note.hasPoint(k.center())) {
+                gameData.noteIndex++;
                 note.destroy();
+                resetCombo();
             }
         });
+
+        notes.push(note);
+        if(!gameData.oldestNote) gameData.oldestNote = note;
+        return note;
     }
 
     function addTempoNotes() {
@@ -235,21 +373,20 @@ export const gameScene = () => k.scene("game", (songData) => {
         ////////////////////////////////
         // Tempo viewer  ///////////////
         ///////////////////////////////
+        // const tempoViewer = k.add([
+        //     k.pos(60, 40),
+        //     k.circle(20),
+        // ]);
 
-        const tempoViewer = k.add([
-            k.pos(60, 40),
-            k.circle(20),
-        ]);
+        // loopMs(bpms, () => {
+        //     tempoViewer.use(k.scale(1.2));
+        //     // addTempoNotes();
 
-        loopMs(bpms, () => {
-            tempoViewer.use(k.scale(1.2));
-            // addTempoNotes();
-
-            waitMs(bpms / 2, () => {
-                tempoViewer.use(k.scale(1));
-                // k.play("metronome");
-            });
-        });
+        //     waitMs(bpms / 2, () => {
+        //         tempoViewer.use(k.scale(1));
+        //         // k.play("metronome");
+        //     });
+        // });
 
         /////////////////////////////////
         // Load chart //////////////////
@@ -264,8 +401,10 @@ export const gameScene = () => k.scene("game", (songData) => {
                 waitMs(msPerMeasure * mi, () => {
                     chartNotes.forEach((note, i) => {
                         if(note !== "0") {
+                            const note2 = makeNote(parseInt(note) - 1);
+
                             waitMs(msPerNote * (i), () => {
-                                addNote(parseInt(note) - 1);
+                                k.add(note2);
                             });
                         }
                     });
@@ -276,9 +415,9 @@ export const gameScene = () => k.scene("game", (songData) => {
     }
 
     k.onUpdate(() => {
-        if (k.isKeyPressed("left")) hitNote(0);
-        if (k.isKeyPressed("up")) hitNote(1);
-        if (k.isKeyPressed("right")) hitNote(2);
+        if (k.isKeyPressed("left")) tryHitNote(0);
+        if (k.isKeyPressed("up")) tryHitNote(1);
+        if (k.isKeyPressed("right")) tryHitNote(2);
         if (k.isKeyPressed("escape")) {
             playingAudio?.stop();
             k.go("song_selection");
