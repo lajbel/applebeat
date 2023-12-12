@@ -3998,18 +3998,17 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     const msToSec = ms / 1e3;
     k.wait(msToSec, action);
   }
-  function loopMs(ms, action) {
-    const msToSec = ms / 1e3;
-    k.loop(msToSec, action);
-  }
 
   // src/scene_game.js
   var noteVel = 400;
   var gameScene = () => k.scene("game", (songData) => {
+    const notes = [];
     let playingAudio;
     let gameData = {
       score: 0,
-      combo: 0
+      combo: 0,
+      noteIndex: 0,
+      oldestNote: null
     };
     k.add([
       k.pos(0),
@@ -4023,57 +4022,150 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       k.sprite("bean")
     ]);
     const sep = 60;
-    const swordPoints = {
+    const swordAnimationPoints = {
       "0": {
-        pos: k.vec2(-sep, 0),
-        angle: -90
+        "first": {
+          "start": {
+            pos: k.vec2(-50, 0),
+            angle: -20
+          },
+          "end": {
+            pos: k.vec2(-30, 20),
+            angle: -94
+          }
+        },
+        "second": {
+          "start": {
+            pos: k.vec2(-70, 0),
+            angle: 0
+          },
+          "end": {
+            pos: k.vec2(5, 20),
+            angle: -120
+          }
+        }
       },
       "1": {
-        pos: k.vec2(0, -sep),
-        angle: 0
+        "first": {
+          "start": {
+            pos: k.vec2(-10, 0),
+            angle: -43
+          },
+          "end": {
+            pos: k.vec2(10, -60),
+            angle: 43
+          }
+        },
+        "second": {
+          "start": {
+            pos: k.vec2(-10, 0),
+            angle: 43
+          },
+          "end": {
+            pos: k.vec2(10, -60),
+            angle: -43
+          }
+        }
       },
       "2": {
-        pos: k.vec2(sep, 0),
-        angle: 90
-      },
-      "o": {
-        pos: k.vec2(0),
-        angle: 0
+        "first": {
+          "start": {
+            pos: k.vec2(50, 0),
+            angle: 20
+          },
+          "end": {
+            pos: k.vec2(30, 20),
+            angle: 94
+          }
+        },
+        "second": {
+          "start": {
+            pos: k.vec2(70, 0),
+            angle: 0
+          },
+          "end": {
+            pos: k.vec2(-5, 20),
+            angle: 120
+          }
+        }
       }
     };
     const sword = player.add([
-      k.pos(),
+      k.pos(-20, 20),
       k.z(100),
-      k.rotate(),
+      k.rotate(90),
       k.anchor(k.vec2(0, 0.8)),
-      k.sprite("sword")
+      k.sprite("sword"),
+      k.area(),
+      "sword",
+      {
+        lastPoint: null,
+        variantUsed: true,
+        pointStatus: "start",
+        hit(point) {
+          if (this.lastPoint !== point)
+            this.variantUsed = true;
+          const swordAnimationPoint = swordAnimationPoints[point][this.variantUsed ? "first" : "second"];
+          k.tween(swordAnimationPoint.start.angle, swordAnimationPoint.end.angle, 0.1, (v2) => {
+            sword.angle = v2;
+          }, k.easings.easeInOutCubic);
+          k.tween(swordAnimationPoint.start.pos, swordAnimationPoint.end.pos, 0.1, (v2) => {
+            sword.pos = v2;
+          }, k.easings.easeInOutCubic);
+          this.lastPoint = point;
+          this.variantUsed = !this.variantUsed;
+        }
+      }
     ]);
     const actionPointSize = 80;
-    const applePoints = k.add([
+    const noteHitPoints = k.add([
       k.pos(k.center()),
       k.anchor("center")
     ]);
-    applePoints.add([
-      k.pos(-100, 0),
-      k.z(50),
-      k.anchor("center"),
-      k.circle(20),
-      k.area({ shape: new Rect(vec2(0), actionPointSize, actionPointSize) })
-    ]);
-    applePoints.add([
-      k.pos(0, -100),
-      k.z(50),
-      k.anchor("center"),
-      k.circle(20),
-      k.area({ shape: new Rect(vec2(0), actionPointSize, actionPointSize) })
-    ]);
-    applePoints.add([
-      k.pos(100, 0),
-      k.z(50),
-      k.anchor("center"),
-      k.circle(20),
-      k.area({ shape: new Rect(vec2(0), actionPointSize, actionPointSize) })
-    ]);
+    function addNoteHitPoint(pos, point) {
+      const noteHitPoint = noteHitPoints.add([
+        k.pos(pos),
+        k.z(50),
+        k.anchor("center"),
+        k.circle(20),
+        k.color(k.BLACK),
+        k.opacity(0.1),
+        k.area({ shape: new Rect(vec2(0), actionPointSize, actionPointSize) })
+      ]);
+      noteHitPoint.add([
+        k.pos(),
+        {
+          cradius: 20,
+          copacity: 0,
+          playNiceAnim() {
+            this.copacity = 0.2;
+            k.tween(this.cradius, 30, 0.1, (v2) => {
+              this.cradius = v2;
+            }).onEnd(() => {
+              this.copacity = 0;
+              k.tween(this.cradius, 20, 0.1, (v2) => {
+                this.cradius = v2;
+              });
+            });
+          },
+          draw() {
+            k.drawCircle({
+              radius: this.cradius,
+              opacity: this.copacity,
+              outline: {
+                color: k.BLACK,
+                width: 4
+              },
+              fill: false
+            });
+          }
+        },
+        "corner"
+      ]);
+    }
+    addNoteHitPoint(k.vec2(-100, 0), 0);
+    addNoteHitPoint(k.vec2(0, -100), 1);
+    addNoteHitPoint(k.vec2(100, 0), 2);
     const spawnPoints = k.add([
       k.pos(k.center()),
       k.anchor("center")
@@ -4096,7 +4188,10 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       k.text("0", { size: 40 })
     ]);
     function addScore(amount, message = "") {
-      gameData.score += amount;
+      let comboBonus = 0;
+      if (combo.comboBonus >= 10)
+        comboBonus = 10;
+      gameData.score += amount + comboBonus;
       score.text = gameData.score;
       k.add([
         k.pos(k.center().x, 90),
@@ -4107,63 +4202,93 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         k.lifespan(0.4, { fade: 1 })
       ]);
     }
+    const combo = k.add([
+      k.pos(k.center().x, 60),
+      k.anchor("top"),
+      k.text("x0", { size: 28 })
+    ]);
+    function addCombo(amount) {
+      gameData.combo += amount;
+      combo.text = "x" + gameData.combo;
+    }
+    function resetCombo() {
+      gameData.combo = 0;
+      gameData.oldestNote = notes[gameData.noteIndex];
+      combo.text = "x" + gameData.combo;
+    }
     const songInfo = k.add([
       k.pos(k.center().x, k.height() - 20),
       k.anchor("bot"),
       k.text("", { size: 22 })
     ]);
-    function hitNote(point) {
-      const applePoint = applePoints.children[point];
-      k.get("apple").forEach((note) => {
-        if (applePoint.isColliding(note)) {
+    function tryHitNote(point) {
+      const hitPoint = noteHitPoints.children[point];
+      k.get("note").forEach((note) => {
+        if (hitPoint.isColliding(note)) {
           note.play("cut", { loop: false });
           note.unuse("move");
           note.use(lifespan(0.1, { fade: 0.1 }));
-          const noteDis = note.worldPos().dist(applePoint.worldPos());
+          note.removeNote();
+          const noteDis = note.worldPos().dist(hitPoint.worldPos());
           if (noteDis < 10) {
             addScore(300, "Great!");
+            hitPoint.get("corner")[0].playNiceAnim();
           } else {
             addScore(100, "Good");
           }
+          if (note?.id === gameData.oldestNote?.id) {
+            addCombo(1);
+          } else {
+            resetCombo();
+          }
+          gameData.noteIndex++;
+          gameData.oldestNote = notes[gameData.noteIndex];
         }
       });
-      const angleTween = k.tween(sword.angle, swordPoints[point].angle, 0.05, (v2) => {
-        sword.angle = v2;
-      }, k.easings.easeInOutCubic);
-      const posTween = k.tween(sword.pos, swordPoints[point].pos, 0.05, (v2) => {
-        sword.pos = v2;
-      }, k.easings.easeInOutCubic);
-      angleTween.onEnd(() => {
-        k.tween(sword.angle, swordPoints["o"].angle, 0.05, (v2) => {
-          sword.angle = v2;
-        }, k.easings.easeInOutCubic);
-        k.tween(sword.pos, swordPoints["o"].pos, 0.05, (v2) => {
-          sword.pos = v2;
-        }, k.easings.easeInOutCubic);
-      });
+      sword.hit(point);
     }
-    function addNote(point) {
+    function makeNote(point) {
       const spawnPoint = spawnPoints.children[point];
       const moveTo = {
         "0": RIGHT,
         "1": DOWN,
         "2": LEFT
       };
-      const note = k.add([
+      const note = k.make([
         k.pos(spawnPoint.worldPos()),
         k.z(50),
-        k.anchor("center"),
+        k.anchor(k.vec2(0, 0.28)),
         k.sprite("apple"),
         k.area(),
         k.move(moveTo[point.toString()], noteVel),
         k.opacity(1),
-        "apple"
+        "note",
+        {
+          point,
+          removeNote() {
+            k.play("slice", { loop: false, volume: 0.5 });
+            k.add([
+              k.pos(note.worldPos()),
+              k.anchor("center"),
+              k.sprite("apple_break"),
+              k.move(k.vec2(moveTo[point.toString()].x * -1, point.toString() == "1" ? -1 : 1), 1e3),
+              k.opacity(),
+              k.lifespan(0.05, { fade: 0.05 })
+            ]);
+          }
+        }
       ]);
       note.onUpdate(() => {
         if (note.hasPoint(k.center())) {
+          gameData.noteIndex++;
           note.destroy();
+          resetCombo();
         }
       });
+      notes.push(note);
+      if (!gameData.oldestNote)
+        gameData.oldestNote = note;
+      return note;
     }
     function addTempoNotes() {
       const tempoNoteComps = (pos, angle, dir) => [
@@ -4190,16 +4315,6 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       k.wait(songData2.offset + distanceOfPoint, () => {
         playingAudio = k.play(songData2.fileName);
       });
-      const tempoViewer = k.add([
-        k.pos(60, 40),
-        k.circle(20)
-      ]);
-      loopMs(bpms, () => {
-        tempoViewer.use(k.scale(1.2));
-        waitMs(bpms / 2, () => {
-          tempoViewer.use(k.scale(1));
-        });
-      });
       k.wait(0, () => {
         const measures = songData2.chart.trim().replace(/(\r\n|\n|\r)/gm, "").replace(/\s/g, "").split(",");
         measures.forEach((measure, mi) => {
@@ -4208,8 +4323,9 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
           waitMs(msPerMeasure * mi, () => {
             chartNotes.forEach((note, i2) => {
               if (note !== "0") {
+                const note2 = makeNote(parseInt(note) - 1);
                 waitMs(msPerNote * i2, () => {
-                  addNote(parseInt(note) - 1);
+                  k.add(note2);
                 });
               }
             });
@@ -4219,11 +4335,11 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     k.onUpdate(() => {
       if (k.isKeyPressed("left"))
-        hitNote(0);
+        tryHitNote(0);
       if (k.isKeyPressed("up"))
-        hitNote(1);
+        tryHitNote(1);
       if (k.isKeyPressed("right"))
-        hitNote(2);
+        tryHitNote(2);
       if (k.isKeyPressed("escape")) {
         playingAudio?.stop();
         k.go("song_selection");
@@ -4239,6 +4355,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     "offset": -0.13,
     "artist": "Toby Fox",
     "bpm": 148,
+    "demoStart": 60,
     "chart": `
 0000000000000,
 323232,
@@ -4263,6 +4380,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     "artist": "ICHIKO",
     "bpm": 152,
     "offset": 1.38,
+    "demoStart": 56.464,
     "chart": `
     ,
     1331,
@@ -4323,9 +4441,87 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     ,       
     `
   };
-  var songs = [koiNoMahou, deathByGlamour];
+  var snowHalation = {
+    "name": "Snow Halation",
+    "fileName": "snow_halation",
+    "artist": "u's",
+    "bpm": 173,
+    "offset": -12.596,
+    "demoStart": 51.434,
+    "chart": `
+1,
+3,
+1,
+,
+3,
+1,
+3,
+22001100,
+12,
+1210,
+2121,
+,
+11,
+1120,
+3,
+1000030001002010030,
+10003001,
+0320,
+30002001,
+0120,
+1313,
+10320000,
+1313,
+10220000,
+10101022,
+01010105,
+000000000000000000000000000000000008000000000000,
+30030000,
+00101022,
+0111,
+1500,
+000000000000000000000008000000000000000000000000,
+00101022,
+00000011,
+10022005,
+000000000000000000000000000000000008000000000000,
+00101022,
+0111,
+1500,
+000000000000000000000008000000000000000000000000,
+00101022,
+00000011,
+10022005,
+000000000000000000000000000000000008000000000000,
+0111,
+10220000,
+00111010,
+11220000,
+00111100,
+3,
+12,
+1120,
+12,
+1120,
+12,
+1120,
+12,
+10040000,
+1111,
+1122,
+1111,
+2211,
+1111,
+1122,
+1111,
+33003300,
+0400,
+`
+  };
+  var songs = [koiNoMahou, snowHalation, deathByGlamour];
   var sceneSongSelection = () => k.scene("song_selection", () => {
     let selectedSong = 0;
+    let demoSong = null;
     k.add([
       k.pos(0),
       k.rect(k.width(), k.height()),
@@ -4334,16 +4530,33 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     k.add([
       k.pos(k.center().x, 90),
       k.anchor("center"),
-      k.text("AppleBeat ALPHA 0", { size: 32 })
+      k.text("AppleBeat", { size: 32 })
+    ]);
+    k.add([
+      k.pos(10, k.height() - 10),
+      k.anchor("botleft"),
+      k.text("AppleBeat 1.1.0 - 12/11/2023 - dev by lajbel", { size: 18 })
     ]);
     songs.forEach((song, i2) => {
       k.add([
-        k.pos(k.center().x, 290 + i2 * 40),
-        k.anchor("center"),
-        k.text(song.name, { size: 28 }),
+        k.pos(40, 290 + i2 * 40),
+        k.anchor("left"),
+        k.text(song.name, { size: 28, align: "left" }),
         "song",
         {
-          songData: song
+          songData: song,
+          select() {
+            demoSong = k.play(song.fileName, { loop: true, volume: 0.5, seek: this.songData.demoStart });
+            k.tween(this.pos.x, 70, 0.2, (v2) => {
+              this.pos.x = v2;
+            }, k.easings.easeInOutQuad);
+          },
+          unselect() {
+            demoSong?.stop();
+            k.tween(this.pos.x, 40, 0.2, (v2) => {
+              this.pos.x = v2;
+            }, k.easings.easeInOutQuad);
+          }
         }
       ]);
     });
@@ -4355,17 +4568,23 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     ]);
     k.onUpdate(() => {
       if (k.isKeyPressed("down")) {
+        k.get("song")[selectedSong].unselect();
         selectedSong = (selectedSong + 1) % songs.length;
+        k.get("song")[selectedSong].select();
         arrow.pos = k.vec2(k.center().x + 200, 290 + selectedSong * 40);
       }
       if (k.isKeyPressed("up")) {
+        k.get("song")[selectedSong].unselect();
         selectedSong = (selectedSong - 1 + songs.length) % songs.length;
+        k.get("song")[selectedSong].select();
         arrow.pos = k.vec2(k.center().x + 200, 290 + selectedSong * 40);
       }
       if (k.isKeyPressed("enter")) {
+        demoSong?.stop();
         k.go("game", songs[selectedSong]);
       }
     });
+    k.get("song")[selectedSong].select();
   });
 
   // src/main.js
@@ -4380,11 +4599,15 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
   });
   k.loadSprite("bean", "sprites/bean.png");
   k.loadSprite("sword", "sprites/sword.png");
+  k.loadSprite("sword_cut", "sprites/sword_cut.png");
   k.loadAseprite("apple", "sprites/apple.png", "sprites/apple.json");
+  k.loadSprite("apple_break", "sprites/apple_break.png");
   k.loadSound("michelle", "sounds/music/michelle.mp3");
   k.loadSound("Mus_ex", "sounds/music/death_of_glamour.ogg");
   k.loadSound("koi_no_mahou", "sounds/music/koi_no_mahou.mp3");
+  k.loadSound("slice", "sounds/effects/slice.mp3");
   k.loadSound("metronome", "sounds/effects/metronome.wav");
+  k.loadSound("snow_halation", "sounds/music/snow_halation.ogg");
   k.loadBitmapFont("happy", "sprites/happy_28x36.png", 28, 36);
   gameScene();
   sceneSongSelection();
