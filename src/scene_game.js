@@ -6,7 +6,7 @@ const noteVel = 400;
 export const gameScene = () => k.scene("game", (songData) => {
     const notes = [];
     let playingAudio;
-    let gameData = {
+    let playData = {
         score: 0,
         combo: 0,
         noteIndex: 0,
@@ -107,7 +107,6 @@ export const gameScene = () => k.scene("game", (songData) => {
         k.rotate(90),
         k.anchor(k.vec2(0, 0.8)),
         k.sprite("sword"),
-        k.area(),
         "sword",
         {
             lastPoint: null,
@@ -140,7 +139,7 @@ export const gameScene = () => k.scene("game", (songData) => {
         k.anchor("center"),
     ]);
 
-    function addNoteHitPoint(pos, point) {
+    function addNoteHitPoint(pos) {
         const noteHitPoint = noteHitPoints.add([
             k.pos(pos),
             k.z(50),
@@ -219,8 +218,8 @@ export const gameScene = () => k.scene("game", (songData) => {
         let comboBonus = 0;
         if(combo.comboBonus >= 10) comboBonus = 10;
     
-        gameData.score += amount + comboBonus;
-        score.text = gameData.score;
+        playData.score += amount + comboBonus;
+        score.text = playData.score;
 
         k.add([
             k.pos(k.center().x, 90),
@@ -240,19 +239,25 @@ export const gameScene = () => k.scene("game", (songData) => {
     ]);
 
     function addCombo(amount) {
-        gameData.combo += amount;
-        combo.text = "x" + gameData.combo;
+        playData.combo += amount;
+        combo.text = "x" + playData.combo;
     }
 
     function resetCombo() {
-        gameData.combo = 0;
-        gameData.oldestNote = notes[gameData.noteIndex];
-        combo.text = "x" + gameData.combo;
+        playData.combo = 0;
+        playData.oldestNote = notes[playData.noteIndex];
+        combo.text = "x" + playData.combo;
     }
 
     // Song Data
-    const songInfo = k.add([
-        k.pos(k.center().x, k.height() - 20),
+    const songTitle = k.add([
+        k.pos(k.center().x, k.height() - 60),
+        k.anchor("bot"),
+        k.text("", { size: 26 }),
+    ]);
+
+    const songSubtitle = k.add([
+        k.pos(k.center().x, k.height() - 30),
         k.anchor("bot"),
         k.text("", { size: 22 }),
     ]);
@@ -277,15 +282,15 @@ export const gameScene = () => k.scene("game", (songData) => {
                     addScore(100, "Good");
                 }
 
-                if(note?.id === gameData.oldestNote?.id) {
+                if(note?.id === playData.oldestNote?.id) {
                     addCombo(1);
                 }
                 else {
                     resetCombo();
                 }
     
-                gameData.noteIndex++;
-                gameData.oldestNote = notes[gameData.noteIndex];
+                playData.noteIndex++;
+                playData.oldestNote = notes[playData.noteIndex];
             }
         });
 
@@ -329,14 +334,14 @@ export const gameScene = () => k.scene("game", (songData) => {
 
         note.onUpdate(() => {
             if (note.hasPoint(k.center())) {
-                gameData.noteIndex++;
+                playData.noteIndex++;
                 note.destroy();
                 resetCombo();
             }
         });
 
         notes.push(note);
-        if(!gameData.oldestNote) gameData.oldestNote = note;
+        if(!playData.oldestNote) playData.oldestNote = note;
         return note;
     }
 
@@ -364,10 +369,11 @@ export const gameScene = () => k.scene("game", (songData) => {
         const msPerMeasure = bpms * 4;
         const distanceOfPoint = ((k.width() / 2) - 100) / noteVel;
 
-        songInfo.text = `${songData.name} from ${songData.artist}`
+        songTitle.text = songData.title;
+        songSubtitle.text = songData.subtitle;
 
         k.wait(songData.offset + distanceOfPoint, () => {
-            playingAudio = k.play(songData.fileName);
+            playingAudio = k.play(songData.sound);
         });
 
         ////////////////////////////////
@@ -392,7 +398,7 @@ export const gameScene = () => k.scene("game", (songData) => {
         // Load chart //////////////////
         ///////////////////////////////
         k.wait(0, () => {
-            const measures = songData.chart.trim().replace(/(\r\n|\n|\r)/gm, "").replace(/\s/g, "").split(",");
+            const measures = songData.chart.split(",,");
 
             measures.forEach((measure, mi) => {
                 const chartNotes = measure.split("");
