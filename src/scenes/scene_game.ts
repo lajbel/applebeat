@@ -54,6 +54,7 @@ export const loadGameScene = () => k.scene("game", (songData) => {
     const playInfo = k.add([
         k.pos(k.center().x, k.height() - 200),
         k.anchor("top"),
+        k.layer("ui"),
         k.rect(k.width(), 200),
         k.color(k.Color.fromHex("#1f102a")),
     ]);
@@ -96,6 +97,12 @@ export const loadGameScene = () => k.scene("game", (songData) => {
             k.opacity(),
             k.lifespan(0.4, { fade: 0.4 }),
         ]);
+    }
+
+    function registerMiss(rail: Rail) {
+        addScore(0, "Miss", rail);
+        playData.noteIndex++;
+        playData.oldestNote = noteStack[playData.noteIndex];
     }
 
     // #endregion
@@ -155,20 +162,19 @@ export const loadGameScene = () => k.scene("game", (songData) => {
     addNoteHitPoint(k.vec2(0, -100));
     addNoteHitPoint(k.vec2(100, 0));
 
-    // Notes spawn points
-    const spawnPoints = k.add([
+    const railPoints = k.add([
         k.pos(k.center()),
         k.anchor("center"),
     ]);
-    spawnPoints.add([
+    railPoints.add([
         k.pos(-k.width() / 2, 0),
         k.anchor("center"),
     ]);
-    spawnPoints.add([
+    railPoints.add([
         k.pos(0, -k.height() / 2),
         k.anchor("center"),
     ]);
-    spawnPoints.add([
+    railPoints.add([
         k.pos(k.width() / 2, 0),
         k.anchor("center"),
     ]);
@@ -176,7 +182,7 @@ export const loadGameScene = () => k.scene("game", (songData) => {
     // #region Combo
     function addCombo(amount: number) {
         playData.combo += amount;
-        combo.text = "x" + padlZero(String(playData.combo), 5);
+        combo.text = "x" + padlZero(String(playData.combo), 3);
     }
 
     function resetCombo() {
@@ -200,132 +206,111 @@ export const loadGameScene = () => k.scene("game", (songData) => {
     ]);
     // #endregion
 
-    function hitRail(rail: Rail) {
+    function onHitRail(rail: Rail) {
         const hitPoint = noteHitPoints.children[rail];
+        const hittedNote = k.get("note").filter((note) => hitPoint.isColliding(note) && note.state === "active")[0];
+
+        // Sword animation
+        sword.hit(rail);
 
         if (gameData.debug) {
             hitPoint.use(k.color(k.RED));
             hitPoint.use(k.opacity(1));
 
-            const cleanUp = k.onUpdate(() => {
+            const cleanUp = k.wait(0.05, () => {
                 hitPoint.use(k.color(k.BLACK));
                 hitPoint.use(k.opacity(0.1));
                 cleanUp.cancel();
             });
         }
 
-        const hittedNote = k.get("note").filter((note) => hitPoint.isColliding(note) && note.active)[0];
+        if (!hittedNote) return;
+        hittedNote.enterState("hit");
 
-        if (hittedNote) {
-            if (hittedNote.type === "single") {
-                hittedNote.removeNote();
-            }
+        const noteDis = hittedNote.worldPos().dist(hitPoint.worldPos());
 
-            // left notes
+        // Aplicate score
+        if (noteDis > 30) {
             if (rail === 0) {
-                const noteDis = hittedNote.worldPos().dist(hitPoint.worldPos());
-                if (noteDis > 30) {
-                    if (hittedNote.worldPos().x > hitPoint.worldPos().x) addScore(30, "Late", rail);
-                    else addScore(30, "Early", rail);
-                }
-                else if (noteDis < 15) {
-                    addScore(100, "Great!", rail);
-                    hitPoint.get("corner")[0].playNiceAnim();
-                }
-                else {
-                    addScore(50, "Good", rail)
-                };
+                if (hittedNote.worldPos().x > hitPoint.worldPos().x) addScore(30, "Late", rail);
+                else addScore(30, "Early", rail);
             }
-            // right nots
-            else if (rail === 2) {
-                const noteDis = hittedNote.worldPos().dist(hitPoint.worldPos());
-                if (noteDis > 30) {
-                    if (hittedNote.worldPos().x < hitPoint.worldPos().x) addScore(30, "Late", rail);
-                    else addScore(30, "Early", rail);
-                }
-                else if (noteDis < 15) {
-                    addScore(100, "Great!", rail);
-                    hitPoint.get("corner")[0].playNiceAnim();
-                }
-                else {
-                    addScore(50, "Good", rail)
-                };
-            }
-            // up notes
             else if (rail === 1) {
-                const noteDis = hittedNote.worldPos().dist(hitPoint.worldPos());
-                if (noteDis > 30) {
-                    if (hittedNote.worldPos().y < hitPoint.worldPos().y) addScore(30, "Early", rail);
-                    else addScore(30, "Late", rail);
-                }
-                else if (noteDis < 15) {
-                    addScore(100, "Great!", rail);
-                    hitPoint.get("corner")[0].playNiceAnim();
-                }
-                else {
-                    addScore(50, "Good", rail)
-                };
+                if (hittedNote.worldPos().y < hitPoint.worldPos().y) addScore(30, "Early", rail);
+                else addScore(30, "Late", rail);
             }
-
-            if (hittedNote?.id === playData.oldestNote?.id) {
-                addCombo(1);
+            else if (rail === 2) {
+                if (hittedNote.worldPos().x < hitPoint.worldPos().x) addScore(30, "Late", rail);
+                else addScore(30, "Early", rail);
             }
-            else {
-                resetCombo();
-            }
-
-            playData.noteIndex++;
-            playData.oldestNote = noteStack[playData.noteIndex];
         }
+        else if (noteDis < 15) {
+            addScore(100, "Great!", rail);
+            hitPoint.get("corner")[0].playNiceAnim();
+        }
+        else {
+            addScore(50, "Good", rail)
+        };
 
-        // Sword animation
-        sword.hit(rail);
+        if (hittedNote?.id === playData.oldestNote?.id) addCombo(1);
+        else resetCombo();
+
+        playData.noteIndex++;
+        playData.oldestNote = noteStack[playData.noteIndex];
     }
 
-    function mantainHitRail(rail: Rail) {
+    function onHitUpdate(rail: Rail) { }
+
+    function onHitEnd(rail: Rail) {
         const hitPoint = noteHitPoints.children[rail];
-        const hittedNote = k.get("note").filter((note) => hitPoint.isColliding(note))[0];
+        const unhittedNote = k.get("note").filter((note) => hitPoint.isColliding(note))[0];
 
-        if (hittedNote) {
-            if (hittedNote.type === "slider") {
-                hittedNote.get("subnote").forEach((subnote) => {
+        if (!unhittedNote) return;
 
-                });
-                hittedNote.removeOldestNote();
-            }
+        if (unhittedNote.type === "slider") {
+            unhittedNote.enterState("miss");
         }
     }
 
+    // #region Notes
     function addSingle(rail: Rail) {
-        const spawnPoint = spawnPoints.children[rail].worldPos();
-        const note = noteSingle(rail, noteVel, spawnPoint);
+        const railPoint = railPoints.children[rail].worldPos();
+        const single = noteSingle(rail, noteVel, railPoint);
 
-        note.onUpdate(() => {
-            if (note.hasPoint(k.center())) {
-                note.destroy();
-                if (note.active) {
-                    addScore(0, "Miss", rail);
-                    resetCombo();
-                    playData.noteIndex++;
-                    playData.oldestNote = noteStack[playData.noteIndex];
-                }
+        // Check for note miss
+        single.onUpdate(() => {
+            if (single.state === "active" && single.hasPoint(k.center())) {
+                single.enterState("miss");
+                registerMiss(rail);
             }
         });
 
-        noteStack.push(note);
-        if (!playData.oldestNote) playData.oldestNote = note;
+        // Add notes to the stack and update note needed for combo
+        noteStack.push(single);
+        if (!playData.oldestNote) playData.oldestNote = single;
 
-        k.add(note);
-        return note;
+        k.add(single);
+        return single;
     }
 
     function addSlider(rail: Rail) {
-        const spawnPoint = spawnPoints.children[rail].worldPos();
-        const slider = noteSlider(rail, noteVel, spawnPoint);
+        const railPoint = railPoints.children[rail].worldPos();
+        const slider = noteSlider(rail, noteVel, railPoint);
+
+        slider.onUpdate(() => {
+            if (slider.active && slider.hasPoint(k.center())) {
+                slider.enterState("miss");
+                registerMiss(rail);
+            }
+        });
+
+        noteStack.push(slider);
+        if (!playData.oldestNote) playData.oldestNote = slider;
 
         k.add(slider);
         return slider;
     }
+    // #endregion
 
     function startSong(songData: Song) {
         const bpm = songData.bpm;
@@ -377,13 +362,17 @@ export const loadGameScene = () => k.scene("game", (songData) => {
     }
 
     k.onUpdate(() => {
-        if (k.isKeyPressed("left") || k.isKeyPressed("a")) hitRail(0);
-        if (k.isKeyPressed("up") || k.isKeyPressed("w")) hitRail(1);
-        if (k.isKeyPressed("right") || k.isKeyPressed("d")) hitRail(2);
+        if (k.isKeyPressed("left") || k.isKeyPressed("a")) onHitRail(0);
+        if (k.isKeyPressed("up") || k.isKeyPressed("w")) onHitRail(1);
+        if (k.isKeyPressed("right") || k.isKeyPressed("d")) onHitRail(2);
 
-        if (k.isKeyDown("left") || k.isKeyDown("a")) mantainHitRail(0);
-        if (k.isKeyDown("up") || k.isKeyDown("a")) mantainHitRail(1);
-        if (k.isKeyDown("right") || k.isKeyDown("a")) mantainHitRail(2);
+        if (k.isKeyDown("left") || k.isKeyDown("a")) onHitUpdate(0);
+        if (k.isKeyDown("up") || k.isKeyDown("a")) onHitUpdate(1);
+        if (k.isKeyDown("right") || k.isKeyDown("a")) onHitUpdate(2);
+
+        if (k.isKeyReleased("left") || k.isKeyReleased("a")) onHitEnd(0);
+        if (k.isKeyReleased("up") || k.isKeyReleased("a")) onHitEnd(1);
+        if (k.isKeyReleased("right") || k.isKeyReleased("a")) onHitEnd(2);
 
         if (k.isKeyPressed("escape")) {
             playingAudio?.stop();
