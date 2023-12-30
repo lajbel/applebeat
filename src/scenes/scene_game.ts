@@ -2,32 +2,26 @@ import type { AudioPlay, GameObj, Vec2 } from "kaboom";
 import type { Rail, Song } from "../types";
 import { gameData, k } from "../main";
 import { padlZero, waitMs } from "../util";
-import { noteSlider, noteSingle } from "../objects/obj_note";
-import { tweenAnim } from "../components/tweenAnim"
-import { swordAnimation } from "../animations/anim_sword";
 import { PlayData } from "../classes/playData";
-
-const noteVel = 400;
+// Objects
+import { playerObj } from "../objects/game/player";
+import { backgroundObj } from "../objects/game/background";
+import { noteSlider, noteSingle } from "../objects/obj_note";
+// Components
+import { tweenAnim } from "../components/tweenAnim"
+// Animations
+import { swordAnimation } from "../animations/anim_sword";
+import { playInfoObj } from "../objects/game/play_info";
 
 export const loadGameScene = () => k.scene("game", (songData) => {
     const playData = new PlayData();
     const noteStack: GameObj[] = [];
+    const noteVel = 400;
+    const hitPointSize = 60;
     let playingAudio: AudioPlay | null = null;
 
-    // Backround
-    k.add([
-        k.layer("background"),
-        k.rect(k.width(), k.height()),
-        k.color(k.Color.fromHex("#ee8fcb")),
-    ]);
-
-    // Player
-    const player = k.add([
-        k.pos(k.center()),
-        k.layer("player"),
-        k.anchor("center"),
-        k.sprite(gameData.player.skin),
-    ]);
+    const background = k.add(backgroundObj("#ee8fcb"));
+    const player = k.add(playerObj());
 
     // Swords
     const sword = player.add([
@@ -50,26 +44,7 @@ export const loadGameScene = () => k.scene("game", (songData) => {
         }
     ]);
 
-    // #region PlayInfo
-    const playInfo = k.add([
-        k.pos(k.center().x, k.height() - 200),
-        k.anchor("top"),
-        k.layer("ui"),
-        k.rect(k.width(), 200),
-        k.color(k.Color.fromHex("#1f102a")),
-    ]);
-
-    const score = playInfo.add([
-        k.pos(k.center().x - 10, 20 + 10),
-        k.anchor("right"),
-        k.text(padlZero(String(playData.score), 8), { size: 40 }),
-    ]);
-
-    const combo = playInfo.add([
-        k.pos(score.pos.add(k.vec2(0, 40))),
-        k.anchor("right"),
-        k.text("x" + padlZero(String(playData.combo), 3), { size: 28 }),
-    ]);
+    const playInfo = k.add(playInfoObj());
 
     function addScore(amount: number, message: string, rail: Rail) {
         const hitPoint = noteHitPoints.children[rail];
@@ -86,7 +61,7 @@ export const loadGameScene = () => k.scene("game", (songData) => {
 
         // Update texts
         playData.score += amount + comboBonus;
-        score.text = padlZero(String(playData.score), 8);
+        playInfo.setScore(playData.score);
 
         // Score text
         k.add([
@@ -105,11 +80,6 @@ export const loadGameScene = () => k.scene("game", (songData) => {
         playData.oldestNote = noteStack[playData.noteIndex];
     }
 
-    // #endregion
-
-    // Action Points
-    const actionPointSize = 60;
-
     const noteHitPoints = k.add([
         k.pos(k.center()),
         k.anchor("center"),
@@ -123,7 +93,7 @@ export const loadGameScene = () => k.scene("game", (songData) => {
             k.circle(20),
             k.color(k.BLACK),
             k.opacity(0.1),
-            k.area({ shape: new k.Rect(k.vec2(0), actionPointSize, actionPointSize) }),
+            k.area({ shape: new k.Rect(k.vec2(0), hitPointSize, hitPointSize) }),
         ]);
 
         noteHitPoint.add([
@@ -179,20 +149,17 @@ export const loadGameScene = () => k.scene("game", (songData) => {
         k.anchor("center"),
     ]);
 
-    // #region Combo
     function addCombo(amount: number) {
         playData.combo += amount;
-        combo.text = "x" + padlZero(String(playData.combo), 3);
+        playInfo.setCombo(playData.combo);
     }
 
     function resetCombo() {
         playData.combo = 0;
-        combo.text = "x" + padlZero(String(playData.combo), 5);
+        playInfo.setCombo(playData.combo);
         k.shake(1);
     }
-    // #endregion
 
-    // #region Song Data
     const songTitle = k.add([
         k.pos(k.center().x, k.height() - 60),
         k.anchor("bot"),
@@ -204,7 +171,6 @@ export const loadGameScene = () => k.scene("game", (songData) => {
         k.anchor("bot"),
         k.text("", { size: 22 }),
     ]);
-    // #endregion
 
     function onHitRail(rail: Rail) {
         const hitPoint = noteHitPoints.children[rail];
@@ -310,7 +276,6 @@ export const loadGameScene = () => k.scene("game", (songData) => {
         k.add(slider);
         return slider;
     }
-    // #endregion
 
     function startSong(songData: Song) {
         const bpm = songData.bpm;
@@ -361,6 +326,11 @@ export const loadGameScene = () => k.scene("game", (songData) => {
         });
     }
 
+    function exitGame() {
+        playingAudio?.stop();
+        k.go("song_selection");
+    }
+
     k.onUpdate(() => {
         if (k.isKeyPressed("left") || k.isKeyPressed("a")) onHitRail(0);
         if (k.isKeyPressed("up") || k.isKeyPressed("w")) onHitRail(1);
@@ -374,10 +344,7 @@ export const loadGameScene = () => k.scene("game", (songData) => {
         if (k.isKeyReleased("up") || k.isKeyReleased("a")) onHitEnd(1);
         if (k.isKeyReleased("right") || k.isKeyReleased("a")) onHitEnd(2);
 
-        if (k.isKeyPressed("escape")) {
-            playingAudio?.stop();
-            k.go("song_selection");
-        }
+        if (k.isKeyPressed("escape")) exitGame();
     });
 
     startSong(songData);
