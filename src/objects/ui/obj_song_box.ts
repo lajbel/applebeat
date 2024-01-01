@@ -12,21 +12,18 @@ export const songBox = (songData: Song) => {
             songData,
             justSelected: false,
             justDeselected: false,
-
             select() {
                 k.tween(this.pos.x, 40, 0.2, (v) => {
                     this.pos.x = v;
                 }, k.easings.easeInOutQuad);
                 this.justSelected = true;
             },
-
             deselect() {
                 k.tween(this.pos.x, 0, 0.2, (v) => {
                     this.pos.x = v;
                 }, k.easings.easeInOutQuad);
                 this.justDeselected = true;
             },
-
             onSelect(action: (songData: Song) => void) {
                 return k.onUpdate(() => {
                     if (this.justSelected) {
@@ -35,7 +32,6 @@ export const songBox = (songData: Song) => {
                     };
                 });
             },
-
             onDeselect(action: (songData: Song) => void) {
                 return k.onUpdate(() => {
                     if (this.justDeselected) {

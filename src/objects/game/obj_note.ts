@@ -1,6 +1,6 @@
 import { Anchor, AreaComp, GameObj, Vec2 } from "kaboom";
-import { k } from "../main";
-import { Rail } from "../types";
+import { k } from "../../main";
+import { Rail } from "../../types";
 
 const directionByRail = (rail: Rail) => {
     return {

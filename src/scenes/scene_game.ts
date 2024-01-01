@@ -1,17 +1,13 @@
 import type { AudioPlay, GameObj, Vec2 } from "kaboom";
 import type { Rail, Song } from "../types";
 import { gameData, k } from "../main";
-import { padlZero, waitMs } from "../util";
+import { waitMs } from "../util";
 import { PlayData } from "../classes/playData";
-// Objects
-import { playerObj } from "../objects/game/player";
-import { backgroundObj } from "../objects/game/background";
-import { noteSlider, noteSingle } from "../objects/obj_note";
-// Components
-import { tweenAnim } from "../components/tweenAnim"
-// Animations
-import { swordAnimation } from "../animations/anim_sword";
-import { playInfoObj } from "../objects/game/play_info";
+import { playerObj } from "../objects/game/obj_player";
+import { backgroundObj } from "../objects/game/obj_background";
+import { swordObj } from "../objects/game/obj_sword";
+import { noteSlider, noteSingle } from "../objects/game/obj_note";
+import { playInfoObj } from "../objects/game/obj_play_info";
 
 export const loadGameScene = () => k.scene("game", (songData) => {
     const playData = new PlayData();
@@ -22,28 +18,7 @@ export const loadGameScene = () => k.scene("game", (songData) => {
 
     const background = k.add(backgroundObj("#ee8fcb"));
     const player = k.add(playerObj());
-
-    // Swords
-    const sword = player.add([
-        k.pos(-20, 20),
-        k.rotate(90),
-        k.layer("sword"),
-        k.anchor(k.vec2(0, 0.8)),
-        k.sprite("sword"),
-        tweenAnim(swordAnimation(), 0.1),
-        "sword",
-        {
-            lastRail: null,
-            variantUsed: true,
-            hit(rail: Rail) {
-                if (this.lastRail !== rail) this.variantUsed = true;
-                this.playTAnim(String(rail) + (this.variantUsed ? "first" : "second"));
-                this.lastRail = rail;
-                this.variantUsed = !this.variantUsed;
-            }
-        }
-    ]);
-
+    const sword = player.add(swordObj());
     const playInfo = k.add(playInfoObj());
 
     function addScore(amount: number, message: string, rail: Rail) {

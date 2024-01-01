@@ -1,3 +1,5 @@
+export type Rail = 0 | 1 | 2;
+
 export type Song = {
     title: string,
     subtitle: string,
@@ -19,5 +21,3 @@ export type UserSettings = {
     demoMusic: boolean,
     volume: number,
 }
-
-export type Rail = 0 | 1 | 2;

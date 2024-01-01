@@ -1,4 +1,4 @@
-import { k, gameData } from "./main";
+import { k } from "./main";
 import { loadTJA } from "./util";
 
 export function loadAssets() {

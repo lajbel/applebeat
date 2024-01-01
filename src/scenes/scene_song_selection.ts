@@ -1,6 +1,6 @@
 import { AudioPlay } from "kaboom";
 import { k, gameData } from "../main";
-import { songBox } from "../objects/ui/song_box";
+import { songBox } from "../objects/ui/obj_song_box";
 import { complexAdd } from "../util";
 
 export const sceneSongSelection = () => k.scene("song_selection", () => {
