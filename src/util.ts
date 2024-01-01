@@ -30,7 +30,7 @@ export function complexAdd<T extends KA.Comp, T2>(obj: KA.GameObj<T2>, parent: K
     return newObj;
 }
 
-export function loadTJA(tjaPath: string) {
+export function loadTJA(tjaPath: string, remote?: boolean) {
     return k.load(new Promise((resolve, reject) => {
         fetch(tjaPath).then((response) => {
             return response.text();
@@ -54,7 +54,8 @@ export function loadTJA(tjaPath: string) {
                 if (!song.genre) return reject("No genre found");
                 if (!song.bpm) return reject("No BPM found");
 
-                await k.loadSound(song.wave.slice(0, -3), `sounds/music/${song.wave}`);
+                const soundPath = remote ? song.wave : `sounds/music/${song.wave}`;
+                await k.loadSound(song.wave.slice(0, -3), soundPath);
 
                 gameData.songs.push({
                     title: song.title,
