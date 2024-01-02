@@ -15,7 +15,7 @@ export const loadClickScene = () => k.scene("click", () => {
 
     k.onUpdate(() => {
         if (k.isMousePressed() || k.isKeyPressed("enter") || k.isKeyPressed("space")) {
-            k.go("song_selection");
+            k.go("main_menu");
         }
     });
 });

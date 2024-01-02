@@ -13,6 +13,16 @@ export function loopMs(ms: number, action: () => void) {
     k.loop(msToSec, action);
 }
 
+export function doubleTween<V extends KA.LerpValue>(from: V, to: V, duration: number, setValue: (value: V) => void, easeFunc?: (t: number) => number) {
+    k.tween(from, to, duration, (value) => {
+        setValue(value);
+    }, easeFunc).onEnd(() => {
+        k.tween(to, from, duration, (value) => {
+            setValue(value);
+        }, easeFunc);
+    });
+}
+
 export function padlZero(str: string, len: number) {
     return str.padStart(len, "0");
 }

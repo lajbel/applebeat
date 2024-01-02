@@ -6,8 +6,9 @@ import { PlayData } from "../classes/playData";
 import { playerObj } from "../objects/game/obj_player";
 import { backgroundObj } from "../objects/game/obj_background";
 import { swordObj } from "../objects/game/obj_sword";
-import { noteSlider, noteSingle } from "../objects/game/obj_note";
+import { noteSliderObj, noteSingleObj } from "../objects/game/obj_note";
 import { playInfoObj } from "../objects/game/obj_play_info";
+import { hitPointObj } from "../objects/game/obj_hit_point";
 
 export const loadGameScene = () => k.scene("game", (songData) => {
     const playData = new PlayData();
@@ -16,10 +17,59 @@ export const loadGameScene = () => k.scene("game", (songData) => {
     const hitPointSize = 60;
     let playingAudio: AudioPlay | null = null;
 
+    k.layers([
+        "background",
+        "note",
+        "player",
+        "sword",
+        "default",
+        "ui",
+    ], "default");
+
     const background = k.add(backgroundObj("#ee8fcb"));
     const player = k.add(playerObj());
     const sword = player.add(swordObj());
     const playInfo = k.add(playInfoObj());
+
+    const songTitle = k.add([
+        k.pos(k.center()),
+        k.anchor("center"),
+        k.text("", { size: 26 }),
+        k.lifespan(1, { fade: 1 }),
+    ]);
+
+    const songSubtitle = songTitle.add([
+        k.pos(0, 100),
+        k.anchor("center"),
+        k.text("", { size: 22 }),
+    ]);
+
+    const noteHitPoints = k.add([
+        k.pos(k.center()),
+        k.anchor("center"),
+    ]);
+
+    noteHitPoints.add(hitPointObj(k.vec2(-100, 0)));
+    noteHitPoints.add(hitPointObj(k.vec2(0, -100)));
+    noteHitPoints.add(hitPointObj(k.vec2(100, 0)));
+
+    const railPoints = k.add([
+        k.pos(k.center()),
+        k.anchor("center"),
+    ]);
+    railPoints.add([
+        k.pos(-k.width() / 2, 0),
+        k.anchor("center"),
+    ]);
+    railPoints.add([
+        k.pos(0, -k.height() / 2),
+        k.anchor("center"),
+    ]);
+    railPoints.add([
+        k.pos(k.width() / 2, 0),
+        k.anchor("center"),
+    ]);
+
 
     function addScore(amount: number, message: string, rail: Rail) {
         const hitPoint = noteHitPoints.children[rail];
@@ -49,81 +99,6 @@ export const loadGameScene = () => k.scene("game", (songData) => {
         ]);
     }
 
-    function registerMiss(rail: Rail) {
-        addScore(0, "Miss", rail);
-        playData.noteIndex++;
-        playData.oldestNote = noteStack[playData.noteIndex];
-    }
-
-    const noteHitPoints = k.add([
-        k.pos(k.center()),
-        k.anchor("center"),
-    ]);
-
-    function addNoteHitPoint(pos: Vec2) {
-        const noteHitPoint = noteHitPoints.add([
-            k.pos(pos),
-            k.z(50),
-            k.anchor("center"),
-            k.circle(20),
-            k.color(k.BLACK),
-            k.opacity(0.1),
-            k.area({ shape: new k.Rect(k.vec2(0), hitPointSize, hitPointSize) }),
-        ]);
-
-        noteHitPoint.add([
-            k.pos(),
-            {
-                cradius: 20,
-                copacity: 0,
-                playNiceAnim() {
-                    this.copacity = 0.2;
-                    k.tween(this.cradius, 30, 0.1, (v) => {
-                        this.cradius = v;
-                    }).onEnd(() => {
-                        this.copacity = 0;
-                        k.tween(this.cradius, 20, 0.1, (v) => {
-                            this.cradius = v;
-                        });
-                    });
-                },
-                draw() {
-                    k.drawCircle({
-                        radius: this.cradius,
-                        opacity: this.copacity,
-                        outline: {
-                            color: k.BLACK,
-                            width: 4,
-                        },
-                        fill: false,
-                    });
-                }
-            },
-            "corner"
-        ]);
-    }
-
-    addNoteHitPoint(k.vec2(-100, 0));
-    addNoteHitPoint(k.vec2(0, -100));
-    addNoteHitPoint(k.vec2(100, 0));
-
-    const railPoints = k.add([
-        k.pos(k.center()),
-        k.anchor("center"),
-    ]);
-    railPoints.add([
-        k.pos(-k.width() / 2, 0),
-        k.anchor("center"),
-    ]);
-    railPoints.add([
-        k.pos(0, -k.height() / 2),
-        k.anchor("center"),
-    ]);
-    railPoints.add([
-        k.pos(k.width() / 2, 0),
-        k.anchor("center"),
-    ]);
-
     function addCombo(amount: number) {
         playData.combo += amount;
         playInfo.setCombo(playData.combo);
@@ -135,17 +110,11 @@ export const loadGameScene = () => k.scene("game", (songData) => {
         k.shake(1);
     }
 
-    const songTitle = k.add([
-        k.pos(k.center().x, k.height() - 60),
-        k.anchor("bot"),
-        k.text("", { size: 26 }),
-    ]);
-
-    const songSubtitle = k.add([
-        k.pos(k.center().x, k.height() - 30),
-        k.anchor("bot"),
-        k.text("", { size: 22 }),
-    ]);
+    function registerMiss(rail: Rail) {
+        addScore(0, "Miss", rail);
+        playData.noteIndex++;
+        playData.oldestNote = noteStack[playData.noteIndex];
+    }
 
     function onHitRail(rail: Rail) {
         const hitPoint = noteHitPoints.children[rail];
@@ -187,7 +156,7 @@ export const loadGameScene = () => k.scene("game", (songData) => {
         }
         else if (noteDis < 15) {
             addScore(100, "Great!", rail);
-            hitPoint.get("corner")[0].playNiceAnim();
+            hitPoint.greatHit();
         }
         else {
             addScore(50, "Good", rail)
@@ -213,10 +182,9 @@ export const loadGameScene = () => k.scene("game", (songData) => {
         }
     }
 
-    // #region Notes
     function addSingle(rail: Rail) {
         const railPoint = railPoints.children[rail].worldPos();
-        const single = noteSingle(rail, noteVel, railPoint);
+        const single = noteSingleObj(rail, noteVel, railPoint);
 
         // Check for note miss
         single.onUpdate(() => {
@@ -236,7 +204,7 @@ export const loadGameScene = () => k.scene("game", (songData) => {
 
     function addSlider(rail: Rail) {
         const railPoint = railPoints.children[rail].worldPos();
-        const slider = noteSlider(rail, noteVel, railPoint);
+        const slider = noteSliderObj(rail, noteVel, railPoint);
 
         slider.onUpdate(() => {
             if (slider.active && slider.hasPoint(k.center())) {

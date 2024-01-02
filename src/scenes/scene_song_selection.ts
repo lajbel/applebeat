@@ -3,7 +3,7 @@ import { k, gameData } from "../main";
 import { songBox } from "../objects/ui/obj_song_box";
 import { complexAdd } from "../util";
 
-export const sceneSongSelection = () => k.scene("song_selection", () => {
+export const loadSongSelectionScene = () => k.scene("song_selection", () => {
     const songDatas = gameData.songs;
     let selectedSong = 0;
     let demoSongVolume = 0;

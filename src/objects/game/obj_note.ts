@@ -35,12 +35,12 @@ const noteStates = [
 ]
 
 // Single note
-export function noteSingle(rail: Rail, vel: number, pos: Vec2) {
+export function noteSingleObj(rail: Rail, vel: number, pos: Vec2) {
     const note = k.make([
         k.pos(pos),
         k.layer("note"),
         k.anchor(k.vec2(0, 0.28)),
-        k.sprite("apple"),
+        k.sprite("note_single"),
         k.area(),
         k.move(directionByRail(rail), vel),
         k.opacity(1),
@@ -54,7 +54,7 @@ export function noteSingle(rail: Rail, vel: number, pos: Vec2) {
 
     note.onStateEnter("hit", () => {
         k.play("slice", { loop: false, volume: 0.5 });
-        note.play("cut", { loop: false });
+        note.play("hit", { loop: false });
         note.enterState("miss");
     });
 
@@ -70,7 +70,7 @@ export function noteSingle(rail: Rail, vel: number, pos: Vec2) {
     return note;
 }
 
-export function noteSlider(rail: Rail, vel: number, pos: Vec2) {
+export function noteSliderObj(rail: Rail, vel: number, pos: Vec2) {
     let notes: GameObj<AreaComp | any>[] = [];
     let destroyedIndex = 0;
     let removingNote = false;
