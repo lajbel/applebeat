@@ -5,15 +5,17 @@ export function loadAssets() {
     // Sprites
     k.loadSprite("logo", "sprites/images/logo.png");
     k.loadSprite("star", "sprites/images/star.png");
+    k.loadSprite("life", "sprites/images/life.png");
+    k.loadSprite("fail", "sprites/images/fail.png");
 
     k.loadSprite("sword", "sprites/sword.png");
     k.loadSprite("sword_cut", "sprites/sword_cut.png");
     k.loadSprite("apple_break", "sprites/apple_break.png");
-    k.loadAseprite("apple", "sprites/apple.png", "sprites/apple.json");
     k.loadAseprite("green_apple", "sprites/green_apple.png", "sprites/green_apple.json");
 
     // Notes
     k.loadAseprite("note_single", "sprites/notes_skin/note_single.png", "sprites/notes_skin/note_single.json");
+    k.loadAseprite("note_slider", "sprites/notes_skin/note_slider.png", "sprites/notes_skin/note_slider.json");
 
     // Player skins
     k.loadSprite("bean", "sprites/players_skin/bean.png");
@@ -33,9 +35,10 @@ export function loadAssets() {
 
     // TJA Charts and songs
     loadTJA("charts/koi_no_mahou.tja");
-    loadTJA("charts/Gurenge.tja")
+    loadTJA("charts/Gurenge.tja");
     loadTJA("charts/Heartache.tja");
     loadTJA("charts/Snow halation.tja");
+    loadTJA("charts/Turkish March.tja");
 
     // Fonts
     k.loadBitmapFont("happy", "sprites/happy_28x36.png", 28, 36);

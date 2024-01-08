@@ -1,46 +1,3111 @@
 (() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
+
+  // node_modules/tja/dist/common/regex.js
+  var require_regex = __commonJS({
+    "node_modules/tja/dist/common/regex.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.NOTE_REGEX = exports.AUTHOR_REGEX = exports.LINE_REGEX = exports.PIPE_REGEX = exports.ESCAPED_COMMA_REGEX = exports.SPACE_REGEX = void 0;
+      exports.SPACE_REGEX = /\s+/g;
+      exports.ESCAPED_COMMA_REGEX = /\\,/g;
+      exports.PIPE_REGEX = /\|/g;
+      exports.LINE_REGEX = /\r?\n/g;
+      exports.AUTHOR_REGEX = /(.+)\s*<(.+)>/g;
+      exports.NOTE_REGEX = /[a-zA-Z0-9]/g;
+    }
+  });
+
+  // node_modules/tja/dist/models/common/MetadataProperty.js
+  var require_MetadataProperty = __commonJS({
+    "node_modules/tja/dist/models/common/MetadataProperty.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.CourseMetadataProperty = exports.SongMetadataProperty = void 0;
+      var SongMetadataProperty;
+      (function(SongMetadataProperty2) {
+        SongMetadataProperty2["Title"] = "TITLE";
+        SongMetadataProperty2["TitleEN"] = "TITLEEN";
+        SongMetadataProperty2["TitleJA"] = "TITLEJA";
+        SongMetadataProperty2["TitleCN"] = "TITLECN";
+        SongMetadataProperty2["TitleTW"] = "TITLETW";
+        SongMetadataProperty2["TitleKO"] = "TITLEKO";
+        SongMetadataProperty2["Subtitle"] = "SUBTITLE";
+        SongMetadataProperty2["SubtitleEN"] = "SUBTITLEEN";
+        SongMetadataProperty2["SubtitleJA"] = "SUBTITLEJA";
+        SongMetadataProperty2["SubtitleCN"] = "SUBTITLECN";
+        SongMetadataProperty2["SubtitleTW"] = "SUBTITLETW";
+        SongMetadataProperty2["SubtitleKO"] = "SUBTITLEKO";
+        SongMetadataProperty2["BPM"] = "BPM";
+        SongMetadataProperty2["Wave"] = "WAVE";
+        SongMetadataProperty2["Offset"] = "OFFSET";
+        SongMetadataProperty2["DemoStart"] = "DEMOSTART";
+        SongMetadataProperty2["Genre"] = "GENRE";
+        SongMetadataProperty2["ScoreMode"] = "SCOREMODE";
+        SongMetadataProperty2["Maker"] = "MAKER";
+        SongMetadataProperty2["Lyrics"] = "LYRICS";
+        SongMetadataProperty2["SongVol"] = "SONGVOL";
+        SongMetadataProperty2["SEVol"] = "SEVOL";
+        SongMetadataProperty2["Side"] = "SIDE";
+        SongMetadataProperty2["Life"] = "LIFE";
+        SongMetadataProperty2["Game"] = "GAME";
+        SongMetadataProperty2["HeadScroll"] = "HEADSCROLL";
+        SongMetadataProperty2["BGImage"] = "BGIMAGE";
+        SongMetadataProperty2["BGMovie"] = "BGMOVIE";
+        SongMetadataProperty2["MovieOffset"] = "MOVIEOFFSET";
+      })(SongMetadataProperty = exports.SongMetadataProperty || (exports.SongMetadataProperty = {}));
+      var CourseMetadataProperty;
+      (function(CourseMetadataProperty2) {
+        CourseMetadataProperty2["Course"] = "COURSE";
+        CourseMetadataProperty2["Level"] = "LEVEL";
+        CourseMetadataProperty2["Balloon"] = "BALLOON";
+        CourseMetadataProperty2["ScoreInit"] = "SCOREINIT";
+        CourseMetadataProperty2["ScoreDiff"] = "SCOREDIFF";
+        CourseMetadataProperty2["BalloonNor"] = "BALLOONNOR";
+        CourseMetadataProperty2["BalloonExp"] = "BALLOONEXP";
+        CourseMetadataProperty2["BalloonMas"] = "BALLOONMAS";
+        CourseMetadataProperty2["Style"] = "STYLE";
+        CourseMetadataProperty2["Exam1"] = "EXAM1";
+        CourseMetadataProperty2["Exam2"] = "EXAM2";
+        CourseMetadataProperty2["Exam3"] = "EXAM3";
+        CourseMetadataProperty2["GaugeIncr"] = "GAUGEINCR";
+        CourseMetadataProperty2["Total"] = "TOTAL";
+        CourseMetadataProperty2["HiddenBranch"] = "HIDDENBRANCH";
+      })(CourseMetadataProperty = exports.CourseMetadataProperty || (exports.CourseMetadataProperty = {}));
+    }
+  });
+
+  // node_modules/tja/dist/utils/StringBuilder.js
+  var require_StringBuilder = __commonJS({
+    "node_modules/tja/dist/utils/StringBuilder.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.StringBuilder = void 0;
+      var StringBuilder = class {
+        constructor() {
+          this._strings = [];
+          this._separator = "";
+        }
+        withSeparator(separator) {
+          this._separator = separator;
+          return this;
+        }
+        append(value) {
+          this._strings.push(value);
+          return this;
+        }
+        toString() {
+          return this._strings.join(this._separator);
+        }
+      };
+      exports.StringBuilder = StringBuilder;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/lib/CommandType.js
+  var require_CommandType = __commonJS({
+    "node_modules/tja/dist/models/command/lib/CommandType.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.CommandType = void 0;
+      var CommandType;
+      (function(CommandType2) {
+        CommandType2["Start"] = "START";
+        CommandType2["End"] = "END";
+        CommandType2["Measure"] = "MEASURE";
+        CommandType2["BPMChange"] = "BPMCHANGE";
+        CommandType2["Delay"] = "DELAY";
+        CommandType2["Scroll"] = "SCROLL";
+        CommandType2["GoGoStart"] = "GOGOSTART";
+        CommandType2["GoGoEnd"] = "GOGOEND";
+        CommandType2["BarLineOff"] = "BARLINEOFF";
+        CommandType2["BarLineOn"] = "BARLINEON";
+        CommandType2["BranchStart"] = "BRANCHSTART";
+        CommandType2["BranchEnd"] = "BRANCHEND";
+        CommandType2["Section"] = "SECTION";
+        CommandType2["Lyric"] = "LYRIC";
+        CommandType2["LevelHold"] = "LEVELHOLD";
+        CommandType2["BMScroll"] = "BMSCROLL";
+        CommandType2["HBScroll"] = "HBSCROLL";
+        CommandType2["SENoteChange"] = "SENOTECHANGE";
+        CommandType2["NextSong"] = "NEXTSONG";
+        CommandType2["Direction"] = "DIRECTION";
+        CommandType2["Sudden"] = "SUDDEN";
+        CommandType2["JPosScroll"] = "JSPOSSCROLL";
+        CommandType2["BranchMarker"] = "__BRANCHMARKER";
+        CommandType2["NoteSequence"] = "__NOTESEQUENCE";
+      })(CommandType = exports.CommandType || (exports.CommandType = {}));
+    }
+  });
+
+  // node_modules/tja/dist/models/common/Player.js
+  var require_Player = __commonJS({
+    "node_modules/tja/dist/models/common/Player.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Player = void 0;
+      var Player;
+      (function(Player2) {
+        Player2[Player2["Player1"] = 0] = "Player1";
+        Player2[Player2["Player2"] = 1] = "Player2";
+      })(Player = exports.Player || (exports.Player = {}));
+    }
+  });
+
+  // node_modules/tja/dist/models/command/lib/BranchType.js
+  var require_BranchType = __commonJS({
+    "node_modules/tja/dist/models/command/lib/BranchType.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.BranchType = void 0;
+      var BranchType;
+      (function(BranchType2) {
+        BranchType2["Normal"] = "N";
+        BranchType2["Advanced"] = "E";
+        BranchType2["Master"] = "M";
+      })(BranchType = exports.BranchType || (exports.BranchType = {}));
+    }
+  });
+
+  // node_modules/tja/dist/models/note/lib/NoteType.js
+  var require_NoteType = __commonJS({
+    "node_modules/tja/dist/models/note/lib/NoteType.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.NoteType = void 0;
+      var NoteType;
+      (function(NoteType2) {
+        NoteType2["Blank"] = "0";
+        NoteType2["Don"] = "1";
+        NoteType2["Ka"] = "2";
+        NoteType2["DON"] = "3";
+        NoteType2["KA"] = "4";
+        NoteType2["Drumroll"] = "5";
+        NoteType2["DRUMROLL"] = "6";
+        NoteType2["Balloon"] = "7";
+        NoteType2["DrumrollEnd"] = "8";
+        NoteType2["Kusudama"] = "9";
+        NoteType2["MultiDon"] = "A";
+        NoteType2["MultiKa"] = "B";
+        NoteType2["ADLIB"] = "F";
+        NoteType2["MeasureEnd"] = ",";
+      })(NoteType = exports.NoteType || (exports.NoteType = {}));
+    }
+  });
+
+  // node_modules/tja/dist/models/course/lib/Style.js
+  var require_Style = __commonJS({
+    "node_modules/tja/dist/models/course/lib/Style.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Style = void 0;
+      var Style = class _Style {
+        constructor(id, name) {
+          this._id = id;
+          this._name = name;
+        }
+        static fromId(id, strict = true) {
+          const style = _Style._values.find((s) => s._id === id);
+          if (style) {
+            return style;
+          }
+          if (strict) {
+            throw new Error(`Invalid style id: ${id}`);
+          }
+        }
+        static fromName(name, strict = true) {
+          const style = _Style._values.find((s) => s._name === name);
+          if (style) {
+            return style;
+          }
+          if (strict) {
+            throw new Error(`Invalid style name: ${name}`);
+          }
+        }
+        static fromRaw(raw, strict = true) {
+          const parsedValue = parseInt(raw, 10);
+          return isNaN(parsedValue) ? _Style.fromName(raw, strict) : _Style.fromId(parsedValue, strict);
+        }
+        toString() {
+          return this._name;
+        }
+      };
+      exports.Style = Style;
+      Style.Single = new Style(1, "Single");
+      Style.Double = new Style(2, "Double");
+      Style.Couple = new Style(2, "Couple");
+      Style._values = [Style.Single, Style.Double, Style.Couple];
+    }
+  });
+
+  // node_modules/tja/dist/models/course/CourseVariant.js
+  var require_CourseVariant = __commonJS({
+    "node_modules/tja/dist/models/course/CourseVariant.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.CourseVariant = void 0;
+      var StringBuilder_1 = require_StringBuilder();
+      var BranchType_1 = require_BranchType();
+      var CommandType_1 = require_CommandType();
+      var MetadataProperty_1 = require_MetadataProperty();
+      var Player_1 = require_Player();
+      var NoteType_1 = require_NoteType();
+      var Style_1 = require_Style();
+      var CourseVariant = class {
+        constructor() {
+          this.scoreInit = 390;
+          this.scoreDiff = 100;
+          this._singleCommands = [];
+          this._player1Commands = [];
+          this._player2Commands = [];
+          this.balloonCounts = [];
+          this.branchBalloonCounts = {
+            [BranchType_1.BranchType.Normal]: [],
+            [BranchType_1.BranchType.Advanced]: [],
+            [BranchType_1.BranchType.Master]: []
+          };
+          this.style = Style_1.Style.Single;
+          this.hiddenBranches = false;
+          this.gauges = [
+            null,
+            null,
+            null
+          ];
+          this.hasBranches = false;
+          this.hasBalloonNotes = false;
+          this.hasDrumroll = false;
+          this._currentBalloonNoteIndex = 0;
+          this._currentBranchType = null;
+        }
+        /**
+         * Returns the command buffer. When the course variant has the Single style,
+         * the command buffer for the single variant will be returned. Otherwise, the
+         * command buffer for the specified player will be returned, or the first
+         * player's command buffer if no player is specified.
+         *
+         * @param player - An optional player to get the command buffer for when the
+         * course variant has the Double style. If not provided, P1 commands will be
+         * returned.
+         * @returns An array of commands and note sequences.
+         */
+        getCommands(player) {
+          if (this.style === Style_1.Style.Single) {
+            return this._singleCommands;
+          }
+          switch (player) {
+            case Player_1.Player.Player1:
+            case void 0:
+              return this._player1Commands;
+            case Player_1.Player.Player2:
+              return this._player2Commands;
+          }
+        }
+        /**
+         * Converts the course variant into TJA format.
+         * @returns - A string that will correspond to a single course variant in a
+         * TJA file.
+         */
+        toString() {
+          const builder = new StringBuilder_1.StringBuilder().withSeparator("\n").append(`${MetadataProperty_1.CourseMetadataProperty.Style}:${this.style}`).append(`${MetadataProperty_1.CourseMetadataProperty.ScoreInit}:${this.scoreInit}`).append(`${MetadataProperty_1.CourseMetadataProperty.ScoreDiff}:${this.scoreDiff}`);
+          if (this.balloonCounts.length > 0) {
+            builder.append(`${MetadataProperty_1.CourseMetadataProperty.Balloon}:${this.balloonCounts.join(",")}`);
+          }
+          if (this.branchBalloonCounts[BranchType_1.BranchType.Normal].length > 0) {
+            builder.append(`${MetadataProperty_1.CourseMetadataProperty.BalloonNor}:${this.branchBalloonCounts[BranchType_1.BranchType.Normal].join(",")}`);
+          }
+          if (this.branchBalloonCounts[BranchType_1.BranchType.Advanced].length > 0) {
+            builder.append(`${MetadataProperty_1.CourseMetadataProperty.BalloonExp}:${this.branchBalloonCounts[BranchType_1.BranchType.Advanced].join(",")}`);
+          }
+          if (this.branchBalloonCounts[BranchType_1.BranchType.Master].length > 0) {
+            builder.append(`${MetadataProperty_1.CourseMetadataProperty.BalloonMas}:${this.branchBalloonCounts[BranchType_1.BranchType.Advanced].join(",")}`);
+          }
+          if (this.hiddenBranches) {
+            builder.append(`${MetadataProperty_1.CourseMetadataProperty.HiddenBranch}:1`);
+          }
+          if (this.gauges[0]) {
+            builder.append(`${MetadataProperty_1.CourseMetadataProperty.Exam1}:${this.gauges[0].toString()}`);
+          }
+          if (this.gauges[1]) {
+            builder.append(`${MetadataProperty_1.CourseMetadataProperty.Exam2}:${this.gauges[1].toString()}`);
+          }
+          if (this.gauges[2]) {
+            builder.append(`${MetadataProperty_1.CourseMetadataProperty.Exam3}:${this.gauges[2].toString()}`);
+          }
+          if (this.gaugeIncrementMethod) {
+            builder.append(`${MetadataProperty_1.CourseMetadataProperty.GaugeIncr}:${this.gaugeIncrementMethod}`);
+          }
+          if (this.gaugeTotal) {
+            builder.append(`${MetadataProperty_1.CourseMetadataProperty.Total}:${this.gaugeTotal}`);
+          }
+          builder.append("\n");
+          this._singleCommands.forEach((command) => {
+            builder.append(command.toString());
+          });
+          this._player1Commands.forEach((command) => {
+            builder.append(command.toString());
+          });
+          this._player2Commands.forEach((command) => {
+            builder.append(command.toString());
+          });
+          return builder.toString();
+        }
+        /**
+         * Add a command to the command buffer.
+         * @param command - The command object to add.
+         */
+        addCommand(command, player) {
+          if (this.style === Style_1.Style.Single) {
+            this._singleCommands.push(command);
+          } else {
+            switch (player) {
+              case Player_1.Player.Player1:
+                this._player1Commands.push(command);
+                break;
+              case Player_1.Player.Player2:
+                this._player2Commands.push(command);
+                break;
+            }
+          }
+          this.postProcessCommand(command);
+        }
+        /**
+         * Checks whether all command buffers are empty. This is useful for filtering
+         * out course variants that aren't actually part of the TJA file.
+         * @returns True if all command buffers are empty, false otherwise.
+         */
+        isEmpty() {
+          return this._singleCommands.length === 0 && this._player1Commands.length === 0 && this._player2Commands.length === 0;
+        }
+        /**
+         * Sets the gauge at a given index to the provided gauge data.
+         * @param index - The index to set.
+         * @param gauge - The gauge data.
+         */
+        setGauge(index, gauge) {
+          this.gauges[index] = gauge;
+        }
+        postProcessCommand(command) {
+          if (command.commandType === CommandType_1.CommandType.BranchStart) {
+            this.hasBranches = true;
+            return;
+          }
+          if (command.commandType === CommandType_1.CommandType.BranchMarker) {
+            this._currentBranchType = command.branchType;
+            this._currentBalloonNoteIndex = 0;
+            return;
+          }
+          if (command.commandType === CommandType_1.CommandType.NoteSequence) {
+            for (const note of command.notes) {
+              this.postProcessNote(note);
+            }
+            return;
+          }
+        }
+        postProcessNote(note) {
+          if (note.noteType === NoteType_1.NoteType.Balloon || note.noteType === NoteType_1.NoteType.Kusudama) {
+            return this.postProcessBalloonNote(note);
+          }
+          if (note.noteType === NoteType_1.NoteType.Drumroll || note.noteType === NoteType_1.NoteType.DRUMROLL) {
+            this.hasDrumroll = true;
+            return;
+          }
+        }
+        postProcessBalloonNote(note) {
+          this.hasBalloonNotes = true;
+          let counts = this.balloonCounts;
+          if (this._currentBranchType) {
+            counts = this.branchBalloonCounts[this._currentBranchType];
+          }
+          note.count = this.getBalloonCount(counts, this._currentBalloonNoteIndex);
+        }
+        getBalloonCount(source, index) {
+          if (index >= source.length) {
+            return 0;
+          }
+          return source[index];
+        }
+      };
+      exports.CourseVariant = CourseVariant;
+    }
+  });
+
+  // node_modules/tja/dist/models/course/lib/Difficulty.js
+  var require_Difficulty = __commonJS({
+    "node_modules/tja/dist/models/course/lib/Difficulty.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Difficulty = void 0;
+      var Difficulty = class _Difficulty {
+        constructor(id, name) {
+          this._id = id;
+          this._name = name;
+        }
+        static fromId(id, strict = true) {
+          const difficulty = _Difficulty._values.find((d) => d._id === id);
+          if (difficulty) {
+            return difficulty;
+          }
+          if (strict) {
+            throw new Error(`Invalid difficulty id: ${id}`);
+          }
+        }
+        static fromName(name, strict = true) {
+          const difficulty = _Difficulty._values.find((d) => d._name.toLowerCase() === name.toLowerCase());
+          if (difficulty) {
+            return difficulty;
+          }
+          if (strict) {
+            throw new Error(`Invalid difficulty name: ${name}`);
+          }
+        }
+        static fromRaw(raw, strict = true) {
+          const parsedValue = parseInt(raw, 10);
+          return isNaN(parsedValue) ? _Difficulty.fromName(raw, strict) : _Difficulty.fromId(parsedValue, strict);
+        }
+        toString() {
+          return this._name;
+        }
+      };
+      exports.Difficulty = Difficulty;
+      Difficulty.Easy = new Difficulty(0, "Easy");
+      Difficulty.Normal = new Difficulty(1, "Normal");
+      Difficulty.Hard = new Difficulty(2, "Hard");
+      Difficulty.Oni = new Difficulty(3, "Oni");
+      Difficulty.Edit = new Difficulty(4, "Edit");
+      Difficulty.Ura = new Difficulty(4, "Ura");
+      Difficulty.InnerOni = new Difficulty(4, "InnerOni");
+      Difficulty.Tower = new Difficulty(5, "Tower");
+      Difficulty.Dan = new Difficulty(6, "Dan");
+      Difficulty._values = [
+        Difficulty.Easy,
+        Difficulty.Normal,
+        Difficulty.Hard,
+        Difficulty.Oni,
+        Difficulty.Edit,
+        Difficulty.Ura,
+        Difficulty.InnerOni,
+        Difficulty.Tower,
+        Difficulty.Dan
+      ];
+    }
+  });
+
+  // node_modules/tja/dist/models/course/Course.js
+  var require_Course = __commonJS({
+    "node_modules/tja/dist/models/course/Course.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Course = void 0;
+      var StringBuilder_1 = require_StringBuilder();
+      var CommandType_1 = require_CommandType();
+      var MetadataProperty_1 = require_MetadataProperty();
+      var Player_1 = require_Player();
+      var CourseVariant_1 = require_CourseVariant();
+      var Difficulty_1 = require_Difficulty();
+      var Style_1 = require_Style();
+      var Course = class {
+        constructor() {
+          this.difficulty = Difficulty_1.Difficulty.Oni;
+          this.stars = 10;
+          this.singleCourse = new CourseVariant_1.CourseVariant();
+          this.doubleCourse = new CourseVariant_1.CourseVariant();
+          this._activeCourseStyle = Style_1.Style.Single;
+          this._activePlayer = Player_1.Player.Player1;
+        }
+        /**
+         * Returns the currently selected course variant. It is determined by the
+         * active course style.
+         */
+        get activeCourse() {
+          return this._activeCourseStyle === Style_1.Style.Single ? this.singleCourse : this.doubleCourse;
+        }
+        /**
+         * Sets the active course style. The `activeCourse` getter will return the
+         * course variant based on this style value.
+         */
+        set activeCourseStyle(style) {
+          this._activeCourseStyle = style;
+        }
+        /**
+         * Add a command to the command buffer of the active course variant.
+         * @param command - The command object to add.
+         */
+        addCommand(command) {
+          if (command.commandType === CommandType_1.CommandType.Start) {
+            const startCommand = command;
+            if (startCommand.player) {
+              this._activePlayer = startCommand.player;
+            }
+          }
+          this.activeCourse.addCommand(command, this._activePlayer);
+        }
+        /**
+         * Sets the gauge at a given index to the provided gauge data on the active
+         * course variant.
+         * @param index - The index to set.
+         * @param gauge - The gauge data.
+         */
+        setGauge(index, gauge) {
+          this.activeCourse.setGauge(index, gauge);
+        }
+        /**
+         * Converts the course data into TJA format.
+         * @returns - A string that will correspond to a single course in a TJA file.
+         */
+        toString() {
+          const builder = new StringBuilder_1.StringBuilder().withSeparator("\n").append(`${MetadataProperty_1.CourseMetadataProperty.Course}:${this.difficulty}`).append(`${MetadataProperty_1.CourseMetadataProperty.Level}:${this.stars}`).append("\n");
+          if (!this.singleCourse.isEmpty()) {
+            builder.append(this.singleCourse.toString()).append("\n");
+          }
+          if (!this.doubleCourse.isEmpty()) {
+            builder.append(this.doubleCourse.toString()).append("\n");
+          }
+          return builder.toString();
+        }
+      };
+      exports.Course = Course;
+    }
+  });
+
+  // node_modules/tja/dist/models/song/lib/Game.js
+  var require_Game = __commonJS({
+    "node_modules/tja/dist/models/song/lib/Game.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Game = void 0;
+      var Game = class _Game {
+        constructor(name) {
+          this._name = name;
+        }
+        static fromName(name, strict = true) {
+          const item = _Game._values.find((it2) => it2._name === name);
+          if (item) {
+            return item;
+          }
+          if (strict) {
+            throw new Error(`Invalid game: ${name}`);
+          }
+        }
+        static fromRaw(raw, strict = true) {
+          return _Game.fromName(raw, strict);
+        }
+        toString() {
+          return this._name;
+        }
+      };
+      exports.Game = Game;
+      Game.Taiko = new Game("Taiko");
+      Game.Jube = new Game("Jube");
+      Game._values = [Game.Taiko, Game.Jube];
+    }
+  });
+
+  // node_modules/tja/dist/models/song/lib/ScoreMode.js
+  var require_ScoreMode = __commonJS({
+    "node_modules/tja/dist/models/song/lib/ScoreMode.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.ScoreMode = void 0;
+      var ScoreMode = class _ScoreMode {
+        constructor(id) {
+          this._id = id;
+        }
+        static fromId(id, strict = true) {
+          const item = _ScoreMode._values.find((it2) => it2._id === id);
+          if (item) {
+            return item;
+          }
+          if (strict) {
+            throw new Error(`Invalid score mode id: ${id}`);
+          }
+        }
+        static fromRaw(raw, strict = true) {
+          const parsedValue = parseInt(raw, 10);
+          return _ScoreMode.fromId(parsedValue, strict);
+        }
+        toString() {
+          return this._id;
+        }
+      };
+      exports.ScoreMode = ScoreMode;
+      ScoreMode.AC_1_TO_AC_7 = new ScoreMode(0);
+      ScoreMode.AC_8_TO_AC_14 = new ScoreMode(1);
+      ScoreMode.AC_0 = new ScoreMode(2);
+      ScoreMode._values = [
+        ScoreMode.AC_1_TO_AC_7,
+        ScoreMode.AC_8_TO_AC_14,
+        ScoreMode.AC_0
+      ];
+    }
+  });
+
+  // node_modules/tja/dist/models/song/lib/Side.js
+  var require_Side = __commonJS({
+    "node_modules/tja/dist/models/song/lib/Side.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Side = void 0;
+      var Side = class _Side {
+        constructor(id) {
+          this._id = id;
+        }
+        static fromId(id, strict = true) {
+          const item = _Side._values.find((it2) => it2._id === id);
+          if (item) {
+            return item;
+          }
+          if (strict) {
+            throw new Error(`Invalid side id: ${id}`);
+          }
+        }
+        static fromRaw(raw, strict = true) {
+          const parsedValue = parseInt(raw, 10);
+          return _Side.fromId(parsedValue, strict);
+        }
+        toString() {
+          return this._id;
+        }
+      };
+      exports.Side = Side;
+      Side.Normal = new Side(1);
+      Side.Ex = new Side(2);
+      Side.Both = new Side(3);
+      Side._values = [Side.Normal, Side.Ex, Side.Both];
+    }
+  });
+
+  // node_modules/tja/dist/models/song/Song.js
+  var require_Song = __commonJS({
+    "node_modules/tja/dist/models/song/Song.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Song = void 0;
+      var StringBuilder_1 = require_StringBuilder();
+      var MetadataProperty_1 = require_MetadataProperty();
+      var Game_1 = require_Game();
+      var ScoreMode_1 = require_ScoreMode();
+      var Side_1 = require_Side();
+      var Song = class {
+        constructor() {
+          this.title = "untitled";
+          this.localizedTitle = {};
+          this.localizedSubtitle = {};
+          this.bpm = 120;
+          this.offset = 0;
+          this.demoStart = 0;
+          this.scoreMode = ScoreMode_1.ScoreMode.AC_1_TO_AC_7;
+          this.songVolume = 100;
+          this.soundEffectVolume = 100;
+          this.side = Side_1.Side.Both;
+          this.life = 0;
+          this.game = Game_1.Game.Taiko;
+          this.courses = [];
+        }
+        /**
+         * Adds a course to the song data.
+         *
+         * @param course - The course object to add.
+         */
+        addCourse(course) {
+          this.courses.push(course);
+        }
+        /**
+         * Converts the song data into TJA format.
+         * @returns - A string that will correspond to a TJA file.
+         */
+        toString() {
+          const builder = new StringBuilder_1.StringBuilder().withSeparator("\n").append(`${MetadataProperty_1.SongMetadataProperty.Title}:${this.title}`);
+          if (this.localizedTitle.ja) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.TitleJA}:${this.localizedTitle.ja}`);
+          }
+          if (this.localizedTitle.en) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.TitleEN}:${this.localizedTitle.en}`);
+          }
+          if (this.localizedTitle.cn) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.TitleCN}:${this.localizedTitle.cn}`);
+          }
+          if (this.localizedTitle.tw) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.TitleTW}:${this.localizedTitle.tw}`);
+          }
+          if (this.localizedTitle.ko) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.TitleKO}:${this.localizedTitle.ko}`);
+          }
+          if (this.subtitle) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.Subtitle}:${this.subtitle}`);
+          }
+          if (this.localizedSubtitle.ja) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.SubtitleJA}:${this.localizedSubtitle.ja}`);
+          }
+          if (this.localizedSubtitle.en) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.SubtitleEN}:${this.localizedSubtitle.en}`);
+          }
+          if (this.localizedSubtitle.cn) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.SubtitleCN}:${this.localizedSubtitle.cn}`);
+          }
+          if (this.localizedSubtitle.tw) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.SubtitleTW}:${this.localizedSubtitle.tw}`);
+          }
+          if (this.localizedSubtitle.ko) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.SubtitleKO}:${this.localizedSubtitle.ko}`);
+          }
+          builder.append(`${MetadataProperty_1.SongMetadataProperty.BPM}:${this.bpm}`);
+          if (this.wave) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.Wave}:${this.wave}`);
+          }
+          builder.append(`${MetadataProperty_1.SongMetadataProperty.Offset}:${this.offset}`).append(`${MetadataProperty_1.SongMetadataProperty.DemoStart}:${this.demoStart}`);
+          if (this.genre) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.Genre}:${this.genre}`);
+          }
+          builder.append(`${MetadataProperty_1.SongMetadataProperty.ScoreMode}:${this.scoreMode}`);
+          if (this.maker) {
+            if (this.maker.url) {
+              builder.append(`${MetadataProperty_1.SongMetadataProperty.Maker}:${this.maker.name} <${this.maker.url}>`);
+            } else {
+              builder.append(`${MetadataProperty_1.SongMetadataProperty.Maker}:${this.maker.name}`);
+            }
+          }
+          if (this.lyricsFilePath) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.Lyrics}:${this.lyricsFilePath}`);
+          }
+          builder.append(`${MetadataProperty_1.SongMetadataProperty.SongVol}:${this.songVolume}`).append(`${MetadataProperty_1.SongMetadataProperty.SEVol}:${this.soundEffectVolume}`).append(`${MetadataProperty_1.SongMetadataProperty.Side}:${this.side}`).append(`${MetadataProperty_1.SongMetadataProperty.Life}:${this.life}`).append(`${MetadataProperty_1.SongMetadataProperty.Game}:${this.game}`);
+          if (this.headScroll) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.HeadScroll}:${this.headScroll}`);
+          }
+          if (this.backgroundImagePath) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.BGImage}:${this.backgroundImagePath}`);
+          }
+          if (this.backgroundMoviePath) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.BGMovie}:${this.backgroundMoviePath}`);
+          }
+          if (this.movieOffset) {
+            builder.append(`${MetadataProperty_1.SongMetadataProperty.MovieOffset}:${this.movieOffset}`);
+          }
+          builder.append("\n");
+          this.courses.forEach((course) => {
+            builder.append(course.toString());
+          });
+          builder.append("\n");
+          return builder.toString();
+        }
+      };
+      exports.Song = Song;
+    }
+  });
+
+  // node_modules/tja/dist/utils/Queue.js
+  var require_Queue = __commonJS({
+    "node_modules/tja/dist/utils/Queue.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Queue = void 0;
+      var Queue = class _Queue {
+        constructor() {
+          this._queue = [];
+        }
+        get isEmpty() {
+          return this._queue.length === 0;
+        }
+        enqueue(item) {
+          this._queue.push(item);
+        }
+        dequeue() {
+          return this._queue.shift();
+        }
+        peek() {
+          if (this._queue.length !== 0) {
+            return this._queue[0];
+          }
+        }
+        clear() {
+          this._queue = [];
+        }
+        static fromArray(arr) {
+          const queue = new _Queue();
+          for (const item of arr) {
+            queue.enqueue(item);
+          }
+          return queue;
+        }
+      };
+      exports.Queue = Queue;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/Command.js
+  var require_Command = __commonJS({
+    "node_modules/tja/dist/models/command/Command.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Command = void 0;
+      var Command = class {
+        constructor(commandType) {
+          this.commandType = commandType;
+        }
+        toString() {
+          return `#${this.commandType}`;
+        }
+      };
+      exports.Command = Command;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/StartCommand.js
+  var require_StartCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/StartCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.StartCommand = void 0;
+      var Player_1 = require_Player();
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var StartCommand = class _StartCommand extends Command_1.Command {
+        constructor(player) {
+          super(CommandType_1.CommandType.Start);
+          this.player = player;
+        }
+        static parse(args) {
+          const command = new _StartCommand();
+          if (args.length > 0) {
+            const player = args[0].toUpperCase();
+            switch (player) {
+              case "P1":
+                command.player = Player_1.Player.Player1;
+                break;
+              case "P2":
+                command.player = Player_1.Player.Player2;
+                break;
+            }
+          }
+          return command;
+        }
+        toString() {
+          let playerString;
+          switch (this.player) {
+            case Player_1.Player.Player1:
+              playerString = "P1";
+              break;
+            case Player_1.Player.Player2:
+              playerString = "P2";
+              break;
+          }
+          if (playerString) {
+            return `${super.toString()} ${playerString}`;
+          } else {
+            return super.toString();
+          }
+        }
+      };
+      exports.StartCommand = StartCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/EndCommand.js
+  var require_EndCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/EndCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.EndCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var EndCommand = class _EndCommand extends Command_1.Command {
+        constructor() {
+          super(CommandType_1.CommandType.End);
+        }
+        static parse(_args) {
+          return new _EndCommand();
+        }
+      };
+      exports.EndCommand = EndCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/course/lib/MeasureValue.js
+  var require_MeasureValue = __commonJS({
+    "node_modules/tja/dist/models/course/lib/MeasureValue.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.MeasureValue = void 0;
+      var MeasureValue = class {
+        constructor(numerator, denominator) {
+          this.numerator = numerator;
+          this.denominator = denominator;
+        }
+        toString() {
+          return `${this.numerator}/${this.denominator}`;
+        }
+        /**
+         * Get the measure value as a floating point number.
+         */
+        get fraction() {
+          return this.numerator / this.denominator;
+        }
+      };
+      exports.MeasureValue = MeasureValue;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/MeasureCommand.js
+  var require_MeasureCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/MeasureCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.MeasureCommand = void 0;
+      var MeasureValue_1 = require_MeasureValue();
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var MeasureCommand = class _MeasureCommand extends Command_1.Command {
+        constructor(value) {
+          super(CommandType_1.CommandType.Measure);
+          this.value = value;
+        }
+        static parse(args) {
+          if (args.length === 0) {
+            return void 0;
+          }
+          const value = args[0].split("/").map((v2) => parseInt(v2.trim(), 10)).filter((v2) => !isNaN(v2));
+          if (value.length !== 2) {
+            return void 0;
+          }
+          const measureValue = new MeasureValue_1.MeasureValue(value[0], value[1]);
+          return new _MeasureCommand(measureValue);
+        }
+        toString() {
+          return `${super.toString()} ${this.value.toString()}`;
+        }
+      };
+      exports.MeasureCommand = MeasureCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/BPMChangeCommand.js
+  var require_BPMChangeCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/BPMChangeCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.BPMChangeCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var BPMChangeCommand = class _BPMChangeCommand extends Command_1.Command {
+        constructor(value) {
+          super(CommandType_1.CommandType.BPMChange);
+          this.value = value;
+        }
+        static parse(args) {
+          if (args.length === 0) {
+            return void 0;
+          }
+          const value = parseInt(args[0], 10);
+          if (isNaN(value)) {
+            return void 0;
+          }
+          return new _BPMChangeCommand(value);
+        }
+        toString() {
+          return `${super.toString()} ${this.value}`;
+        }
+      };
+      exports.BPMChangeCommand = BPMChangeCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/DelayCommand.js
+  var require_DelayCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/DelayCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.DelayCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var DelayCommand = class _DelayCommand extends Command_1.Command {
+        constructor(value) {
+          super(CommandType_1.CommandType.Delay);
+          this.value = value;
+        }
+        static parse(args) {
+          if (args.length === 0) {
+            return void 0;
+          }
+          const value = parseFloat(args[0]);
+          if (isNaN(value)) {
+            return void 0;
+          }
+          return new _DelayCommand(value);
+        }
+        toString() {
+          return `${super.toString()} ${this.value}`;
+        }
+      };
+      exports.DelayCommand = DelayCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/ScrollCommand.js
+  var require_ScrollCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/ScrollCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.ScrollCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var ScrollCommand = class _ScrollCommand extends Command_1.Command {
+        constructor(value) {
+          super(CommandType_1.CommandType.Scroll);
+          this.value = value;
+        }
+        static parse(args) {
+          if (args.length === 0) {
+            return void 0;
+          }
+          const value = parseFloat(args[0]);
+          if (isNaN(value)) {
+            return void 0;
+          }
+          return new _ScrollCommand(value);
+        }
+        toString() {
+          return `${super.toString()} ${this.value}`;
+        }
+      };
+      exports.ScrollCommand = ScrollCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/GoGoStartCommand.js
+  var require_GoGoStartCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/GoGoStartCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.GoGoStartCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var GoGoStartCommand = class _GoGoStartCommand extends Command_1.Command {
+        constructor() {
+          super(CommandType_1.CommandType.GoGoStart);
+        }
+        static parse(_args) {
+          return new _GoGoStartCommand();
+        }
+      };
+      exports.GoGoStartCommand = GoGoStartCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/GoGoEndCommand.js
+  var require_GoGoEndCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/GoGoEndCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.GoGoEndCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var GoGoEndCommand = class _GoGoEndCommand extends Command_1.Command {
+        constructor() {
+          super(CommandType_1.CommandType.GoGoEnd);
+        }
+        static parse(_args) {
+          return new _GoGoEndCommand();
+        }
+      };
+      exports.GoGoEndCommand = GoGoEndCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/BarLineOffCommand.js
+  var require_BarLineOffCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/BarLineOffCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.BarLineOffCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var BarLineOffCommand = class _BarLineOffCommand extends Command_1.Command {
+        constructor() {
+          super(CommandType_1.CommandType.BarLineOff);
+        }
+        static parse(_args) {
+          return new _BarLineOffCommand();
+        }
+      };
+      exports.BarLineOffCommand = BarLineOffCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/BarLineOnCommand.js
+  var require_BarLineOnCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/BarLineOnCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.BarLineOnCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var BarLineOnCommand = class _BarLineOnCommand extends Command_1.Command {
+        constructor() {
+          super(CommandType_1.CommandType.BarLineOn);
+        }
+        static parse(_args) {
+          return new _BarLineOnCommand();
+        }
+      };
+      exports.BarLineOnCommand = BarLineOnCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/lib/BranchRequirementType.js
+  var require_BranchRequirementType = __commonJS({
+    "node_modules/tja/dist/models/command/lib/BranchRequirementType.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.BranchRequirementType = void 0;
+      var BranchRequirementType = class _BranchRequirementType {
+        constructor(id) {
+          this._id = id;
+        }
+        static fromId(id, strict = true) {
+          if (id === "r") {
+            return _BranchRequirementType.Drumroll;
+          }
+          return _BranchRequirementType.Accuracy;
+        }
+        static fromRaw(raw, strict = true) {
+          return _BranchRequirementType.fromId(raw, strict);
+        }
+        toString() {
+          return this._id;
+        }
+      };
+      exports.BranchRequirementType = BranchRequirementType;
+      BranchRequirementType.Drumroll = new BranchRequirementType("r");
+      BranchRequirementType.Accuracy = new BranchRequirementType("p");
+      BranchRequirementType._values = [
+        BranchRequirementType.Drumroll,
+        BranchRequirementType.Accuracy
+      ];
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/BranchStartCommand.js
+  var require_BranchStartCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/BranchStartCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.BranchStartCommand = void 0;
+      var Command_1 = require_Command();
+      var BranchRequirementType_1 = require_BranchRequirementType();
+      var CommandType_1 = require_CommandType();
+      var BranchStartCommand = class _BranchStartCommand extends Command_1.Command {
+        constructor(requirementType, advancedRequirement, masterRequirement) {
+          super(CommandType_1.CommandType.BranchStart);
+          this.requirementType = requirementType;
+          this.advancedRequirement = advancedRequirement;
+          this.masterRequirement = masterRequirement;
+        }
+        static parse(args, strict) {
+          if (args.length === 0) {
+            return void 0;
+          }
+          const components = args[0].split(",");
+          if (components.length !== 3) {
+            return void 0;
+          }
+          const requirementType = BranchRequirementType_1.BranchRequirementType.fromRaw(components[0], strict);
+          if (!requirementType) {
+            return void 0;
+          }
+          const advancedRequirement = parseInt(components[1], 10);
+          if (isNaN(advancedRequirement)) {
+            return void 0;
+          }
+          const masterRequirement = parseInt(components[2], 10);
+          if (isNaN(masterRequirement)) {
+            return void 0;
+          }
+          return new _BranchStartCommand(requirementType, advancedRequirement, masterRequirement);
+        }
+        toString() {
+          return `${super.toString()} ${this.requirementType},${this.advancedRequirement},${this.masterRequirement}`;
+        }
+      };
+      exports.BranchStartCommand = BranchStartCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/BranchEndCommand.js
+  var require_BranchEndCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/BranchEndCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.BranchEndCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var BranchEndCommand = class _BranchEndCommand extends Command_1.Command {
+        constructor() {
+          super(CommandType_1.CommandType.BranchEnd);
+        }
+        static parse(_args) {
+          return new _BranchEndCommand();
+        }
+      };
+      exports.BranchEndCommand = BranchEndCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/SectionCommand.js
+  var require_SectionCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/SectionCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.SectionCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var SectionCommand = class _SectionCommand extends Command_1.Command {
+        constructor() {
+          super(CommandType_1.CommandType.Section);
+        }
+        static parse(_args) {
+          return new _SectionCommand();
+        }
+      };
+      exports.SectionCommand = SectionCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/LyricCommand.js
+  var require_LyricCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/LyricCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.LyricCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var LyricCommand = class _LyricCommand extends Command_1.Command {
+        constructor(line) {
+          super(CommandType_1.CommandType.Lyric);
+          this.line = line;
+        }
+        static parse(args) {
+          return new _LyricCommand(args.join(" "));
+        }
+        toString() {
+          return `${super.toString()} ${this.line}`;
+        }
+      };
+      exports.LyricCommand = LyricCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/LevelHoldCommand.js
+  var require_LevelHoldCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/LevelHoldCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.LevelHoldCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var LevelHoldCommand = class _LevelHoldCommand extends Command_1.Command {
+        constructor() {
+          super(CommandType_1.CommandType.LevelHold);
+        }
+        static parse(_args) {
+          return new _LevelHoldCommand();
+        }
+      };
+      exports.LevelHoldCommand = LevelHoldCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/BMScrollCommand.js
+  var require_BMScrollCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/BMScrollCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.BMScrollCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var BMScrollCommand = class _BMScrollCommand extends Command_1.Command {
+        constructor() {
+          super(CommandType_1.CommandType.BMScroll);
+        }
+        static parse(_args) {
+          return new _BMScrollCommand();
+        }
+      };
+      exports.BMScrollCommand = BMScrollCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/HBScrollCommand.js
+  var require_HBScrollCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/HBScrollCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.HBScrollCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var HBScrollCommand = class _HBScrollCommand extends Command_1.Command {
+        constructor() {
+          super(CommandType_1.CommandType.HBScroll);
+        }
+        static parse(_args) {
+          return new _HBScrollCommand();
+        }
+      };
+      exports.HBScrollCommand = HBScrollCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/NextSongCommand.js
+  var require_NextSongCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/NextSongCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.NextSongCommand = void 0;
+      var regex_1 = require_regex();
+      var Course_1 = require_Course();
+      var Difficulty_1 = require_Difficulty();
+      var Song_1 = require_Song();
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var NextSongCommand = class _NextSongCommand extends Command_1.Command {
+        constructor(song) {
+          super(CommandType_1.CommandType.BMScroll);
+          this.song = song;
+        }
+        static parse(args) {
+          if (args.length === 0) {
+            return void 0;
+          }
+          const components = args[0].replace(regex_1.ESCAPED_COMMA_REGEX, "|").split(",").map((c) => c.replace(regex_1.PIPE_REGEX, ","));
+          if (components.length < 6) {
+            return void 0;
+          }
+          const song = new Song_1.Song();
+          song.title = components[0];
+          song.subtitle = components[1];
+          song.genre = components[2];
+          song.wave = components[3];
+          const course = new Course_1.Course();
+          course.difficulty = Difficulty_1.Difficulty.Dan;
+          course.activeCourse.scoreInit = parseInt(components[4], 10);
+          course.activeCourse.scoreDiff = parseInt(components[5], 10);
+          song.addCourse(course);
+          return new _NextSongCommand(song);
+        }
+        toString() {
+          const songData = [
+            this.song.title,
+            this.song.subtitle,
+            this.song.genre,
+            this.song.wave,
+            this.song.courses[0].activeCourse.scoreInit,
+            this.song.courses[0].activeCourse.scoreDiff
+          ].join(",");
+          return `${super.toString()} ${songData}`;
+        }
+      };
+      exports.NextSongCommand = NextSongCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/common/ScrollDirection.js
+  var require_ScrollDirection = __commonJS({
+    "node_modules/tja/dist/models/common/ScrollDirection.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.ScrollDirection = void 0;
+      var ScrollDirection = class _ScrollDirection {
+        constructor(id) {
+          this._id = id;
+        }
+        static fromId(id, strict = true) {
+          const item = _ScrollDirection._values.find((it2) => it2._id === id);
+          if (item) {
+            return item;
+          }
+          if (strict) {
+            throw new Error(`Invalid ScrollDirection id: ${id}`);
+          }
+        }
+        toString() {
+          return this._id;
+        }
+        static fromRaw(raw, strict = true) {
+          const parsedValue = parseInt(raw, 10);
+          return _ScrollDirection.fromId(parsedValue, strict);
+        }
+      };
+      exports.ScrollDirection = ScrollDirection;
+      ScrollDirection.FromRight = new ScrollDirection(0);
+      ScrollDirection.FromAbove = new ScrollDirection(1);
+      ScrollDirection.FromBelow = new ScrollDirection(2);
+      ScrollDirection.FromTopRight = new ScrollDirection(3);
+      ScrollDirection.FromBottomRight = new ScrollDirection(4);
+      ScrollDirection.FromLeft = new ScrollDirection(5);
+      ScrollDirection.FromTopLeft = new ScrollDirection(6);
+      ScrollDirection.FromBottomLeft = new ScrollDirection(7);
+      ScrollDirection._values = [
+        ScrollDirection.FromRight,
+        ScrollDirection.FromAbove,
+        ScrollDirection.FromBelow,
+        ScrollDirection.FromTopRight,
+        ScrollDirection.FromBottomRight,
+        ScrollDirection.FromLeft,
+        ScrollDirection.FromTopLeft,
+        ScrollDirection.FromBottomLeft
+      ];
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/DirectionCommand.js
+  var require_DirectionCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/DirectionCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.DirectionCommand = void 0;
+      var ScrollDirection_1 = require_ScrollDirection();
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var DirectionCommand = class _DirectionCommand extends Command_1.Command {
+        constructor(direction) {
+          super(CommandType_1.CommandType.Direction);
+          this.direction = direction;
+        }
+        static parse(args, strict) {
+          if (args.length === 0) {
+            return void 0;
+          }
+          const direction = ScrollDirection_1.ScrollDirection.fromRaw(args[0], strict);
+          if (!direction) {
+            return void 0;
+          }
+          return new _DirectionCommand(direction);
+        }
+        toString() {
+          return `${super.toString()} ${this.direction}`;
+        }
+      };
+      exports.DirectionCommand = DirectionCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/SuddenCommand.js
+  var require_SuddenCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/SuddenCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.SuddenCommand = void 0;
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var SuddenCommand = class _SuddenCommand extends Command_1.Command {
+        constructor(appearanceTime, movementWaitTime) {
+          super(CommandType_1.CommandType.Sudden);
+          this.appearanceTime = appearanceTime;
+          this.movementWaitTime = movementWaitTime;
+        }
+        static parse(args) {
+          if (args.length !== 2) {
+            return void 0;
+          }
+          const appearanceTime = parseFloat(args[0]);
+          if (isNaN(appearanceTime)) {
+            return void 0;
+          }
+          const movementWaitTime = parseFloat(args[1]);
+          if (isNaN(movementWaitTime)) {
+            return void 0;
+          }
+          return new _SuddenCommand(appearanceTime, movementWaitTime);
+        }
+        toString() {
+          return `${super.toString()} ${this.appearanceTime} ${this.movementWaitTime}`;
+        }
+      };
+      exports.SuddenCommand = SuddenCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/common/JPosScrollDirection.js
+  var require_JPosScrollDirection = __commonJS({
+    "node_modules/tja/dist/models/common/JPosScrollDirection.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.JPosScrollDirection = void 0;
+      var JPosScrollDirection = class _JPosScrollDirection {
+        constructor(id) {
+          this._id = id;
+        }
+        static fromId(id, strict = true) {
+          const item = _JPosScrollDirection._values.find((it2) => it2._id === id);
+          if (item) {
+            return item;
+          }
+          if (strict) {
+            throw new Error(`Invalid JPosScrollDirection id: ${id}`);
+          }
+        }
+        static fromRaw(raw, strict = true) {
+          const parsedValue = parseInt(raw, 10);
+          return _JPosScrollDirection.fromId(parsedValue, strict);
+        }
+        toString() {
+          return this._id;
+        }
+      };
+      exports.JPosScrollDirection = JPosScrollDirection;
+      JPosScrollDirection.Left = new JPosScrollDirection(0);
+      JPosScrollDirection.Right = new JPosScrollDirection(1);
+      JPosScrollDirection._values = [
+        JPosScrollDirection.Left,
+        JPosScrollDirection.Right
+      ];
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/JPosScrollCommand.js
+  var require_JPosScrollCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/JPosScrollCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.JPosScrollCommand = void 0;
+      var JPosScrollDirection_1 = require_JPosScrollDirection();
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var JPosScrollCommand = class _JPosScrollCommand extends Command_1.Command {
+        constructor(time, distance, direction) {
+          super(CommandType_1.CommandType.JPosScroll);
+          this.time = time;
+          this.distance = distance;
+          this.direction = direction;
+        }
+        static parse(args) {
+          if (args.length !== 3) {
+            return void 0;
+          }
+          const time = parseFloat(args[0]);
+          if (isNaN(time)) {
+            return void 0;
+          }
+          const distance = parseFloat(args[1]);
+          if (isNaN(distance)) {
+            return void 0;
+          }
+          const direction = JPosScrollDirection_1.JPosScrollDirection.fromRaw(args[2]);
+          if (!direction) {
+            return void 0;
+          }
+          return new _JPosScrollCommand(time, distance, direction);
+        }
+        toString() {
+          return `${super.toString()} ${this.time} ${this.distance} ${this.direction}`;
+        }
+      };
+      exports.JPosScrollCommand = JPosScrollCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/BranchMarkerCommand.js
+  var require_BranchMarkerCommand = __commonJS({
+    "node_modules/tja/dist/models/command/types/BranchMarkerCommand.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.MasterBranchMarkerCommand = exports.AdvancedBranchMarkerCommand = exports.NormalBranchMarkerCommand = exports.BranchMarkerCommand = void 0;
+      var Command_1 = require_Command();
+      var BranchType_1 = require_BranchType();
+      var CommandType_1 = require_CommandType();
+      var BranchMarkerCommand = class extends Command_1.Command {
+        constructor(branchType) {
+          super(CommandType_1.CommandType.BranchMarker);
+          this.branchType = branchType;
+        }
+        static parse(branchType) {
+          switch (branchType) {
+            case BranchType_1.BranchType.Normal:
+              return new NormalBranchMarkerCommand();
+            case BranchType_1.BranchType.Advanced:
+              return new AdvancedBranchMarkerCommand();
+            case BranchType_1.BranchType.Master:
+              return new MasterBranchMarkerCommand();
+          }
+        }
+        toString() {
+          return `#${this.branchType.toString()}`;
+        }
+      };
+      exports.BranchMarkerCommand = BranchMarkerCommand;
+      var NormalBranchMarkerCommand = class extends BranchMarkerCommand {
+        constructor() {
+          super(BranchType_1.BranchType.Normal);
+        }
+      };
+      exports.NormalBranchMarkerCommand = NormalBranchMarkerCommand;
+      var AdvancedBranchMarkerCommand = class extends BranchMarkerCommand {
+        constructor() {
+          super(BranchType_1.BranchType.Advanced);
+        }
+      };
+      exports.AdvancedBranchMarkerCommand = AdvancedBranchMarkerCommand;
+      var MasterBranchMarkerCommand = class extends BranchMarkerCommand {
+        constructor() {
+          super(BranchType_1.BranchType.Master);
+        }
+      };
+      exports.MasterBranchMarkerCommand = MasterBranchMarkerCommand;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/Note.js
+  var require_Note = __commonJS({
+    "node_modules/tja/dist/models/note/Note.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Note = void 0;
+      var NoteType_1 = require_NoteType();
+      var Note = class {
+        constructor(noteType) {
+          this.noteType = noteType;
+        }
+        get isBlank() {
+          return this.noteType === NoteType_1.NoteType.Blank;
+        }
+        get isDon() {
+          return this.noteType === NoteType_1.NoteType.Don;
+        }
+        get isKa() {
+          return this.noteType === NoteType_1.NoteType.Ka;
+        }
+        get isBigDon() {
+          return this.noteType === NoteType_1.NoteType.DON;
+        }
+        get isBigKa() {
+          return this.noteType === NoteType_1.NoteType.KA;
+        }
+        get isDrumroll() {
+          return this.noteType === NoteType_1.NoteType.Drumroll;
+        }
+        get isBigDrumroll() {
+          return this.noteType === NoteType_1.NoteType.DRUMROLL;
+        }
+        get isBalloon() {
+          return this.noteType === NoteType_1.NoteType.Balloon;
+        }
+        get isEndOfDrumroll() {
+          return this.noteType === NoteType_1.NoteType.DrumrollEnd;
+        }
+        get isKusudama() {
+          return this.noteType === NoteType_1.NoteType.Kusudama;
+        }
+        get isMultiDon() {
+          return this.noteType === NoteType_1.NoteType.MultiDon;
+        }
+        get isMultiKa() {
+          return this.noteType === NoteType_1.NoteType.MultiKa;
+        }
+        get isADLIB() {
+          return this.noteType === NoteType_1.NoteType.ADLIB;
+        }
+        get isMeasureEnd() {
+          return this.noteType === NoteType_1.NoteType.MeasureEnd;
+        }
+        toString() {
+          return this.noteType.toString();
+        }
+      };
+      exports.Note = Note;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/BlankNote.js
+  var require_BlankNote = __commonJS({
+    "node_modules/tja/dist/models/note/types/BlankNote.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.BlankNote = void 0;
+      var Note_1 = require_Note();
+      var NoteType_1 = require_NoteType();
+      var BlankNote = class extends Note_1.Note {
+        constructor() {
+          super(NoteType_1.NoteType.Blank);
+        }
+      };
+      exports.BlankNote = BlankNote;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/Don.js
+  var require_Don = __commonJS({
+    "node_modules/tja/dist/models/note/types/Don.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Don = void 0;
+      var Note_1 = require_Note();
+      var NoteType_1 = require_NoteType();
+      var Don = class extends Note_1.Note {
+        constructor() {
+          super(NoteType_1.NoteType.Don);
+        }
+      };
+      exports.Don = Don;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/Ka.js
+  var require_Ka = __commonJS({
+    "node_modules/tja/dist/models/note/types/Ka.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Ka = void 0;
+      var Note_1 = require_Note();
+      var NoteType_1 = require_NoteType();
+      var Ka = class extends Note_1.Note {
+        constructor() {
+          super(NoteType_1.NoteType.Ka);
+        }
+      };
+      exports.Ka = Ka;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/BigDon.js
+  var require_BigDon = __commonJS({
+    "node_modules/tja/dist/models/note/types/BigDon.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.BigDon = void 0;
+      var Note_1 = require_Note();
+      var NoteType_1 = require_NoteType();
+      var BigDon = class extends Note_1.Note {
+        constructor() {
+          super(NoteType_1.NoteType.DON);
+        }
+      };
+      exports.BigDon = BigDon;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/BigKa.js
+  var require_BigKa = __commonJS({
+    "node_modules/tja/dist/models/note/types/BigKa.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.BigKa = void 0;
+      var Note_1 = require_Note();
+      var NoteType_1 = require_NoteType();
+      var BigKa = class extends Note_1.Note {
+        constructor() {
+          super(NoteType_1.NoteType.KA);
+        }
+      };
+      exports.BigKa = BigKa;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/Drumroll.js
+  var require_Drumroll = __commonJS({
+    "node_modules/tja/dist/models/note/types/Drumroll.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Drumroll = void 0;
+      var Note_1 = require_Note();
+      var NoteType_1 = require_NoteType();
+      var Drumroll = class extends Note_1.Note {
+        constructor() {
+          super(NoteType_1.NoteType.Drumroll);
+        }
+      };
+      exports.Drumroll = Drumroll;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/BigDrumroll.js
+  var require_BigDrumroll = __commonJS({
+    "node_modules/tja/dist/models/note/types/BigDrumroll.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.BigDrumroll = void 0;
+      var Note_1 = require_Note();
+      var NoteType_1 = require_NoteType();
+      var BigDrumroll = class extends Note_1.Note {
+        constructor() {
+          super(NoteType_1.NoteType.DRUMROLL);
+        }
+      };
+      exports.BigDrumroll = BigDrumroll;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/lib/CountableDrumrollNote.js
+  var require_CountableDrumrollNote = __commonJS({
+    "node_modules/tja/dist/models/note/lib/CountableDrumrollNote.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.CountableDrumrollNote = void 0;
+      var Note_1 = require_Note();
+      var CountableDrumrollNote = class extends Note_1.Note {
+        constructor() {
+          super(...arguments);
+          this._count = 0;
+        }
+        get count() {
+          return this._count;
+        }
+        set count(count) {
+          this._count = count;
+        }
+      };
+      exports.CountableDrumrollNote = CountableDrumrollNote;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/Balloon.js
+  var require_Balloon = __commonJS({
+    "node_modules/tja/dist/models/note/types/Balloon.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Balloon = void 0;
+      var NoteType_1 = require_NoteType();
+      var CountableDrumrollNote_1 = require_CountableDrumrollNote();
+      var Balloon = class extends CountableDrumrollNote_1.CountableDrumrollNote {
+        constructor() {
+          super(NoteType_1.NoteType.Balloon);
+        }
+      };
+      exports.Balloon = Balloon;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/DrumrollEnd.js
+  var require_DrumrollEnd = __commonJS({
+    "node_modules/tja/dist/models/note/types/DrumrollEnd.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.DrumrollEnd = void 0;
+      var Note_1 = require_Note();
+      var NoteType_1 = require_NoteType();
+      var DrumrollEnd = class extends Note_1.Note {
+        constructor() {
+          super(NoteType_1.NoteType.DrumrollEnd);
+        }
+      };
+      exports.DrumrollEnd = DrumrollEnd;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/Kusudama.js
+  var require_Kusudama = __commonJS({
+    "node_modules/tja/dist/models/note/types/Kusudama.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.Kusudama = void 0;
+      var NoteType_1 = require_NoteType();
+      var CountableDrumrollNote_1 = require_CountableDrumrollNote();
+      var Kusudama = class extends CountableDrumrollNote_1.CountableDrumrollNote {
+        constructor() {
+          super(NoteType_1.NoteType.Kusudama);
+        }
+      };
+      exports.Kusudama = Kusudama;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/MultiDon.js
+  var require_MultiDon = __commonJS({
+    "node_modules/tja/dist/models/note/types/MultiDon.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.MultiDon = void 0;
+      var Note_1 = require_Note();
+      var NoteType_1 = require_NoteType();
+      var MultiDon = class extends Note_1.Note {
+        constructor() {
+          super(NoteType_1.NoteType.MultiDon);
+        }
+      };
+      exports.MultiDon = MultiDon;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/MultiKa.js
+  var require_MultiKa = __commonJS({
+    "node_modules/tja/dist/models/note/types/MultiKa.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.MultiKa = void 0;
+      var Note_1 = require_Note();
+      var NoteType_1 = require_NoteType();
+      var MultiKa = class extends Note_1.Note {
+        constructor() {
+          super(NoteType_1.NoteType.MultiKa);
+        }
+      };
+      exports.MultiKa = MultiKa;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/ADLIB.js
+  var require_ADLIB = __commonJS({
+    "node_modules/tja/dist/models/note/types/ADLIB.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.ADLIB = void 0;
+      var Note_1 = require_Note();
+      var NoteType_1 = require_NoteType();
+      var ADLIB = class extends Note_1.Note {
+        constructor() {
+          super(NoteType_1.NoteType.ADLIB);
+        }
+      };
+      exports.ADLIB = ADLIB;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/MeasureEnd.js
+  var require_MeasureEnd = __commonJS({
+    "node_modules/tja/dist/models/note/types/MeasureEnd.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.MeasureEnd = void 0;
+      var Note_1 = require_Note();
+      var NoteType_1 = require_NoteType();
+      var MeasureEnd = class extends Note_1.Note {
+        constructor() {
+          super(NoteType_1.NoteType.MeasureEnd);
+        }
+      };
+      exports.MeasureEnd = MeasureEnd;
+    }
+  });
+
+  // node_modules/tja/dist/models/note/types/index.js
+  var require_types = __commonJS({
+    "node_modules/tja/dist/models/note/types/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.MeasureEnd = exports.ADLIB = exports.MultiKa = exports.MultiDon = exports.Kusudama = exports.DrumrollEnd = exports.Balloon = exports.BigDrumroll = exports.Drumroll = exports.BigKa = exports.BigDon = exports.Ka = exports.Don = exports.BlankNote = void 0;
+      var BlankNote_1 = require_BlankNote();
+      Object.defineProperty(exports, "BlankNote", { enumerable: true, get: function() {
+        return BlankNote_1.BlankNote;
+      } });
+      var Don_1 = require_Don();
+      Object.defineProperty(exports, "Don", { enumerable: true, get: function() {
+        return Don_1.Don;
+      } });
+      var Ka_1 = require_Ka();
+      Object.defineProperty(exports, "Ka", { enumerable: true, get: function() {
+        return Ka_1.Ka;
+      } });
+      var BigDon_1 = require_BigDon();
+      Object.defineProperty(exports, "BigDon", { enumerable: true, get: function() {
+        return BigDon_1.BigDon;
+      } });
+      var BigKa_1 = require_BigKa();
+      Object.defineProperty(exports, "BigKa", { enumerable: true, get: function() {
+        return BigKa_1.BigKa;
+      } });
+      var Drumroll_1 = require_Drumroll();
+      Object.defineProperty(exports, "Drumroll", { enumerable: true, get: function() {
+        return Drumroll_1.Drumroll;
+      } });
+      var BigDrumroll_1 = require_BigDrumroll();
+      Object.defineProperty(exports, "BigDrumroll", { enumerable: true, get: function() {
+        return BigDrumroll_1.BigDrumroll;
+      } });
+      var Balloon_1 = require_Balloon();
+      Object.defineProperty(exports, "Balloon", { enumerable: true, get: function() {
+        return Balloon_1.Balloon;
+      } });
+      var DrumrollEnd_1 = require_DrumrollEnd();
+      Object.defineProperty(exports, "DrumrollEnd", { enumerable: true, get: function() {
+        return DrumrollEnd_1.DrumrollEnd;
+      } });
+      var Kusudama_1 = require_Kusudama();
+      Object.defineProperty(exports, "Kusudama", { enumerable: true, get: function() {
+        return Kusudama_1.Kusudama;
+      } });
+      var MultiDon_1 = require_MultiDon();
+      Object.defineProperty(exports, "MultiDon", { enumerable: true, get: function() {
+        return MultiDon_1.MultiDon;
+      } });
+      var MultiKa_1 = require_MultiKa();
+      Object.defineProperty(exports, "MultiKa", { enumerable: true, get: function() {
+        return MultiKa_1.MultiKa;
+      } });
+      var ADLIB_1 = require_ADLIB();
+      Object.defineProperty(exports, "ADLIB", { enumerable: true, get: function() {
+        return ADLIB_1.ADLIB;
+      } });
+      var MeasureEnd_1 = require_MeasureEnd();
+      Object.defineProperty(exports, "MeasureEnd", { enumerable: true, get: function() {
+        return MeasureEnd_1.MeasureEnd;
+      } });
+    }
+  });
+
+  // node_modules/tja/dist/models/note/NoteFactory.js
+  var require_NoteFactory = __commonJS({
+    "node_modules/tja/dist/models/note/NoteFactory.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.NoteFactory = void 0;
+      var NoteType_1 = require_NoteType();
+      var types_1 = require_types();
+      var regex_1 = require_regex();
+      var NoteFactory = class {
+        static fromCourseValue(raw, strict = true) {
+          switch (raw) {
+            case NoteType_1.NoteType.Blank:
+              return new types_1.BlankNote();
+            case NoteType_1.NoteType.Don:
+              return new types_1.Don();
+            case NoteType_1.NoteType.Ka:
+              return new types_1.Ka();
+            case NoteType_1.NoteType.DON:
+              return new types_1.BigDon();
+            case NoteType_1.NoteType.KA:
+              return new types_1.BigKa();
+            case NoteType_1.NoteType.Drumroll:
+              return new types_1.Drumroll();
+            case NoteType_1.NoteType.DRUMROLL:
+              return new types_1.BigDrumroll();
+            case NoteType_1.NoteType.Balloon:
+              return new types_1.Balloon();
+            case NoteType_1.NoteType.DrumrollEnd:
+              return new types_1.DrumrollEnd();
+            case NoteType_1.NoteType.Kusudama:
+              return new types_1.Kusudama();
+            case NoteType_1.NoteType.MultiDon:
+              return new types_1.MultiDon();
+            case NoteType_1.NoteType.MultiKa:
+              return new types_1.MultiKa();
+            case NoteType_1.NoteType.ADLIB:
+              return new types_1.MultiKa();
+            case NoteType_1.NoteType.MeasureEnd:
+              return new types_1.MeasureEnd();
+          }
+          if (raw.match(regex_1.NOTE_REGEX)) {
+            return new types_1.BlankNote();
+          }
+          if (strict) {
+            throw new TypeError(`Unsupported note type: ${raw}`);
+          }
+        }
+      };
+      exports.NoteFactory = NoteFactory;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/NoteSequence.js
+  var require_NoteSequence = __commonJS({
+    "node_modules/tja/dist/models/command/types/NoteSequence.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.NoteSequence = void 0;
+      var regex_1 = require_regex();
+      var NoteFactory_1 = require_NoteFactory();
+      var Command_1 = require_Command();
+      var CommandType_1 = require_CommandType();
+      var NoteSequence = class _NoteSequence extends Command_1.Command {
+        constructor() {
+          super(CommandType_1.CommandType.NoteSequence);
+          this.notes = [];
+        }
+        addNote(note) {
+          this.notes.push(note);
+        }
+        static parse(args, strict = true) {
+          const command = new _NoteSequence();
+          const rawNotes = args.join("").replace(regex_1.SPACE_REGEX, "").split("");
+          rawNotes.forEach((rawNote) => {
+            const note = NoteFactory_1.NoteFactory.fromCourseValue(rawNote, strict);
+            if (note) {
+              command.addNote(note);
+            }
+          });
+          return command;
+        }
+        toString() {
+          return this.notes.join("");
+        }
+      };
+      exports.NoteSequence = NoteSequence;
+    }
+  });
+
+  // node_modules/tja/dist/models/command/types/index.js
+  var require_types2 = __commonJS({
+    "node_modules/tja/dist/models/command/types/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.NoteSequence = exports.MasterBranchMarkerCommand = exports.AdvancedBranchMarkerCommand = exports.NormalBranchMarkerCommand = exports.BranchMarkerCommand = exports.JPosScrollCommand = exports.SuddenCommand = exports.DirectionCommand = exports.NextSongCommand = exports.HBScrollCommand = exports.BMScrollCommand = exports.LevelHoldCommand = exports.LyricCommand = exports.SectionCommand = exports.BranchEndCommand = exports.BranchStartCommand = exports.BarLineOnCommand = exports.BarLineOffCommand = exports.GoGoEndCommand = exports.GoGoStartCommand = exports.ScrollCommand = exports.DelayCommand = exports.BPMChangeCommand = exports.MeasureCommand = exports.EndCommand = exports.StartCommand = void 0;
+      var StartCommand_1 = require_StartCommand();
+      Object.defineProperty(exports, "StartCommand", { enumerable: true, get: function() {
+        return StartCommand_1.StartCommand;
+      } });
+      var EndCommand_1 = require_EndCommand();
+      Object.defineProperty(exports, "EndCommand", { enumerable: true, get: function() {
+        return EndCommand_1.EndCommand;
+      } });
+      var MeasureCommand_1 = require_MeasureCommand();
+      Object.defineProperty(exports, "MeasureCommand", { enumerable: true, get: function() {
+        return MeasureCommand_1.MeasureCommand;
+      } });
+      var BPMChangeCommand_1 = require_BPMChangeCommand();
+      Object.defineProperty(exports, "BPMChangeCommand", { enumerable: true, get: function() {
+        return BPMChangeCommand_1.BPMChangeCommand;
+      } });
+      var DelayCommand_1 = require_DelayCommand();
+      Object.defineProperty(exports, "DelayCommand", { enumerable: true, get: function() {
+        return DelayCommand_1.DelayCommand;
+      } });
+      var ScrollCommand_1 = require_ScrollCommand();
+      Object.defineProperty(exports, "ScrollCommand", { enumerable: true, get: function() {
+        return ScrollCommand_1.ScrollCommand;
+      } });
+      var GoGoStartCommand_1 = require_GoGoStartCommand();
+      Object.defineProperty(exports, "GoGoStartCommand", { enumerable: true, get: function() {
+        return GoGoStartCommand_1.GoGoStartCommand;
+      } });
+      var GoGoEndCommand_1 = require_GoGoEndCommand();
+      Object.defineProperty(exports, "GoGoEndCommand", { enumerable: true, get: function() {
+        return GoGoEndCommand_1.GoGoEndCommand;
+      } });
+      var BarLineOffCommand_1 = require_BarLineOffCommand();
+      Object.defineProperty(exports, "BarLineOffCommand", { enumerable: true, get: function() {
+        return BarLineOffCommand_1.BarLineOffCommand;
+      } });
+      var BarLineOnCommand_1 = require_BarLineOnCommand();
+      Object.defineProperty(exports, "BarLineOnCommand", { enumerable: true, get: function() {
+        return BarLineOnCommand_1.BarLineOnCommand;
+      } });
+      var BranchStartCommand_1 = require_BranchStartCommand();
+      Object.defineProperty(exports, "BranchStartCommand", { enumerable: true, get: function() {
+        return BranchStartCommand_1.BranchStartCommand;
+      } });
+      var BranchEndCommand_1 = require_BranchEndCommand();
+      Object.defineProperty(exports, "BranchEndCommand", { enumerable: true, get: function() {
+        return BranchEndCommand_1.BranchEndCommand;
+      } });
+      var SectionCommand_1 = require_SectionCommand();
+      Object.defineProperty(exports, "SectionCommand", { enumerable: true, get: function() {
+        return SectionCommand_1.SectionCommand;
+      } });
+      var LyricCommand_1 = require_LyricCommand();
+      Object.defineProperty(exports, "LyricCommand", { enumerable: true, get: function() {
+        return LyricCommand_1.LyricCommand;
+      } });
+      var LevelHoldCommand_1 = require_LevelHoldCommand();
+      Object.defineProperty(exports, "LevelHoldCommand", { enumerable: true, get: function() {
+        return LevelHoldCommand_1.LevelHoldCommand;
+      } });
+      var BMScrollCommand_1 = require_BMScrollCommand();
+      Object.defineProperty(exports, "BMScrollCommand", { enumerable: true, get: function() {
+        return BMScrollCommand_1.BMScrollCommand;
+      } });
+      var HBScrollCommand_1 = require_HBScrollCommand();
+      Object.defineProperty(exports, "HBScrollCommand", { enumerable: true, get: function() {
+        return HBScrollCommand_1.HBScrollCommand;
+      } });
+      var NextSongCommand_1 = require_NextSongCommand();
+      Object.defineProperty(exports, "NextSongCommand", { enumerable: true, get: function() {
+        return NextSongCommand_1.NextSongCommand;
+      } });
+      var DirectionCommand_1 = require_DirectionCommand();
+      Object.defineProperty(exports, "DirectionCommand", { enumerable: true, get: function() {
+        return DirectionCommand_1.DirectionCommand;
+      } });
+      var SuddenCommand_1 = require_SuddenCommand();
+      Object.defineProperty(exports, "SuddenCommand", { enumerable: true, get: function() {
+        return SuddenCommand_1.SuddenCommand;
+      } });
+      var JPosScrollCommand_1 = require_JPosScrollCommand();
+      Object.defineProperty(exports, "JPosScrollCommand", { enumerable: true, get: function() {
+        return JPosScrollCommand_1.JPosScrollCommand;
+      } });
+      var BranchMarkerCommand_1 = require_BranchMarkerCommand();
+      Object.defineProperty(exports, "BranchMarkerCommand", { enumerable: true, get: function() {
+        return BranchMarkerCommand_1.BranchMarkerCommand;
+      } });
+      Object.defineProperty(exports, "NormalBranchMarkerCommand", { enumerable: true, get: function() {
+        return BranchMarkerCommand_1.NormalBranchMarkerCommand;
+      } });
+      Object.defineProperty(exports, "AdvancedBranchMarkerCommand", { enumerable: true, get: function() {
+        return BranchMarkerCommand_1.AdvancedBranchMarkerCommand;
+      } });
+      Object.defineProperty(exports, "MasterBranchMarkerCommand", { enumerable: true, get: function() {
+        return BranchMarkerCommand_1.MasterBranchMarkerCommand;
+      } });
+      var NoteSequence_1 = require_NoteSequence();
+      Object.defineProperty(exports, "NoteSequence", { enumerable: true, get: function() {
+        return NoteSequence_1.NoteSequence;
+      } });
+    }
+  });
+
+  // node_modules/tja/dist/models/command/lib/commandClassMap.js
+  var require_commandClassMap = __commonJS({
+    "node_modules/tja/dist/models/command/lib/commandClassMap.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.commandClassMap = void 0;
+      var CommandType_1 = require_CommandType();
+      var types_1 = require_types2();
+      exports.commandClassMap = {
+        [CommandType_1.CommandType.NoteSequence]: types_1.NoteSequence,
+        [CommandType_1.CommandType.Start]: types_1.StartCommand,
+        [CommandType_1.CommandType.End]: types_1.EndCommand,
+        [CommandType_1.CommandType.Measure]: types_1.MeasureCommand,
+        [CommandType_1.CommandType.BPMChange]: types_1.BPMChangeCommand,
+        [CommandType_1.CommandType.Delay]: types_1.DelayCommand,
+        [CommandType_1.CommandType.Scroll]: types_1.ScrollCommand,
+        [CommandType_1.CommandType.GoGoStart]: types_1.GoGoStartCommand,
+        [CommandType_1.CommandType.GoGoEnd]: types_1.GoGoEndCommand,
+        [CommandType_1.CommandType.BarLineOff]: types_1.BarLineOffCommand,
+        [CommandType_1.CommandType.BarLineOn]: types_1.BarLineOnCommand,
+        [CommandType_1.CommandType.BranchStart]: types_1.BranchStartCommand,
+        [CommandType_1.CommandType.BranchEnd]: types_1.BranchEndCommand,
+        [CommandType_1.CommandType.Section]: types_1.SectionCommand,
+        [CommandType_1.CommandType.Lyric]: types_1.LyricCommand,
+        [CommandType_1.CommandType.LevelHold]: types_1.LevelHoldCommand,
+        [CommandType_1.CommandType.BMScroll]: types_1.BMScrollCommand,
+        [CommandType_1.CommandType.HBScroll]: types_1.HBScrollCommand,
+        [CommandType_1.CommandType.NextSong]: types_1.NextSongCommand,
+        [CommandType_1.CommandType.Direction]: types_1.DirectionCommand,
+        [CommandType_1.CommandType.Sudden]: types_1.SuddenCommand,
+        "N": types_1.BranchMarkerCommand,
+        "E": types_1.BranchMarkerCommand,
+        "M": types_1.BranchMarkerCommand
+      };
+    }
+  });
+
+  // node_modules/tja/dist/models/command/CommandFactory.js
+  var require_CommandFactory = __commonJS({
+    "node_modules/tja/dist/models/command/CommandFactory.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.CommandFactory = void 0;
+      var regex_1 = require_regex();
+      var commandClassMap_1 = require_commandClassMap();
+      var types_1 = require_types2();
+      var CommandFactory = class {
+        static fromLine(line, canParseNotes, strict = true) {
+          line = line.trim();
+          if (line.length === 0) {
+            return void 0;
+          }
+          if (!line.startsWith("#") && canParseNotes) {
+            return types_1.NoteSequence.parse([line], strict);
+          }
+          const components = line.split(regex_1.SPACE_REGEX);
+          const command = components[0].substring(1);
+          const args = components.slice(1);
+          if (!Object.keys(commandClassMap_1.commandClassMap).includes(command)) {
+            return void 0;
+          }
+          const commandClass = commandClassMap_1.commandClassMap[command];
+          if (commandClass === types_1.BranchMarkerCommand) {
+            return commandClass.parse(command);
+          } else {
+            return commandClass.parse(args, strict);
+          }
+        }
+      };
+      exports.CommandFactory = CommandFactory;
+    }
+  });
+
+  // node_modules/tja/dist/models/course/lib/DojoGaugeCondition.js
+  var require_DojoGaugeCondition = __commonJS({
+    "node_modules/tja/dist/models/course/lib/DojoGaugeCondition.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.DojoGaugeCondition = void 0;
+      var DojoGaugeCondition = class _DojoGaugeCondition {
+        constructor(id) {
+          this._id = id;
+        }
+        static fromId(id, strict = true) {
+          const item = _DojoGaugeCondition._values.find((it2) => it2._id === id);
+          if (item) {
+            return item;
+          }
+          if (strict) {
+            throw new Error(`Invalid DojoGaugeCondition id: ${id}`);
+          }
+        }
+        static fromRaw(raw, strict = true) {
+          return _DojoGaugeCondition.fromId(raw, strict);
+        }
+        toString() {
+          return this._id;
+        }
+      };
+      exports.DojoGaugeCondition = DojoGaugeCondition;
+      DojoGaugeCondition.Percentage = new DojoGaugeCondition("g");
+      DojoGaugeCondition.GoodAmount = new DojoGaugeCondition("jp");
+      DojoGaugeCondition.OKAmount = new DojoGaugeCondition("jg");
+      DojoGaugeCondition.BadAmount = new DojoGaugeCondition("jb");
+      DojoGaugeCondition.Score = new DojoGaugeCondition("s");
+      DojoGaugeCondition.Drumroll = new DojoGaugeCondition("r");
+      DojoGaugeCondition.CorrectHits = new DojoGaugeCondition("h");
+      DojoGaugeCondition.MaxCombo = new DojoGaugeCondition("c");
+      DojoGaugeCondition._values = [
+        DojoGaugeCondition.Percentage,
+        DojoGaugeCondition.GoodAmount,
+        DojoGaugeCondition.OKAmount,
+        DojoGaugeCondition.BadAmount,
+        DojoGaugeCondition.Score,
+        DojoGaugeCondition.Drumroll,
+        DojoGaugeCondition.CorrectHits,
+        DojoGaugeCondition.MaxCombo
+      ];
+    }
+  });
+
+  // node_modules/tja/dist/models/course/lib/DojoGaugeScope.js
+  var require_DojoGaugeScope = __commonJS({
+    "node_modules/tja/dist/models/course/lib/DojoGaugeScope.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.DojoGaugeScope = void 0;
+      var DojoGaugeScope = class _DojoGaugeScope {
+        constructor(id) {
+          this._id = id;
+        }
+        static fromId(id, strict = true) {
+          const item = _DojoGaugeScope._values.find((it2) => it2._id === id);
+          if (item) {
+            return item;
+          }
+          if (strict) {
+            throw new Error(`Invalid gauge scope id: ${id}`);
+          }
+        }
+        static fromRaw(raw, strict = true) {
+          return _DojoGaugeScope.fromId(raw, strict);
+        }
+        toString() {
+          return this._id;
+        }
+      };
+      exports.DojoGaugeScope = DojoGaugeScope;
+      DojoGaugeScope.GreaterThan = new DojoGaugeScope("m");
+      DojoGaugeScope.LessThan = new DojoGaugeScope("l");
+      DojoGaugeScope._values = [
+        DojoGaugeScope.GreaterThan,
+        DojoGaugeScope.LessThan
+      ];
+    }
+  });
+
+  // node_modules/tja/dist/models/course/DojoGauge.js
+  var require_DojoGauge = __commonJS({
+    "node_modules/tja/dist/models/course/DojoGauge.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.DojoGauge = void 0;
+      var DojoGaugeCondition_1 = require_DojoGaugeCondition();
+      var DojoGaugeScope_1 = require_DojoGaugeScope();
+      var DojoGauge = class _DojoGauge {
+        constructor(condition, redClearRequirement, goldClearRequirement, scope) {
+          this.condition = condition;
+          this.redClearRequirement = redClearRequirement;
+          this.goldClearRequirement = goldClearRequirement;
+          this.scope = scope;
+        }
+        static parse(raw, strict = true) {
+          const components = raw.split(",").map((c) => c.trim());
+          if (components.length !== 4) {
+            if (strict) {
+              throw new Error(`Invalid gauge value: ${raw}`);
+            }
+            return void 0;
+          }
+          const condition = DojoGaugeCondition_1.DojoGaugeCondition.fromRaw(components[0]);
+          const redClearRequirement = parseInt(components[1], 10);
+          const goldClearRequirement = parseInt(components[2], 10);
+          const scope = DojoGaugeScope_1.DojoGaugeScope.fromRaw(components[3]);
+          if (!condition || isNaN(redClearRequirement) || isNaN(goldClearRequirement) || !scope) {
+            if (strict) {
+              throw new Error(`Invalid gauge value: ${raw}`);
+            }
+          }
+          return new _DojoGauge(condition, redClearRequirement, goldClearRequirement, scope);
+        }
+        toString() {
+          return `${this.condition},${this.redClearRequirement},${this.goldClearRequirement},${this.scope}`;
+        }
+      };
+      exports.DojoGauge = DojoGauge;
+    }
+  });
+
+  // node_modules/tja/dist/models/course/lib/DojoGaugeIncrementMethod.js
+  var require_DojoGaugeIncrementMethod = __commonJS({
+    "node_modules/tja/dist/models/course/lib/DojoGaugeIncrementMethod.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.DojoGaugeIncrementMethod = void 0;
+      var DojoGaugeIncrementMethod = class _DojoGaugeIncrementMethod {
+        constructor(id) {
+          this._name = id;
+        }
+        static fromName(name, strict = true) {
+          const item = _DojoGaugeIncrementMethod._values.find((it2) => it2._name === name);
+          if (item) {
+            return item;
+          }
+          if (strict) {
+            throw new Error(`Invalid gauge increment method: ${name}`);
+          }
+        }
+        static fromRaw(raw, strict = true) {
+          return _DojoGaugeIncrementMethod.fromName(raw, strict);
+        }
+        toString() {
+          return this._name;
+        }
+      };
+      exports.DojoGaugeIncrementMethod = DojoGaugeIncrementMethod;
+      DojoGaugeIncrementMethod.Normal = new DojoGaugeIncrementMethod("Normal");
+      DojoGaugeIncrementMethod.Floor = new DojoGaugeIncrementMethod("Floor");
+      DojoGaugeIncrementMethod.Round = new DojoGaugeIncrementMethod("Round");
+      DojoGaugeIncrementMethod.Notfix = new DojoGaugeIncrementMethod("Notfix");
+      DojoGaugeIncrementMethod.Ceiling = new DojoGaugeIncrementMethod("Ceiling");
+      DojoGaugeIncrementMethod._values = [
+        DojoGaugeIncrementMethod.Normal,
+        DojoGaugeIncrementMethod.Floor,
+        DojoGaugeIncrementMethod.Round,
+        DojoGaugeIncrementMethod.Notfix,
+        DojoGaugeIncrementMethod.Ceiling
+      ];
+    }
+  });
+
+  // node_modules/tja/dist/models/course/lib/DojoGaugeTotal.js
+  var require_DojoGaugeTotal = __commonJS({
+    "node_modules/tja/dist/models/course/lib/DojoGaugeTotal.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.DojoGaugeTotal = void 0;
+      var DojoGaugeTotal = class extends Number {
+        /**
+         * If this is true, it is impossible to get a full gauge.
+         */
+        get isImpossible() {
+          return this < 100;
+        }
+        /**
+         * If this is true, all notes are required to be hit perfectly.
+         */
+        get areAllNotesRequired() {
+          return this === 100;
+        }
+        /**
+         * If this is true, it is easier to fill the gauge.
+         */
+        get isEasier() {
+          return this > 100;
+        }
+      };
+      exports.DojoGaugeTotal = DojoGaugeTotal;
+    }
+  });
+
+  // node_modules/tja/dist/Parser.js
+  var require_Parser = __commonJS({
+    "node_modules/tja/dist/Parser.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.TJAParser = void 0;
+      var regex_1 = require_regex();
+      var MetadataProperty_1 = require_MetadataProperty();
+      var Course_1 = require_Course();
+      var Game_1 = require_Game();
+      var ScoreMode_1 = require_ScoreMode();
+      var Side_1 = require_Side();
+      var Song_1 = require_Song();
+      var Queue_1 = require_Queue();
+      var CommandType_1 = require_CommandType();
+      var Difficulty_1 = require_Difficulty();
+      var CommandFactory_1 = require_CommandFactory();
+      var BranchType_1 = require_BranchType();
+      var Style_1 = require_Style();
+      var DojoGauge_1 = require_DojoGauge();
+      var DojoGaugeIncrementMethod_1 = require_DojoGaugeIncrementMethod();
+      var DojoGaugeTotal_1 = require_DojoGaugeTotal();
+      var TJAParser2 = class _TJAParser {
+        /**
+         * Takes in the contents of a TJA file, parses it line-by-line, and returns a
+         * Song object. Throws if `strict` is set to `true`.
+         *
+         * @param raw - The contents of the TJA file.
+         * @param strict - Whether the parser should throw errors on invalid data.
+         * @returns - A Song object containing data about a chart file.
+         */
+        static parse(raw, strict = true) {
+          const lines = raw.split(regex_1.LINE_REGEX).map((l) => l.trim().split("//")[0]);
+          const queue = Queue_1.Queue.fromArray(lines);
+          const song = new Song_1.Song();
+          let isParsingCourseData = false;
+          let canParseNotes = false;
+          while (!queue.isEmpty) {
+            const line = queue.dequeue();
+            if (line === void 0 || line.length === 0) {
+              continue;
+            }
+            const params = _TJAParser.parseParameter(line);
+            if (params) {
+              const [key, value] = params;
+              if (value.length === 0) {
+                continue;
+              }
+              canParseNotes = false;
+              if (key === MetadataProperty_1.CourseMetadataProperty.Course) {
+                isParsingCourseData = true;
+                song.courses.push(new Course_1.Course());
+              }
+              if (!isParsingCourseData) {
+                _TJAParser.setSongData(song, key, value, strict);
+                continue;
+              }
+              const course2 = song.courses[song.courses.length - 1];
+              if (typeof course2 === "undefined") {
+                continue;
+              }
+              _TJAParser.setCourseData(course2, key, value, strict);
+              continue;
+            }
+            const course = song.courses[song.courses.length - 1];
+            if (typeof course === "undefined") {
+              continue;
+            }
+            const command = _TJAParser.parseCourseCommand(course, line, canParseNotes, strict);
+            if (command && command.commandType === CommandType_1.CommandType.Start) {
+              canParseNotes = true;
+            }
+          }
+          return song;
+        }
+        /**
+         * Wrapper method for `Song#toString()` which can be used to stringify a Song
+         * data object (similar to JSON's stringify method).
+         *
+         * @param song - The Song object to stringify.
+         * @returns The TJA-compatible representation of the Song object.
+         */
+        static stringify(song) {
+          return song.toString();
+        }
+        static setSongData(song, key, value, strict) {
+          if (key === MetadataProperty_1.SongMetadataProperty.Title) {
+            song.title = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.TitleEN) {
+            song.localizedTitle.en = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.TitleJA) {
+            song.localizedTitle.ja = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.TitleCN) {
+            song.localizedTitle.cn = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.TitleTW) {
+            song.localizedTitle.tw = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.TitleKO) {
+            song.localizedTitle.ko = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.Subtitle) {
+            song.subtitle = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.SubtitleEN) {
+            song.localizedSubtitle.en = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.SubtitleJA) {
+            song.localizedSubtitle.ja = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.SubtitleCN) {
+            song.localizedSubtitle.cn = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.SubtitleTW) {
+            song.localizedSubtitle.tw = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.SubtitleKO) {
+            song.localizedSubtitle.ko = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.BPM) {
+            const bpm = parseFloat(value);
+            if (!isNaN(bpm)) {
+              song.bpm = bpm;
+            } else if (strict) {
+              throw new TypeError(`Invalid BPM value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.Wave) {
+            song.wave = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.Offset) {
+            const offset = parseFloat(value);
+            if (!isNaN(offset)) {
+              song.offset = offset;
+            } else if (strict) {
+              throw new TypeError(`Invalid offset value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.DemoStart) {
+            const demoStart = parseFloat(value);
+            if (!isNaN(demoStart)) {
+              song.demoStart = demoStart;
+            } else if (strict) {
+              throw new TypeError(`Invalid demo start value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.Genre) {
+            song.genre = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.ScoreMode) {
+            const mode = ScoreMode_1.ScoreMode.fromRaw(value, strict);
+            if (mode) {
+              song.scoreMode = mode;
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.Maker) {
+            const data = regex_1.AUTHOR_REGEX.exec(value);
+            if (data !== null) {
+              song.maker = {
+                name: data[1],
+                url: data[2]
+              };
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.Lyrics) {
+            song.lyricsFilePath = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.SongVol) {
+            const volume = parseInt(value, 10);
+            if (!isNaN(volume)) {
+              song.songVolume = volume;
+            } else if (strict) {
+              throw new TypeError(`Invalid song volume value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.SEVol) {
+            const volume = parseInt(value, 10);
+            if (!isNaN(volume)) {
+              song.soundEffectVolume = volume;
+            } else if (strict) {
+              throw new TypeError(`Invalid sound effect volume value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.Side) {
+            const side = Side_1.Side.fromRaw(value, strict);
+            if (side) {
+              song.side = side;
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.Life) {
+            const life = parseInt(value, 10);
+            if (!isNaN(life)) {
+              song.life = life;
+            } else if (strict) {
+              throw new TypeError(`Invalid life value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.Game) {
+            const game = Game_1.Game.fromRaw(value, strict);
+            if (game) {
+              song.game = game;
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.HeadScroll) {
+            const headScroll = parseInt(value, 10);
+            if (!isNaN(headScroll)) {
+              song.headScroll = headScroll;
+            } else if (strict) {
+              throw new TypeError(`Invalid head scroll value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.BGImage) {
+            song.backgroundImagePath = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.BGMovie) {
+            song.backgroundMoviePath = value;
+            return;
+          }
+          if (key === MetadataProperty_1.SongMetadataProperty.MovieOffset) {
+            const movieOffset = parseInt(value, 10);
+            if (!isNaN(movieOffset)) {
+              song.movieOffset = movieOffset;
+            } else if (strict) {
+              throw new TypeError(`Invalid movie offset value: ${value}`);
+            }
+            return;
+          }
+        }
+        static setCourseData(course, key, value, strict) {
+          if (key === MetadataProperty_1.CourseMetadataProperty.Course) {
+            const difficulty = Difficulty_1.Difficulty.fromRaw(value, strict);
+            if (difficulty) {
+              course.difficulty = difficulty;
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.CourseMetadataProperty.Level) {
+            const level = parseInt(value, 10);
+            if (!isNaN(level)) {
+              course.stars = level;
+            } else if (strict) {
+              throw new TypeError(`Invalid course level value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.CourseMetadataProperty.ScoreInit) {
+            const scoreInit = parseInt(value, 10);
+            if (!isNaN(scoreInit)) {
+              course.activeCourse.scoreInit = scoreInit;
+            } else if (strict) {
+              throw new TypeError(`Invalid course score init value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.CourseMetadataProperty.ScoreDiff) {
+            const scoreDiff = parseInt(value, 10);
+            if (!isNaN(scoreDiff)) {
+              course.activeCourse.scoreDiff = scoreDiff;
+            } else if (strict) {
+              throw new TypeError(`Invalid course score diff value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.CourseMetadataProperty.Balloon) {
+            const counts = value.split(",").filter((c) => c.trim().length > 0).map((c) => parseInt(c.trim(), 10));
+            const filteredCounts = counts.filter((c) => !isNaN(c));
+            if (filteredCounts.length === counts.length) {
+              course.activeCourse.balloonCounts = filteredCounts;
+            } else if (strict) {
+              throw new TypeError(`Invalid course balloon value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.CourseMetadataProperty.BalloonNor) {
+            const counts = value.split(",").map((c) => parseInt(c.trim(), 10));
+            const filteredCounts = counts.filter((c) => !isNaN(c));
+            if (filteredCounts.length === counts.length) {
+              course.activeCourse.branchBalloonCounts[BranchType_1.BranchType.Normal] = filteredCounts;
+            } else if (strict) {
+              throw new TypeError(`Invalid course balloon (normal) value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.CourseMetadataProperty.BalloonExp) {
+            const counts = value.split(",").map((c) => parseInt(c.trim(), 10));
+            const filteredCounts = counts.filter((c) => !isNaN(c));
+            if (filteredCounts.length === counts.length) {
+              course.activeCourse.branchBalloonCounts[BranchType_1.BranchType.Advanced] = filteredCounts;
+            } else if (strict) {
+              throw new TypeError(`Invalid course balloon (advanced) value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.CourseMetadataProperty.BalloonMas) {
+            const counts = value.split(",").map((c) => parseInt(c.trim(), 10));
+            const filteredCounts = counts.filter((c) => !isNaN(c));
+            if (filteredCounts.length === counts.length) {
+              course.activeCourse.branchBalloonCounts[BranchType_1.BranchType.Master] = filteredCounts;
+            } else if (strict) {
+              throw new TypeError(`Invalid course balloon (master) value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.CourseMetadataProperty.Style) {
+            const style = Style_1.Style.fromRaw(value, strict);
+            if (style) {
+              course.activeCourseStyle = style;
+              course.activeCourse.style = style;
+            }
+            return;
+          }
+          if ([
+            MetadataProperty_1.CourseMetadataProperty.Exam1,
+            MetadataProperty_1.CourseMetadataProperty.Exam2,
+            MetadataProperty_1.CourseMetadataProperty.Exam3
+          ].includes(key)) {
+            const index = parseInt(key.slice(-1), 10) - 1;
+            const gauge = DojoGauge_1.DojoGauge.parse(value, strict);
+            if (gauge) {
+              course.setGauge(index, gauge);
+            } else if (strict) {
+              throw new TypeError(`Invalid gauge data: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.CourseMetadataProperty.GaugeIncr) {
+            const gaugeIncrementMethod = DojoGaugeIncrementMethod_1.DojoGaugeIncrementMethod.fromRaw(value, strict);
+            if (gaugeIncrementMethod) {
+              course.activeCourse.gaugeIncrementMethod = gaugeIncrementMethod;
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.CourseMetadataProperty.Total) {
+            const rawTotal = parseInt(value, 10);
+            if (!isNaN(rawTotal)) {
+              const total = new DojoGaugeTotal_1.DojoGaugeTotal(rawTotal);
+              course.activeCourse.gaugeTotal = total;
+            } else if (strict) {
+              throw new TypeError(`Invalid gauge total value: ${value}`);
+            }
+            return;
+          }
+          if (key === MetadataProperty_1.CourseMetadataProperty.HiddenBranch && value === "1") {
+            course.activeCourse.hiddenBranches = true;
+            return;
+          }
+        }
+        static parseCourseCommand(course, line, canParseNotes, strict) {
+          const command = CommandFactory_1.CommandFactory.fromLine(line, canParseNotes, strict);
+          if (typeof command !== "undefined") {
+            course.addCommand(command);
+            return command;
+          }
+        }
+        static parseParameter(line) {
+          const components = line.split(":").map((c) => c.trim());
+          if (components.length < 2) {
+            return void 0;
+          }
+          const key = components[0];
+          const value = components.slice(1).join(":");
+          return [key, value];
+        }
+      };
+      exports.TJAParser = TJAParser2;
+    }
+  });
+
+  // node_modules/tja/dist/index.js
+  var require_dist = __commonJS({
+    "node_modules/tja/dist/index.js"(exports) {
+      "use strict";
+      var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k2, k22) {
+        if (k22 === void 0)
+          k22 = k2;
+        var desc = Object.getOwnPropertyDescriptor(m, k2);
+        if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+          desc = { enumerable: true, get: function() {
+            return m[k2];
+          } };
+        }
+        Object.defineProperty(o, k22, desc);
+      } : function(o, m, k2, k22) {
+        if (k22 === void 0)
+          k22 = k2;
+        o[k22] = m[k2];
+      });
+      var __exportStar = exports && exports.__exportStar || function(m, exports2) {
+        for (var p in m)
+          if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports2, p))
+            __createBinding(exports2, m, p);
+      };
+      Object.defineProperty(exports, "__esModule", { value: true });
+      exports.TJAParser = exports.Song = exports.Side = exports.ScoreMode = exports.Game = exports.Note = exports.CountableDrumrollNote = exports.NoteType = exports.DojoGauge = exports.CourseVariant = exports.Course = exports.DojoGaugeScope = exports.DojoGaugeCondition = exports.DojoGaugeTotal = exports.DojoGaugeIncrementMethod = exports.Style = exports.MeasureValue = exports.Difficulty = exports.ScrollDirection = exports.Player = exports.JPosScrollDirection = exports.Command = exports.CommandType = exports.BranchType = exports.BranchRequirementType = void 0;
+      var Parser_1 = require_Parser();
+      Object.defineProperty(exports, "TJAParser", { enumerable: true, get: function() {
+        return Parser_1.TJAParser;
+      } });
+      var BranchRequirementType_1 = require_BranchRequirementType();
+      Object.defineProperty(exports, "BranchRequirementType", { enumerable: true, get: function() {
+        return BranchRequirementType_1.BranchRequirementType;
+      } });
+      var BranchType_1 = require_BranchType();
+      Object.defineProperty(exports, "BranchType", { enumerable: true, get: function() {
+        return BranchType_1.BranchType;
+      } });
+      var CommandType_1 = require_CommandType();
+      Object.defineProperty(exports, "CommandType", { enumerable: true, get: function() {
+        return CommandType_1.CommandType;
+      } });
+      __exportStar(require_types2(), exports);
+      var Command_1 = require_Command();
+      Object.defineProperty(exports, "Command", { enumerable: true, get: function() {
+        return Command_1.Command;
+      } });
+      var JPosScrollDirection_1 = require_JPosScrollDirection();
+      Object.defineProperty(exports, "JPosScrollDirection", { enumerable: true, get: function() {
+        return JPosScrollDirection_1.JPosScrollDirection;
+      } });
+      var Player_1 = require_Player();
+      Object.defineProperty(exports, "Player", { enumerable: true, get: function() {
+        return Player_1.Player;
+      } });
+      var ScrollDirection_1 = require_ScrollDirection();
+      Object.defineProperty(exports, "ScrollDirection", { enumerable: true, get: function() {
+        return ScrollDirection_1.ScrollDirection;
+      } });
+      var Difficulty_1 = require_Difficulty();
+      Object.defineProperty(exports, "Difficulty", { enumerable: true, get: function() {
+        return Difficulty_1.Difficulty;
+      } });
+      var MeasureValue_1 = require_MeasureValue();
+      Object.defineProperty(exports, "MeasureValue", { enumerable: true, get: function() {
+        return MeasureValue_1.MeasureValue;
+      } });
+      var Style_1 = require_Style();
+      Object.defineProperty(exports, "Style", { enumerable: true, get: function() {
+        return Style_1.Style;
+      } });
+      var DojoGaugeIncrementMethod_1 = require_DojoGaugeIncrementMethod();
+      Object.defineProperty(exports, "DojoGaugeIncrementMethod", { enumerable: true, get: function() {
+        return DojoGaugeIncrementMethod_1.DojoGaugeIncrementMethod;
+      } });
+      var DojoGaugeTotal_1 = require_DojoGaugeTotal();
+      Object.defineProperty(exports, "DojoGaugeTotal", { enumerable: true, get: function() {
+        return DojoGaugeTotal_1.DojoGaugeTotal;
+      } });
+      var DojoGaugeCondition_1 = require_DojoGaugeCondition();
+      Object.defineProperty(exports, "DojoGaugeCondition", { enumerable: true, get: function() {
+        return DojoGaugeCondition_1.DojoGaugeCondition;
+      } });
+      var DojoGaugeScope_1 = require_DojoGaugeScope();
+      Object.defineProperty(exports, "DojoGaugeScope", { enumerable: true, get: function() {
+        return DojoGaugeScope_1.DojoGaugeScope;
+      } });
+      var Course_1 = require_Course();
+      Object.defineProperty(exports, "Course", { enumerable: true, get: function() {
+        return Course_1.Course;
+      } });
+      var CourseVariant_1 = require_CourseVariant();
+      Object.defineProperty(exports, "CourseVariant", { enumerable: true, get: function() {
+        return CourseVariant_1.CourseVariant;
+      } });
+      var DojoGauge_1 = require_DojoGauge();
+      Object.defineProperty(exports, "DojoGauge", { enumerable: true, get: function() {
+        return DojoGauge_1.DojoGauge;
+      } });
+      var NoteType_1 = require_NoteType();
+      Object.defineProperty(exports, "NoteType", { enumerable: true, get: function() {
+        return NoteType_1.NoteType;
+      } });
+      var CountableDrumrollNote_1 = require_CountableDrumrollNote();
+      Object.defineProperty(exports, "CountableDrumrollNote", { enumerable: true, get: function() {
+        return CountableDrumrollNote_1.CountableDrumrollNote;
+      } });
+      __exportStar(require_types(), exports);
+      var Note_1 = require_Note();
+      Object.defineProperty(exports, "Note", { enumerable: true, get: function() {
+        return Note_1.Note;
+      } });
+      var Game_1 = require_Game();
+      Object.defineProperty(exports, "Game", { enumerable: true, get: function() {
+        return Game_1.Game;
+      } });
+      var ScoreMode_1 = require_ScoreMode();
+      Object.defineProperty(exports, "ScoreMode", { enumerable: true, get: function() {
+        return ScoreMode_1.ScoreMode;
+      } });
+      var Side_1 = require_Side();
+      Object.defineProperty(exports, "Side", { enumerable: true, get: function() {
+        return Side_1.Side;
+      } });
+      var Song_1 = require_Song();
+      Object.defineProperty(exports, "Song", { enumerable: true, get: function() {
+        return Song_1.Song;
+      } });
+      exports.default = Parser_1.TJAParser;
+    }
+  });
+
   // node_modules/kaboom/dist/kaboom.mjs
   var yi = Object.defineProperty;
-  var i = (n13, e) => yi(n13, "name", { value: e, configurable: true });
+  var i = (n14, e) => yi(n14, "name", { value: e, configurable: true });
   var gr = (() => {
-    for (var n13 = new Uint8Array(128), e = 0; e < 64; e++)
-      n13[e < 26 ? e + 65 : e < 52 ? e + 71 : e < 62 ? e - 4 : e * 4 - 205] = e;
+    for (var n14 = new Uint8Array(128), e = 0; e < 64; e++)
+      n14[e < 26 ? e + 65 : e < 52 ? e + 71 : e < 62 ? e - 4 : e * 4 - 205] = e;
     return (o) => {
       for (var c = o.length, g = new Uint8Array((c - (o[c - 1] == "=") - (o[c - 2] == "=")) * 3 / 4 | 0), m = 0, P = 0; m < c; ) {
-        var I = n13[o.charCodeAt(m++)], j = n13[o.charCodeAt(m++)], y = n13[o.charCodeAt(m++)], X = n13[o.charCodeAt(m++)];
-        g[P++] = I << 2 | j >> 4, g[P++] = j << 4 | y >> 2, g[P++] = y << 6 | X;
+        var I = n14[o.charCodeAt(m++)], j = n14[o.charCodeAt(m++)], y2 = n14[o.charCodeAt(m++)], X = n14[o.charCodeAt(m++)];
+        g[P++] = I << 2 | j >> 4, g[P++] = j << 4 | y2 >> 2, g[P++] = y2 << 6 | X;
       }
       return g;
     };
   })();
-  function Ge(n13) {
-    return n13 * Math.PI / 180;
+  function Ge(n14) {
+    return n14 * Math.PI / 180;
   }
   i(Ge, "deg2rad");
-  function ot(n13) {
-    return n13 * 180 / Math.PI;
+  function ot(n14) {
+    return n14 * 180 / Math.PI;
   }
   i(ot, "rad2deg");
-  function Le(n13, e, o) {
-    return e > o ? Le(n13, o, e) : Math.min(Math.max(n13, e), o);
+  function Le(n14, e, o) {
+    return e > o ? Le(n14, o, e) : Math.min(Math.max(n14, e), o);
   }
   i(Le, "clamp");
-  function Ve(n13, e, o) {
-    if (typeof n13 == "number" && typeof e == "number")
-      return n13 + (e - n13) * o;
-    if (n13 instanceof v && e instanceof v)
-      return n13.lerp(e, o);
-    if (n13 instanceof W && e instanceof W)
-      return n13.lerp(e, o);
-    throw new Error(`Bad value for lerp(): ${n13}, ${e}. Only number, Vec2 and Color is supported.`);
+  function Ve(n14, e, o) {
+    if (typeof n14 == "number" && typeof e == "number")
+      return n14 + (e - n14) * o;
+    if (n14 instanceof v && e instanceof v)
+      return n14.lerp(e, o);
+    if (n14 instanceof W && e instanceof W)
+      return n14.lerp(e, o);
+    throw new Error(`Bad value for lerp(): ${n14}, ${e}. Only number, Vec2 and Color is supported.`);
   }
   i(Ve, "lerp");
-  function _e(n13, e, o, c, g) {
-    return c + (n13 - e) / (o - e) * (g - c);
+  function _e(n14, e, o, c, g) {
+    return c + (n14 - e) / (o - e) * (g - c);
   }
   i(_e, "map");
-  function br(n13, e, o, c, g) {
-    return Le(_e(n13, e, o, c, g), c, g);
+  function br(n14, e, o, c, g) {
+    return Le(_e(n14, e, o, c, g), c, g);
   }
   i(br, "mapc");
   var v = class n {
@@ -145,14 +3210,14 @@
       return `vec2(${this.x.toFixed(2)}, ${this.y.toFixed(2)})`;
     }
   };
-  function T(...n13) {
-    if (n13.length === 1) {
-      if (n13[0] instanceof v)
-        return new v(n13[0].x, n13[0].y);
-      if (Array.isArray(n13[0]) && n13[0].length === 2)
-        return new v(...n13[0]);
+  function T(...n14) {
+    if (n14.length === 1) {
+      if (n14[0] instanceof v)
+        return new v(n14[0].x, n14[0].y);
+      if (Array.isArray(n14[0]) && n14[0].length === 2)
+        return new v(...n14[0]);
     }
-    return new v(...n13);
+    return new v(...n14);
   }
   i(T, "vec2");
   var W = class n2 {
@@ -180,8 +3245,8 @@
     static fromHSL(e, o, c) {
       if (o == 0)
         return new n2(255 * c, 255 * c, 255 * c);
-      let g = i((X, S, q) => (q < 0 && (q += 1), q > 1 && (q -= 1), q < 1 / 6 ? X + (S - X) * 6 * q : q < 1 / 2 ? S : q < 2 / 3 ? X + (S - X) * (2 / 3 - q) * 6 : X), "hue2rgb"), m = c < 0.5 ? c * (1 + o) : c + o - c * o, P = 2 * c - m, I = g(P, m, e + 1 / 3), j = g(P, m, e), y = g(P, m, e - 1 / 3);
-      return new n2(Math.round(I * 255), Math.round(j * 255), Math.round(y * 255));
+      let g = i((X, S, q) => (q < 0 && (q += 1), q > 1 && (q -= 1), q < 1 / 6 ? X + (S - X) * 6 * q : q < 1 / 2 ? S : q < 2 / 3 ? X + (S - X) * (2 / 3 - q) * 6 : X), "hue2rgb"), m = c < 0.5 ? c * (1 + o) : c + o - c * o, P = 2 * c - m, I = g(P, m, e + 1 / 3), j = g(P, m, e), y2 = g(P, m, e - 1 / 3);
+      return new n2(Math.round(I * 255), Math.round(j * 255), Math.round(y2 * 255));
     }
     static RED = new n2(255, 0, 0);
     static GREEN = new n2(0, 255, 0);
@@ -214,16 +3279,16 @@
       if (g == m)
         P = I = 0;
       else {
-        let y = g - m;
-        switch (I = j > 0.5 ? y / (2 - g - m) : y / (g + m), g) {
+        let y2 = g - m;
+        switch (I = j > 0.5 ? y2 / (2 - g - m) : y2 / (g + m), g) {
           case e:
-            P = (o - c) / y + (o < c ? 6 : 0);
+            P = (o - c) / y2 + (o < c ? 6 : 0);
             break;
           case o:
-            P = (c - e) / y + 2;
+            P = (c - e) / y2 + 2;
             break;
           case c:
-            P = (e - o) / y + 4;
+            P = (e - o) / y2 + 4;
             break;
         }
         P /= 6;
@@ -240,21 +3305,21 @@
       return "#" + ((1 << 24) + (this.r << 16) + (this.g << 8) + this.b).toString(16).slice(1);
     }
   };
-  function J(...n13) {
-    if (n13.length === 0)
+  function J(...n14) {
+    if (n14.length === 0)
       return new W(255, 255, 255);
-    if (n13.length === 1) {
-      if (n13[0] instanceof W)
-        return n13[0].clone();
-      if (typeof n13[0] == "string")
-        return W.fromHex(n13[0]);
-      if (Array.isArray(n13[0]) && n13[0].length === 3)
-        return W.fromArray(n13[0]);
+    if (n14.length === 1) {
+      if (n14[0] instanceof W)
+        return n14[0].clone();
+      if (typeof n14[0] == "string")
+        return W.fromHex(n14[0]);
+      if (Array.isArray(n14[0]) && n14[0].length === 3)
+        return W.fromArray(n14[0]);
     }
-    return new W(...n13);
+    return new W(...n14);
   }
   i(J, "rgb");
-  var vr = i((n13, e, o) => W.fromHSL(n13, e, o), "hsl2rgb");
+  var vr = i((n14, e, o) => W.fromHSL(n14, e, o), "hsl2rgb");
   var oe = class n3 {
     static {
       i(this, "Quad");
@@ -282,8 +3347,8 @@
       return `quad(${this.x}, ${this.y}, ${this.w}, ${this.h})`;
     }
   };
-  function ce(n13, e, o, c) {
-    return new oe(n13, e, o, c);
+  function ce(n14, e, o, c) {
+    return new oe(n14, e, o, c);
   }
   i(ce, "quad");
   var Ue = class n4 {
@@ -370,8 +3435,8 @@
         return new v(0, 0);
     }
     invert() {
-      let e = [], o = this.m[10] * this.m[15] - this.m[14] * this.m[11], c = this.m[9] * this.m[15] - this.m[13] * this.m[11], g = this.m[9] * this.m[14] - this.m[13] * this.m[10], m = this.m[8] * this.m[15] - this.m[12] * this.m[11], P = this.m[8] * this.m[14] - this.m[12] * this.m[10], I = this.m[8] * this.m[13] - this.m[12] * this.m[9], j = this.m[6] * this.m[15] - this.m[14] * this.m[7], y = this.m[5] * this.m[15] - this.m[13] * this.m[7], X = this.m[5] * this.m[14] - this.m[13] * this.m[6], S = this.m[4] * this.m[15] - this.m[12] * this.m[7], q = this.m[4] * this.m[14] - this.m[12] * this.m[6], E = this.m[5] * this.m[15] - this.m[13] * this.m[7], K = this.m[4] * this.m[13] - this.m[12] * this.m[5], Q = this.m[6] * this.m[11] - this.m[10] * this.m[7], te = this.m[5] * this.m[11] - this.m[9] * this.m[7], k2 = this.m[5] * this.m[10] - this.m[9] * this.m[6], pe = this.m[4] * this.m[11] - this.m[8] * this.m[7], C = this.m[4] * this.m[10] - this.m[8] * this.m[6], Ae = this.m[4] * this.m[9] - this.m[8] * this.m[5];
-      e[0] = this.m[5] * o - this.m[6] * c + this.m[7] * g, e[4] = -(this.m[4] * o - this.m[6] * m + this.m[7] * P), e[8] = this.m[4] * c - this.m[5] * m + this.m[7] * I, e[12] = -(this.m[4] * g - this.m[5] * P + this.m[6] * I), e[1] = -(this.m[1] * o - this.m[2] * c + this.m[3] * g), e[5] = this.m[0] * o - this.m[2] * m + this.m[3] * P, e[9] = -(this.m[0] * c - this.m[1] * m + this.m[3] * I), e[13] = this.m[0] * g - this.m[1] * P + this.m[2] * I, e[2] = this.m[1] * j - this.m[2] * y + this.m[3] * X, e[6] = -(this.m[0] * j - this.m[2] * S + this.m[3] * q), e[10] = this.m[0] * E - this.m[1] * S + this.m[3] * K, e[14] = -(this.m[0] * X - this.m[1] * q + this.m[2] * K), e[3] = -(this.m[1] * Q - this.m[2] * te + this.m[3] * k2), e[7] = this.m[0] * Q - this.m[2] * pe + this.m[3] * C, e[11] = -(this.m[0] * te - this.m[1] * pe + this.m[3] * Ae), e[15] = this.m[0] * k2 - this.m[1] * C + this.m[2] * Ae;
+      let e = [], o = this.m[10] * this.m[15] - this.m[14] * this.m[11], c = this.m[9] * this.m[15] - this.m[13] * this.m[11], g = this.m[9] * this.m[14] - this.m[13] * this.m[10], m = this.m[8] * this.m[15] - this.m[12] * this.m[11], P = this.m[8] * this.m[14] - this.m[12] * this.m[10], I = this.m[8] * this.m[13] - this.m[12] * this.m[9], j = this.m[6] * this.m[15] - this.m[14] * this.m[7], y2 = this.m[5] * this.m[15] - this.m[13] * this.m[7], X = this.m[5] * this.m[14] - this.m[13] * this.m[6], S = this.m[4] * this.m[15] - this.m[12] * this.m[7], q = this.m[4] * this.m[14] - this.m[12] * this.m[6], E = this.m[5] * this.m[15] - this.m[13] * this.m[7], K = this.m[4] * this.m[13] - this.m[12] * this.m[5], Q = this.m[6] * this.m[11] - this.m[10] * this.m[7], te = this.m[5] * this.m[11] - this.m[9] * this.m[7], k2 = this.m[5] * this.m[10] - this.m[9] * this.m[6], pe = this.m[4] * this.m[11] - this.m[8] * this.m[7], C = this.m[4] * this.m[10] - this.m[8] * this.m[6], Ae = this.m[4] * this.m[9] - this.m[8] * this.m[5];
+      e[0] = this.m[5] * o - this.m[6] * c + this.m[7] * g, e[4] = -(this.m[4] * o - this.m[6] * m + this.m[7] * P), e[8] = this.m[4] * c - this.m[5] * m + this.m[7] * I, e[12] = -(this.m[4] * g - this.m[5] * P + this.m[6] * I), e[1] = -(this.m[1] * o - this.m[2] * c + this.m[3] * g), e[5] = this.m[0] * o - this.m[2] * m + this.m[3] * P, e[9] = -(this.m[0] * c - this.m[1] * m + this.m[3] * I), e[13] = this.m[0] * g - this.m[1] * P + this.m[2] * I, e[2] = this.m[1] * j - this.m[2] * y2 + this.m[3] * X, e[6] = -(this.m[0] * j - this.m[2] * S + this.m[3] * q), e[10] = this.m[0] * E - this.m[1] * S + this.m[3] * K, e[14] = -(this.m[0] * X - this.m[1] * q + this.m[2] * K), e[3] = -(this.m[1] * Q - this.m[2] * te + this.m[3] * k2), e[7] = this.m[0] * Q - this.m[2] * pe + this.m[3] * C, e[11] = -(this.m[0] * te - this.m[1] * pe + this.m[3] * Ae), e[15] = this.m[0] * k2 - this.m[1] * C + this.m[2] * Ae;
       let $ = this.m[0] * e[0] + this.m[1] * e[4] + this.m[2] * e[8] + this.m[3] * e[12];
       for (let Te = 0; Te < 4; Te++)
         for (let ye = 0; ye < 4; ye++)
@@ -385,8 +3450,8 @@
       return this.m.toString();
     }
   };
-  function In(n13, e, o, c = (g) => -Math.cos(g)) {
-    return n13 + (c(o) + 1) / 2 * (e - n13);
+  function In(n14, e, o, c = (g) => -Math.cos(g)) {
+    return n14 + (c(o) + 1) / 2 * (e - n14);
   }
   i(In, "wave");
   var xi = 1103515245;
@@ -433,66 +3498,66 @@
     }
   };
   var Bn = new bt(Date.now());
-  function yr(n13) {
-    return n13 != null && (Bn.seed = n13), Bn.seed;
+  function yr(n14) {
+    return n14 != null && (Bn.seed = n14), Bn.seed;
   }
   i(yr, "randSeed");
-  function xt(...n13) {
-    return Bn.genAny(...n13);
+  function xt(...n14) {
+    return Bn.genAny(...n14);
   }
   i(xt, "rand");
-  function Ln(...n13) {
-    return Math.floor(xt(...n13));
+  function Ln(...n14) {
+    return Math.floor(xt(...n14));
   }
   i(Ln, "randi");
-  function xr(n13) {
-    return xt() <= n13;
+  function xr(n14) {
+    return xt() <= n14;
   }
   i(xr, "chance");
-  function Ur(n13) {
-    return n13[Ln(n13.length)];
+  function Ur(n14) {
+    return n14[Ln(n14.length)];
   }
   i(Ur, "choose");
-  function Er(n13, e) {
-    return n13.pos.x + n13.width > e.pos.x && n13.pos.x < e.pos.x + e.width && n13.pos.y + n13.height > e.pos.y && n13.pos.y < e.pos.y + e.height;
+  function Er(n14, e) {
+    return n14.pos.x + n14.width > e.pos.x && n14.pos.x < e.pos.x + e.width && n14.pos.y + n14.height > e.pos.y && n14.pos.y < e.pos.y + e.height;
   }
   i(Er, "testRectRect");
-  function Ei(n13, e) {
-    if (n13.p1.x === n13.p2.x && n13.p1.y === n13.p2.y || e.p1.x === e.p2.x && e.p1.y === e.p2.y)
+  function Ei(n14, e) {
+    if (n14.p1.x === n14.p2.x && n14.p1.y === n14.p2.y || e.p1.x === e.p2.x && e.p1.y === e.p2.y)
       return null;
-    let o = (e.p2.y - e.p1.y) * (n13.p2.x - n13.p1.x) - (e.p2.x - e.p1.x) * (n13.p2.y - n13.p1.y);
+    let o = (e.p2.y - e.p1.y) * (n14.p2.x - n14.p1.x) - (e.p2.x - e.p1.x) * (n14.p2.y - n14.p1.y);
     if (o === 0)
       return null;
-    let c = ((e.p2.x - e.p1.x) * (n13.p1.y - e.p1.y) - (e.p2.y - e.p1.y) * (n13.p1.x - e.p1.x)) / o, g = ((n13.p2.x - n13.p1.x) * (n13.p1.y - e.p1.y) - (n13.p2.y - n13.p1.y) * (n13.p1.x - e.p1.x)) / o;
+    let c = ((e.p2.x - e.p1.x) * (n14.p1.y - e.p1.y) - (e.p2.y - e.p1.y) * (n14.p1.x - e.p1.x)) / o, g = ((n14.p2.x - n14.p1.x) * (n14.p1.y - e.p1.y) - (n14.p2.y - n14.p1.y) * (n14.p1.x - e.p1.x)) / o;
     return c < 0 || c > 1 || g < 0 || g > 1 ? null : c;
   }
   i(Ei, "testLineLineT");
-  function it(n13, e) {
-    let o = Ei(n13, e);
-    return o ? T(n13.p1.x + o * (n13.p2.x - n13.p1.x), n13.p1.y + o * (n13.p2.y - n13.p1.y)) : null;
+  function it(n14, e) {
+    let o = Ei(n14, e);
+    return o ? T(n14.p1.x + o * (n14.p2.x - n14.p1.x), n14.p1.y + o * (n14.p2.y - n14.p1.y)) : null;
   }
   i(it, "testLineLine");
-  function Sr(n13, e) {
-    if (vt(n13, e.p1) || vt(n13, e.p2))
+  function Sr(n14, e) {
+    if (vt(n14, e.p1) || vt(n14, e.p2))
       return true;
-    let o = n13.points();
+    let o = n14.points();
     return !!it(e, new Ie(o[0], o[1])) || !!it(e, new Ie(o[1], o[2])) || !!it(e, new Ie(o[2], o[3])) || !!it(e, new Ie(o[3], o[0]));
   }
   i(Sr, "testRectLine");
-  function vt(n13, e) {
-    return e.x > n13.pos.x && e.x < n13.pos.x + n13.width && e.y > n13.pos.y && e.y < n13.pos.y + n13.height;
+  function vt(n14, e) {
+    return e.x > n14.pos.x && e.x < n14.pos.x + n14.width && e.y > n14.pos.y && e.y < n14.pos.y + n14.height;
   }
   i(vt, "testRectPoint");
-  function Cr(n13, e) {
-    let o = e.sub(n13.p1), c = n13.p2.sub(n13.p1);
+  function Cr(n14, e) {
+    let o = e.sub(n14.p1), c = n14.p2.sub(n14.p1);
     if (Math.abs(o.cross(c)) > Number.EPSILON)
       return false;
     let g = o.dot(c) / c.dot(c);
     return g >= 0 && g <= 1;
   }
   i(Cr, "testLinePoint");
-  function Vn(n13, e) {
-    let o = n13.p2.sub(n13.p1), c = o.dot(o), g = n13.p1.sub(e.center), m = 2 * o.dot(g), P = g.dot(g) - e.radius * e.radius, I = m * m - 4 * c * P;
+  function Vn(n14, e) {
+    let o = n14.p2.sub(n14.p1), c = o.dot(o), g = n14.p1.sub(e.center), m = 2 * o.dot(g), P = g.dot(g) - e.radius * e.radius, I = m * m - 4 * c * P;
     if (c <= Number.EPSILON || I < 0)
       return false;
     if (I == 0) {
@@ -500,29 +3565,29 @@
       if (j >= 0 && j <= 1)
         return true;
     } else {
-      let j = (-m + Math.sqrt(I)) / (2 * c), y = (-m - Math.sqrt(I)) / (2 * c);
-      if (j >= 0 && j <= 1 || y >= 0 && y <= 1)
+      let j = (-m + Math.sqrt(I)) / (2 * c), y2 = (-m - Math.sqrt(I)) / (2 * c);
+      if (j >= 0 && j <= 1 || y2 >= 0 && y2 <= 1)
         return true;
     }
-    return Ar(e, n13.p1);
+    return Ar(e, n14.p1);
   }
   i(Vn, "testLineCircle");
-  function Ar(n13, e) {
-    return n13.center.sdist(e) < n13.radius * n13.radius;
+  function Ar(n14, e) {
+    return n14.center.sdist(e) < n14.radius * n14.radius;
   }
   i(Ar, "testCirclePoint");
-  function Tr(n13, e) {
+  function Tr(n14, e) {
     let o = e.pts[e.pts.length - 1];
     for (let c of e.pts) {
-      if (Vn(new Ie(o, c), n13))
+      if (Vn(new Ie(o, c), n14))
         return true;
       o = c;
     }
-    return Ar(n13, e.pts[0]) ? true : _n(e, n13.center);
+    return Ar(n14, e.pts[0]) ? true : _n(e, n14.center);
   }
   i(Tr, "testCirclePolygon");
-  function _n(n13, e) {
-    let o = false, c = n13.pts;
+  function _n(n14, e) {
+    let o = false, c = n14.pts;
     for (let g = 0, m = c.length - 1; g < c.length; m = g++)
       c[g].y > e.y != c[m].y > e.y && e.x < (c[m].x - c[g].x) * (e.y - c[g].y) / (c[m].y - c[g].y) + c[g].x && (o = !o);
     return o;
@@ -665,25 +3730,25 @@
       return new n9(this.pts.map((e) => e.clone()));
     }
   };
-  function Or(n13, e) {
+  function Or(n14, e) {
     let o = Number.MAX_VALUE, c = T(0);
-    for (let g of [n13, e])
+    for (let g of [n14, e])
       for (let m = 0; m < g.pts.length; m++) {
-        let P = g.pts[m], j = g.pts[(m + 1) % g.pts.length].sub(P).normal().unit(), y = Number.MAX_VALUE, X = -Number.MAX_VALUE;
-        for (let K = 0; K < n13.pts.length; K++) {
-          let Q = n13.pts[K].dot(j);
-          y = Math.min(y, Q), X = Math.max(X, Q);
+        let P = g.pts[m], j = g.pts[(m + 1) % g.pts.length].sub(P).normal().unit(), y2 = Number.MAX_VALUE, X = -Number.MAX_VALUE;
+        for (let K = 0; K < n14.pts.length; K++) {
+          let Q = n14.pts[K].dot(j);
+          y2 = Math.min(y2, Q), X = Math.max(X, Q);
         }
         let S = Number.MAX_VALUE, q = -Number.MAX_VALUE;
         for (let K = 0; K < e.pts.length; K++) {
           let Q = e.pts[K].dot(j);
           S = Math.min(S, Q), q = Math.max(q, Q);
         }
-        let E = Math.min(X, q) - Math.max(y, S);
+        let E = Math.min(X, q) - Math.max(y2, S);
         if (E < 0)
           return null;
         if (E < Math.abs(o)) {
-          let K = q - y, Q = S - X;
+          let K = q - y2, Q = S - X;
           o = Math.abs(K) < Math.abs(Q) ? K : Q, c = j.scale(o);
         }
       }
@@ -783,20 +3848,20 @@
       return this.handlers[e]?.numListeners() ?? 0;
     }
   };
-  function Wt(n13, e) {
-    if (n13 === e)
+  function Wt(n14, e) {
+    if (n14 === e)
       return true;
-    let o = typeof n13, c = typeof e;
+    let o = typeof n14, c = typeof e;
     if (o !== c)
       return false;
-    if (o === "object" && c === "object" && n13 !== null && e !== null) {
-      if (Array.isArray(n13) !== Array.isArray(e))
+    if (o === "object" && c === "object" && n14 !== null && e !== null) {
+      if (Array.isArray(n14) !== Array.isArray(e))
         return false;
-      let g = Object.keys(n13), m = Object.keys(e);
+      let g = Object.keys(n14), m = Object.keys(e);
       if (g.length !== m.length)
         return false;
       for (let P of g) {
-        let I = n13[P], j = e[P];
+        let I = n14[P], j = e[P];
         if (!Wt(I, j))
           return false;
       }
@@ -805,52 +3870,52 @@
     return false;
   }
   i(Wt, "deepEq");
-  function Si(n13) {
-    let e = window.atob(n13), o = e.length, c = new Uint8Array(o);
+  function Si(n14) {
+    let e = window.atob(n14), o = e.length, c = new Uint8Array(o);
     for (let g = 0; g < o; g++)
       c[g] = e.charCodeAt(g);
     return c.buffer;
   }
   i(Si, "base64ToArrayBuffer");
-  function Pr(n13) {
-    return Si(n13.split(",")[1]);
+  function Pr(n14) {
+    return Si(n14.split(",")[1]);
   }
   i(Pr, "dataURLToArrayBuffer");
-  function Xt(n13, e) {
+  function Xt(n14, e) {
     let o = document.createElement("a");
-    o.href = e, o.download = n13, o.click();
+    o.href = e, o.download = n14, o.click();
   }
   i(Xt, "download");
-  function kn(n13, e) {
-    Xt(n13, "data:text/plain;charset=utf-8," + e);
+  function kn(n14, e) {
+    Xt(n14, "data:text/plain;charset=utf-8," + e);
   }
   i(kn, "downloadText");
-  function Dr(n13, e) {
-    kn(n13, JSON.stringify(e));
+  function Dr(n14, e) {
+    kn(n14, JSON.stringify(e));
   }
   i(Dr, "downloadJSON");
-  function Nn(n13, e) {
+  function Nn(n14, e) {
     let o = URL.createObjectURL(e);
-    Xt(n13, o), URL.revokeObjectURL(o);
+    Xt(n14, o), URL.revokeObjectURL(o);
   }
   i(Nn, "downloadBlob");
-  var jn = i((n13) => n13.match(/^data:\w+\/\w+;base64,.+/), "isDataURL");
-  var Mr = i((n13) => n13.split(".").slice(0, -1).join("."), "getFileName");
-  function Ee(n13, e) {
+  var jn = i((n14) => n14.match(/^data:\w+\/\w+;base64,.+/), "isDataURL");
+  var Mr = i((n14) => n14.split(".").slice(0, -1).join("."), "getFileName");
+  function Ee(n14, e) {
     return (...o) => {
       let c = o.length;
-      if (c === n13.length)
-        return n13(...o);
+      if (c === n14.length)
+        return n14(...o);
       if (c === e.length)
         return e(...o);
     };
   }
   i(Ee, "overload2");
   var Gr = /* @__PURE__ */ (() => {
-    let n13 = 0;
-    return () => n13++;
+    let n14 = 0;
+    return () => n14++;
   })();
-  var Br = i((n13) => n13 instanceof Error ? n13.message : String(n13), "getErrorMessage");
+  var Br = i((n14) => n14 instanceof Error ? n14.message : String(n14), "getErrorMessage");
   var Yt = class {
     static {
       i(this, "BinaryHeap");
@@ -896,72 +3961,72 @@
     }
   };
   var Ci = Object.freeze([776, 2359, 2367, 2984, 3007, 3021, 3633, 3635, 3648, 3657, 4352, 4449, 4520]);
-  function Fr(n13) {
-    if (typeof n13 != "string")
+  function Fr(n14) {
+    if (typeof n14 != "string")
       throw new TypeError("string cannot be undefined or null");
     let e = [], o = 0, c = 0;
-    for (; o < n13.length; ) {
-      if (c += Ai(o + c, n13), Gi(n13[o + c]) && c++, Pi(n13[o + c]) && c++, Di(n13[o + c]) && c++, Bi(n13[o + c])) {
+    for (; o < n14.length; ) {
+      if (c += Ai(o + c, n14), Gi(n14[o + c]) && c++, Pi(n14[o + c]) && c++, Di(n14[o + c]) && c++, Bi(n14[o + c])) {
         c++;
         continue;
       }
-      e.push(n13.substring(o, o + c)), o += c, c = 0;
+      e.push(n14.substring(o, o + c)), o += c, c = 0;
     }
     return e;
   }
   i(Fr, "runes");
-  function Ai(n13, e) {
-    let o = e[n13];
-    if (!Ti(o) || n13 === e.length - 1)
+  function Ai(n14, e) {
+    let o = e[n14];
+    if (!Ti(o) || n14 === e.length - 1)
       return 1;
-    let c = o + e[n13 + 1], g = e.substring(n13 + 2, n13 + 5);
-    return Rr(c) && Rr(g) ? 4 : Oi(c) && Mi(g) ? e.slice(n13).indexOf(String.fromCodePoint(917631)) + 2 : Ri(g) ? 4 : 2;
+    let c = o + e[n14 + 1], g = e.substring(n14 + 2, n14 + 5);
+    return Rr(c) && Rr(g) ? 4 : Oi(c) && Mi(g) ? e.slice(n14).indexOf(String.fromCodePoint(917631)) + 2 : Ri(g) ? 4 : 2;
   }
   i(Ai, "nextUnits");
-  function Ti(n13) {
-    return n13 && tt(n13[0].charCodeAt(0), 55296, 56319);
+  function Ti(n14) {
+    return n14 && tt(n14[0].charCodeAt(0), 55296, 56319);
   }
   i(Ti, "isFirstOfSurrogatePair");
-  function Rr(n13) {
-    return tt(Hn(n13), 127462, 127487);
+  function Rr(n14) {
+    return tt(Hn(n14), 127462, 127487);
   }
   i(Rr, "isRegionalIndicator");
-  function Oi(n13) {
-    return tt(Hn(n13), 127988, 127988);
+  function Oi(n14) {
+    return tt(Hn(n14), 127988, 127988);
   }
   i(Oi, "isSubdivisionFlag");
-  function Ri(n13) {
-    return tt(Hn(n13), 127995, 127999);
+  function Ri(n14) {
+    return tt(Hn(n14), 127995, 127999);
   }
   i(Ri, "isFitzpatrickModifier");
-  function Pi(n13) {
-    return typeof n13 == "string" && tt(n13.charCodeAt(0), 65024, 65039);
+  function Pi(n14) {
+    return typeof n14 == "string" && tt(n14.charCodeAt(0), 65024, 65039);
   }
   i(Pi, "isVariationSelector");
-  function Di(n13) {
-    return typeof n13 == "string" && tt(n13.charCodeAt(0), 8400, 8447);
+  function Di(n14) {
+    return typeof n14 == "string" && tt(n14.charCodeAt(0), 8400, 8447);
   }
   i(Di, "isDiacriticalMark");
-  function Mi(n13) {
-    let e = n13.codePointAt(0);
-    return typeof n13 == "string" && typeof e == "number" && tt(e, 917504, 917631);
+  function Mi(n14) {
+    let e = n14.codePointAt(0);
+    return typeof n14 == "string" && typeof e == "number" && tt(e, 917504, 917631);
   }
   i(Mi, "isSupplementarySpecialpurposePlane");
-  function Gi(n13) {
-    return typeof n13 == "string" && Ci.includes(n13.charCodeAt(0));
+  function Gi(n14) {
+    return typeof n14 == "string" && Ci.includes(n14.charCodeAt(0));
   }
   i(Gi, "isGrapheme");
-  function Bi(n13) {
-    return typeof n13 == "string" && n13.charCodeAt(0) === 8205;
+  function Bi(n14) {
+    return typeof n14 == "string" && n14.charCodeAt(0) === 8205;
   }
   i(Bi, "isZeroWidthJoiner");
-  function Hn(n13) {
-    let e = n13.charCodeAt(0) - 55296, o = n13.charCodeAt(1) - 56320;
+  function Hn(n14) {
+    let e = n14.charCodeAt(0) - 55296, o = n14.charCodeAt(1) - 56320;
     return (e << 10) + o + 65536;
   }
   i(Hn, "codePointFromSurrogatePair");
-  function tt(n13, e, o) {
-    return n13 >= e && n13 <= o;
+  function tt(n14, e, o) {
+    return n14 >= e && n14 <= o;
   }
   i(tt, "betweenInclusive");
   var qn = { "Joy-Con L+R (STANDARD GAMEPAD Vendor: 057e Product: 200e)": { buttons: { "0": "south", "1": "east", "2": "west", "3": "north", "4": "lshoulder", "5": "rshoulder", "6": "ltrigger", "7": "rtrigger", "8": "select", "9": "start", "10": "lstick", "11": "rstick", "12": "dpad-up", "13": "dpad-down", "14": "dpad-left", "15": "dpad-right", "16": "home", "17": "capture" }, sticks: { left: { x: 0, y: 1 }, right: { x: 2, y: 3 } } }, "Joy-Con (L) (STANDARD GAMEPAD Vendor: 057e Product: 2006)": { buttons: { "0": "south", "1": "east", "2": "west", "3": "north", "4": "lshoulder", "5": "rshoulder", "9": "select", "10": "lstick", "16": "start" }, sticks: { left: { x: 0, y: 1 } } }, "Joy-Con (R) (STANDARD GAMEPAD Vendor: 057e Product: 2007)": { buttons: { "0": "south", "1": "east", "2": "west", "3": "north", "4": "lshoulder", "5": "rshoulder", "9": "start", "10": "lstick", "16": "select" }, sticks: { left: { x: 0, y: 1 } } }, "Pro Controller (STANDARD GAMEPAD Vendor: 057e Product: 2009)": { buttons: { "0": "south", "1": "east", "2": "west", "3": "north", "4": "lshoulder", "5": "rshoulder", "6": "ltrigger", "7": "rtrigger", "8": "select", "9": "start", "10": "lstick", "11": "rstick", "12": "dpad-up", "13": "dpad-down", "14": "dpad-left", "15": "dpad-right", "16": "home", "17": "capture" }, sticks: { left: { x: 0, y: 1 }, right: { x: 2, y: 3 } } }, default: { buttons: { "0": "south", "1": "east", "2": "west", "3": "north", "4": "lshoulder", "5": "rshoulder", "6": "ltrigger", "7": "rtrigger", "8": "select", "9": "start", "10": "lstick", "11": "rstick", "12": "dpad-up", "13": "dpad-down", "14": "dpad-left", "15": "dpad-right", "16": "home" }, sticks: { left: { x: 0, y: 1 }, right: { x: 2, y: 3 } } } };
@@ -1004,10 +4069,10 @@
       this.dts.push(e), this.timer += e, this.timer >= 1 && (this.timer = 0, this.fps = Math.round(1 / (this.dts.reduce((o, c) => o + c) / this.dts.length)), this.dts = []);
     }
   };
-  var Ir = i((n13) => {
-    if (!n13.canvas)
+  var Ir = i((n14) => {
+    if (!n14.canvas)
       throw new Error("Please provide a canvas");
-    let e = { canvas: n13.canvas, loopID: null, stopped: false, dt: 0, time: 0, realTime: 0, fpsCounter: new zn(), timeScale: 1, skipTime: false, numFrames: 0, mousePos: new v(0), mouseDeltaPos: new v(0), keyState: new at(), mouseState: new at(), mergedGamepadState: new $n(), gamepadStates: /* @__PURE__ */ new Map(), gamepads: [], charInputted: [], isMouseMoved: false, lastWidth: n13.canvas.offsetWidth, lastHeight: n13.canvas.offsetHeight, events: new Ne() };
+    let e = { canvas: n14.canvas, loopID: null, stopped: false, dt: 0, time: 0, realTime: 0, fpsCounter: new zn(), timeScale: 1, skipTime: false, numFrames: 0, mousePos: new v(0), mouseDeltaPos: new v(0), keyState: new at(), mouseState: new at(), mergedGamepadState: new $n(), gamepadStates: /* @__PURE__ */ new Map(), gamepads: [], charInputted: [], isMouseMoved: false, lastWidth: n14.canvas.offsetWidth, lastHeight: n14.canvas.offsetHeight, events: new Ne() };
     function o() {
       return e.dt * e.timeScale;
     }
@@ -1036,18 +4101,18 @@
       return e.canvas.style.cursor;
     }
     i(j, "getCursor");
-    function y(l) {
+    function y2(l) {
       if (l)
         try {
-          let x = e.canvas.requestPointerLock();
-          x.catch && x.catch((R) => console.error(R));
-        } catch (x) {
-          console.error(x);
+          let x2 = e.canvas.requestPointerLock();
+          x2.catch && x2.catch((R) => console.error(R));
+        } catch (x2) {
+          console.error(x2);
         }
       else
         document.exitPointerLock();
     }
-    i(y, "setCursorLocked");
+    i(y2, "setCursorLocked");
     function X() {
       return !!document.pointerLockElement;
     }
@@ -1085,15 +4150,15 @@
     i(te, "quit");
     function k2(l) {
       e.loopID !== null && cancelAnimationFrame(e.loopID);
-      let x = 0, R = i((L) => {
+      let x2 = 0, R = i((L) => {
         if (e.stopped)
           return;
         if (document.visibilityState !== "visible") {
           e.loopID = requestAnimationFrame(R);
           return;
         }
-        let he = L / 1e3, z = he - e.realTime, Oe = n13.maxFPS ? 1 / n13.maxFPS : 0;
-        e.realTime = he, x += z, x > Oe && (e.skipTime || (e.dt = x, e.time += o(), e.fpsCounter.tick(e.dt)), x = 0, e.skipTime = false, e.numFrames++, ft(), l(), vn()), e.loopID = requestAnimationFrame(R);
+        let he = L / 1e3, z = he - e.realTime, Oe = n14.maxFPS ? 1 / n14.maxFPS : 0;
+        e.realTime = he, x2 += z, x2 > Oe && (e.skipTime || (e.dt = x2, e.time += o(), e.fpsCounter.tick(e.dt)), x2 = 0, e.skipTime = false, e.numFrames++, ft(), l(), vn()), e.loopID = requestAnimationFrame(R);
       }, "frame");
       R(0);
     }
@@ -1158,7 +4223,7 @@
       return e.events.on("resize", l);
     }
     i(un, "onResize");
-    let cn = Ee((l) => e.events.on("keyDown", l), (l, x) => e.events.on("keyDown", (R) => R === l && x(l))), hn = Ee((l) => e.events.on("keyPress", l), (l, x) => e.events.on("keyPress", (R) => R === l && x(l))), ln = Ee((l) => e.events.on("keyPressRepeat", l), (l, x) => e.events.on("keyPressRepeat", (R) => R === l && x(l))), dn = Ee((l) => e.events.on("keyRelease", l), (l, x) => e.events.on("keyRelease", (R) => R === l && x(l))), Pt = Ee((l) => e.events.on("mouseDown", (x) => l(x)), (l, x) => e.events.on("mouseDown", (R) => R === l && x(R))), Dt = Ee((l) => e.events.on("mousePress", (x) => l(x)), (l, x) => e.events.on("mousePress", (R) => R === l && x(R))), Mt = Ee((l) => e.events.on("mouseRelease", (x) => l(x)), (l, x) => e.events.on("mouseRelease", (R) => R === l && x(R)));
+    let cn = Ee((l) => e.events.on("keyDown", l), (l, x2) => e.events.on("keyDown", (R) => R === l && x2(l))), hn = Ee((l) => e.events.on("keyPress", l), (l, x2) => e.events.on("keyPress", (R) => R === l && x2(l))), ln = Ee((l) => e.events.on("keyPressRepeat", l), (l, x2) => e.events.on("keyPressRepeat", (R) => R === l && x2(l))), dn = Ee((l) => e.events.on("keyRelease", l), (l, x2) => e.events.on("keyRelease", (R) => R === l && x2(l))), Pt = Ee((l) => e.events.on("mouseDown", (x2) => l(x2)), (l, x2) => e.events.on("mouseDown", (R) => R === l && x2(R))), Dt = Ee((l) => e.events.on("mousePress", (x2) => l(x2)), (l, x2) => e.events.on("mousePress", (R) => R === l && x2(R))), Mt = Ee((l) => e.events.on("mouseRelease", (x2) => l(x2)), (l, x2) => e.events.on("mouseRelease", (R) => R === l && x2(R)));
     function Gt(l) {
       return e.events.on("mouseMove", () => l(C(), Ae()));
     }
@@ -1191,29 +4256,29 @@
       return e.events.on("show", l);
     }
     i(gn, "onShow");
-    function It(l, x) {
+    function It(l, x2) {
       if (typeof l == "function")
         return e.events.on("gamepadButtonDown", l);
-      if (typeof l == "string" && typeof x == "function")
-        return e.events.on("gamepadButtonDown", (R) => R === l && x(l));
+      if (typeof l == "string" && typeof x2 == "function")
+        return e.events.on("gamepadButtonDown", (R) => R === l && x2(l));
     }
     i(It, "onGamepadButtonDown");
-    function Lt(l, x) {
+    function Lt(l, x2) {
       if (typeof l == "function")
         return e.events.on("gamepadButtonPress", l);
-      if (typeof l == "string" && typeof x == "function")
-        return e.events.on("gamepadButtonPress", (R) => R === l && x(l));
+      if (typeof l == "string" && typeof x2 == "function")
+        return e.events.on("gamepadButtonPress", (R) => R === l && x2(l));
     }
     i(Lt, "onGamepadButtonPress");
-    function wn(l, x) {
+    function wn(l, x2) {
       if (typeof l == "function")
         return e.events.on("gamepadButtonRelease", l);
-      if (typeof l == "string" && typeof x == "function")
-        return e.events.on("gamepadButtonRelease", (R) => R === l && x(l));
+      if (typeof l == "string" && typeof x2 == "function")
+        return e.events.on("gamepadButtonRelease", (R) => R === l && x2(l));
     }
     i(wn, "onGamepadButtonRelease");
-    function ht(l, x) {
-      return e.events.on("gamepadStick", (R, L) => R === l && x(L));
+    function ht(l, x2) {
+      return e.events.on("gamepadStick", (R, L) => R === l && x2(L));
     }
     i(ht, "onGamepadStick");
     function bn(l) {
@@ -1241,103 +4306,103 @@
     }
     i(ft, "processInput");
     function vn() {
-      e.keyState.update(), e.mouseState.update(), e.mergedGamepadState.buttonState.update(), e.mergedGamepadState.stickState.forEach((l, x) => {
-        e.mergedGamepadState.stickState.set(x, new v(0));
+      e.keyState.update(), e.mouseState.update(), e.mergedGamepadState.buttonState.update(), e.mergedGamepadState.stickState.forEach((l, x2) => {
+        e.mergedGamepadState.stickState.set(x2, new v(0));
       }), e.charInputted = [], e.isMouseMoved = false, e.gamepadStates.forEach((l) => {
-        l.buttonState.update(), l.stickState.forEach((x, R) => {
+        l.buttonState.update(), l.stickState.forEach((x2, R) => {
           l.stickState.set(R, new v(0));
         });
       });
     }
     i(vn, "resetInput");
     function _t(l) {
-      let x = { index: l.index, isPressed: (R) => e.gamepadStates.get(l.index).buttonState.pressed.has(R), isDown: (R) => e.gamepadStates.get(l.index).buttonState.down.has(R), isReleased: (R) => e.gamepadStates.get(l.index).buttonState.released.has(R), getStick: (R) => e.gamepadStates.get(l.index).stickState.get(R) };
-      return e.gamepads.push(x), e.gamepadStates.set(l.index, { buttonState: new at(), stickState: /* @__PURE__ */ new Map([["left", new v(0)], ["right", new v(0)]]) }), x;
+      let x2 = { index: l.index, isPressed: (R) => e.gamepadStates.get(l.index).buttonState.pressed.has(R), isDown: (R) => e.gamepadStates.get(l.index).buttonState.down.has(R), isReleased: (R) => e.gamepadStates.get(l.index).buttonState.released.has(R), getStick: (R) => e.gamepadStates.get(l.index).stickState.get(R) };
+      return e.gamepads.push(x2), e.gamepadStates.set(l.index, { buttonState: new at(), stickState: /* @__PURE__ */ new Map([["left", new v(0)], ["right", new v(0)]]) }), x2;
     }
     i(_t, "registerGamepad");
     function ne(l) {
-      e.gamepads = e.gamepads.filter((x) => x.index !== l.index), e.gamepadStates.delete(l.index);
+      e.gamepads = e.gamepads.filter((x2) => x2.index !== l.index), e.gamepadStates.delete(l.index);
     }
     i(ne, "removeGamepad");
     function He() {
       for (let l of navigator.getGamepads())
         l && !e.gamepadStates.has(l.index) && _t(l);
       for (let l of e.gamepads) {
-        let x = navigator.getGamepads()[l.index], L = (n13.gamepads ?? {})[x.id] ?? qn[x.id] ?? qn.default, he = e.gamepadStates.get(l.index);
-        for (let z = 0; z < x.buttons.length; z++)
-          x.buttons[z].pressed ? (he.buttonState.down.has(L.buttons[z]) || (e.mergedGamepadState.buttonState.press(L.buttons[z]), he.buttonState.press(L.buttons[z]), e.events.trigger("gamepadButtonPress", L.buttons[z])), e.events.trigger("gamepadButtonDown", L.buttons[z])) : he.buttonState.down.has(L.buttons[z]) && (e.mergedGamepadState.buttonState.release(L.buttons[z]), he.buttonState.release(L.buttons[z]), e.events.trigger("gamepadButtonRelease", L.buttons[z]));
+        let x2 = navigator.getGamepads()[l.index], L = (n14.gamepads ?? {})[x2.id] ?? qn[x2.id] ?? qn.default, he = e.gamepadStates.get(l.index);
+        for (let z = 0; z < x2.buttons.length; z++)
+          x2.buttons[z].pressed ? (he.buttonState.down.has(L.buttons[z]) || (e.mergedGamepadState.buttonState.press(L.buttons[z]), he.buttonState.press(L.buttons[z]), e.events.trigger("gamepadButtonPress", L.buttons[z])), e.events.trigger("gamepadButtonDown", L.buttons[z])) : he.buttonState.down.has(L.buttons[z]) && (e.mergedGamepadState.buttonState.release(L.buttons[z]), he.buttonState.release(L.buttons[z]), e.events.trigger("gamepadButtonRelease", L.buttons[z]));
         for (let z in L.sticks) {
-          let Oe = L.sticks[z], $e = new v(x.axes[Oe.x], x.axes[Oe.y]);
+          let Oe = L.sticks[z], $e = new v(x2.axes[Oe.x], x2.axes[Oe.y]);
           he.stickState.set(z, $e), e.mergedGamepadState.stickState.set(z, $e), e.events.trigger("gamepadStick", z, $e);
         }
       }
     }
     i(He, "processGamepad");
-    let se = {}, le = {}, ae = {}, Be = n13.pixelDensity || window.devicePixelRatio || 1;
+    let se = {}, le = {}, ae = {}, Be = n14.pixelDensity || window.devicePixelRatio || 1;
     se.mousemove = (l) => {
-      let x = new v(l.offsetX, l.offsetY), R = new v(l.movementX, l.movementY);
+      let x2 = new v(l.offsetX, l.offsetY), R = new v(l.movementX, l.movementY);
       if (Q()) {
         let L = e.canvas.width / Be, he = e.canvas.height / Be, z = window.innerWidth, Oe = window.innerHeight, $e = z / Oe, kt = L / he;
         if ($e > kt) {
           let De = Oe / he, Ce = (z - L * De) / 2;
-          x.x = _e(l.offsetX - Ce, 0, L * De, 0, L), x.y = _e(l.offsetY, 0, he * De, 0, he);
+          x2.x = _e(l.offsetX - Ce, 0, L * De, 0, L), x2.y = _e(l.offsetY, 0, he * De, 0, he);
         } else {
           let De = z / L, Ce = (Oe - he * De) / 2;
-          x.x = _e(l.offsetX, 0, L * De, 0, L), x.y = _e(l.offsetY - Ce, 0, he * De, 0, he);
+          x2.x = _e(l.offsetX, 0, L * De, 0, L), x2.y = _e(l.offsetY - Ce, 0, he * De, 0, he);
         }
       }
       e.events.onOnce("input", () => {
-        e.isMouseMoved = true, e.mousePos = x, e.mouseDeltaPos = R, e.events.trigger("mouseMove");
+        e.isMouseMoved = true, e.mousePos = x2, e.mouseDeltaPos = R, e.events.trigger("mouseMove");
       });
     };
     let We = ["left", "middle", "right", "back", "forward"];
     se.mousedown = (l) => {
       e.events.onOnce("input", () => {
-        let x = We[l.button];
-        x && (e.mouseState.press(x), e.events.trigger("mousePress", x));
+        let x2 = We[l.button];
+        x2 && (e.mouseState.press(x2), e.events.trigger("mousePress", x2));
       });
     }, se.mouseup = (l) => {
       e.events.onOnce("input", () => {
-        let x = We[l.button];
-        x && (e.mouseState.release(x), e.events.trigger("mouseRelease", x));
+        let x2 = We[l.button];
+        x2 && (e.mouseState.release(x2), e.events.trigger("mouseRelease", x2));
       });
     };
     let yn = /* @__PURE__ */ new Set([" ", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Tab"]), qe = { ArrowLeft: "left", ArrowRight: "right", ArrowUp: "up", ArrowDown: "down", " ": "space" };
     se.keydown = (l) => {
       yn.has(l.key) && l.preventDefault(), e.events.onOnce("input", () => {
-        let x = qe[l.key] || l.key.toLowerCase();
-        x.length === 1 ? (e.events.trigger("charInput", x), e.charInputted.push(x)) : x === "space" && (e.events.trigger("charInput", " "), e.charInputted.push(" ")), l.repeat ? (e.keyState.pressRepeat(x), e.events.trigger("keyPressRepeat", x)) : (e.keyState.press(x), e.events.trigger("keyPressRepeat", x), e.events.trigger("keyPress", x));
+        let x2 = qe[l.key] || l.key.toLowerCase();
+        x2.length === 1 ? (e.events.trigger("charInput", x2), e.charInputted.push(x2)) : x2 === "space" && (e.events.trigger("charInput", " "), e.charInputted.push(" ")), l.repeat ? (e.keyState.pressRepeat(x2), e.events.trigger("keyPressRepeat", x2)) : (e.keyState.press(x2), e.events.trigger("keyPressRepeat", x2), e.events.trigger("keyPress", x2));
       });
     }, se.keyup = (l) => {
       e.events.onOnce("input", () => {
-        let x = qe[l.key] || l.key.toLowerCase();
-        e.keyState.release(x), e.events.trigger("keyRelease", x);
+        let x2 = qe[l.key] || l.key.toLowerCase();
+        e.keyState.release(x2), e.events.trigger("keyRelease", x2);
       });
     }, se.touchstart = (l) => {
       l.preventDefault(), e.events.onOnce("input", () => {
-        let x = [...l.changedTouches], R = e.canvas.getBoundingClientRect();
-        n13.touchToMouse !== false && (e.mousePos = new v(x[0].clientX - R.x, x[0].clientY - R.y), e.mouseState.press("left"), e.events.trigger("mousePress", "left")), x.forEach((L) => {
+        let x2 = [...l.changedTouches], R = e.canvas.getBoundingClientRect();
+        n14.touchToMouse !== false && (e.mousePos = new v(x2[0].clientX - R.x, x2[0].clientY - R.y), e.mouseState.press("left"), e.events.trigger("mousePress", "left")), x2.forEach((L) => {
           e.events.trigger("touchStart", new v(L.clientX - R.x, L.clientY - R.y), L);
         });
       });
     }, se.touchmove = (l) => {
       l.preventDefault(), e.events.onOnce("input", () => {
-        let x = [...l.changedTouches], R = e.canvas.getBoundingClientRect();
-        n13.touchToMouse !== false && (e.mousePos = new v(x[0].clientX - R.x, x[0].clientY - R.y), e.events.trigger("mouseMove")), x.forEach((L) => {
+        let x2 = [...l.changedTouches], R = e.canvas.getBoundingClientRect();
+        n14.touchToMouse !== false && (e.mousePos = new v(x2[0].clientX - R.x, x2[0].clientY - R.y), e.events.trigger("mouseMove")), x2.forEach((L) => {
           e.events.trigger("touchMove", new v(L.clientX - R.x, L.clientY - R.y), L);
         });
       });
     }, se.touchend = (l) => {
       e.events.onOnce("input", () => {
-        let x = [...l.changedTouches], R = e.canvas.getBoundingClientRect();
-        n13.touchToMouse !== false && (e.mousePos = new v(x[0].clientX - R.x, x[0].clientY - R.y), e.mouseState.release("left"), e.events.trigger("mouseRelease", "left")), x.forEach((L) => {
+        let x2 = [...l.changedTouches], R = e.canvas.getBoundingClientRect();
+        n14.touchToMouse !== false && (e.mousePos = new v(x2[0].clientX - R.x, x2[0].clientY - R.y), e.mouseState.release("left"), e.events.trigger("mouseRelease", "left")), x2.forEach((L) => {
           e.events.trigger("touchEnd", new v(L.clientX - R.x, L.clientY - R.y), L);
         });
       });
     }, se.touchcancel = (l) => {
       e.events.onOnce("input", () => {
-        let x = [...l.changedTouches], R = e.canvas.getBoundingClientRect();
-        n13.touchToMouse !== false && (e.mousePos = new v(x[0].clientX - R.x, x[0].clientY - R.y), e.mouseState.release("left"), e.events.trigger("mouseRelease", "left")), x.forEach((L) => {
+        let x2 = [...l.changedTouches], R = e.canvas.getBoundingClientRect();
+        n14.touchToMouse !== false && (e.mousePos = new v(x2[0].clientX - R.x, x2[0].clientY - R.y), e.mouseState.release("left"), e.events.trigger("mouseRelease", "left")), x2.forEach((L) => {
           e.events.trigger("touchEnd", new v(L.clientX - R.x, L.clientY - R.y), L);
         });
       });
@@ -1348,14 +4413,14 @@
     }, se.contextmenu = (l) => l.preventDefault(), le.visibilitychange = () => {
       document.visibilityState === "visible" ? (e.skipTime = true, e.events.trigger("show")) : e.events.trigger("hide");
     }, ae.gamepadconnected = (l) => {
-      let x = _t(l.gamepad);
+      let x2 = _t(l.gamepad);
       e.events.onOnce("input", () => {
-        e.events.trigger("gamepadConnect", x);
+        e.events.trigger("gamepadConnect", x2);
       });
     }, ae.gamepaddisconnected = (l) => {
-      let x = Vt().filter((R) => R.index === l.gamepad.index)[0];
+      let x2 = Vt().filter((R) => R.index === l.gamepad.index)[0];
       ne(l.gamepad), e.events.onOnce("input", () => {
-        e.events.trigger("gamepadDisconnect", x);
+        e.events.trigger("gamepadDisconnect", x2);
       });
     };
     for (let l in se)
@@ -1365,8 +4430,8 @@
     for (let l in ae)
       window.addEventListener(l, ae[l]);
     let ge = new ResizeObserver((l) => {
-      for (let x of l)
-        if (x.target === e.canvas) {
+      for (let x2 of l)
+        if (x2.target === e.canvas) {
           if (e.lastWidth === e.canvas.offsetWidth && e.lastHeight === e.canvas.offsetHeight)
             return;
           e.lastWidth = e.canvas.offsetWidth, e.lastHeight = e.canvas.offsetHeight, e.events.onOnce("input", () => {
@@ -1374,7 +4439,7 @@
           });
         }
     });
-    return ge.observe(e.canvas), { dt: o, time: c, run: k2, canvas: e.canvas, fps: g, numFrames: m, quit: te, setFullscreen: K, isFullscreen: Q, setCursor: I, screenshot: P, getGamepads: Vt, getCursor: j, setCursorLocked: y, isCursorLocked: X, isTouchscreen: pe, mousePos: C, mouseDeltaPos: Ae, isKeyDown: Tt, isKeyPressed: st, isKeyPressedRepeat: on, isKeyReleased: Ot, isMouseDown: Te, isMousePressed: $, isMouseReleased: ye, isMouseMoved: Se, isGamepadButtonPressed: Rt, isGamepadButtonDown: Ye, isGamepadButtonReleased: an, getGamepadStick: Pe, charInputted: dt, onResize: un, onKeyDown: cn, onKeyPress: hn, onKeyPressRepeat: ln, onKeyRelease: dn, onMouseDown: Pt, onMousePress: Dt, onMouseRelease: Mt, onMouseMove: Gt, onCharInput: Bt, onTouchStart: fn, onTouchMove: ct, onTouchEnd: mn, onScroll: pn, onHide: Ft, onShow: gn, onGamepadButtonDown: It, onGamepadButtonPress: Lt, onGamepadButtonRelease: wn, onGamepadStick: ht, onGamepadConnect: bn, onGamepadDisconnect: lt, events: e.events };
+    return ge.observe(e.canvas), { dt: o, time: c, run: k2, canvas: e.canvas, fps: g, numFrames: m, quit: te, setFullscreen: K, isFullscreen: Q, setCursor: I, screenshot: P, getGamepads: Vt, getCursor: j, setCursorLocked: y2, isCursorLocked: X, isTouchscreen: pe, mousePos: C, mouseDeltaPos: Ae, isKeyDown: Tt, isKeyPressed: st, isKeyPressedRepeat: on, isKeyReleased: Ot, isMouseDown: Te, isMousePressed: $, isMouseReleased: ye, isMouseMoved: Se, isGamepadButtonPressed: Rt, isGamepadButtonDown: Ye, isGamepadButtonReleased: an, getGamepadStick: Pe, charInputted: dt, onResize: un, onKeyDown: cn, onKeyPress: hn, onKeyPressRepeat: ln, onKeyRelease: dn, onMouseDown: Pt, onMousePress: Dt, onMouseRelease: Mt, onMouseMove: Gt, onCharInput: Bt, onTouchStart: fn, onTouchMove: ct, onTouchEnd: mn, onScroll: pn, onHide: Ft, onShow: gn, onGamepadButtonDown: It, onGamepadButtonPress: Lt, onGamepadButtonRelease: wn, onGamepadStick: ht, onGamepadConnect: bn, onGamepadDisconnect: lt, events: e.events };
   }, "default");
   var Re = class n11 {
     static {
@@ -1468,10 +4533,10 @@
       let m = e.gl, P = m.createShader(m.VERTEX_SHADER), I = m.createShader(m.FRAGMENT_SHADER);
       m.shaderSource(P, o), m.shaderSource(I, c), m.compileShader(P), m.compileShader(I);
       let j = m.createProgram();
-      if (this.glProgram = j, m.attachShader(j, P), m.attachShader(j, I), g.forEach((y, X) => m.bindAttribLocation(j, X, y)), m.linkProgram(j), !m.getProgramParameter(j, m.LINK_STATUS)) {
-        let y = m.getShaderInfoLog(P);
-        if (y)
-          throw new Error("VERTEX SHADER " + y);
+      if (this.glProgram = j, m.attachShader(j, P), m.attachShader(j, I), g.forEach((y2, X) => m.bindAttribLocation(j, X, y2)), m.linkProgram(j), !m.getProgramParameter(j, m.LINK_STATUS)) {
+        let y2 = m.getShaderInfoLog(P);
+        if (y2)
+          throw new Error("VERTEX SHADER " + y2);
         let X = m.getShaderInfoLog(I);
         if (X)
           throw new Error("FRAGMENT SHADER " + X);
@@ -1537,23 +4602,23 @@
       e.deleteBuffer(this.glVBuf), e.deleteBuffer(this.glIBuf);
     }
   };
-  function nt(n13) {
+  function nt(n14) {
     let e = [], o = i((m) => {
-      e.push(m), n13(m);
+      e.push(m), n14(m);
     }, "push"), c = i(() => {
-      e.pop(), n13(g() ?? null);
+      e.pop(), n14(g() ?? null);
     }, "pop"), g = i(() => e[e.length - 1], "cur");
     return [o, c, g];
   }
   i(nt, "genStack");
-  function Kn(n13, e = {}) {
+  function Kn(n14, e = {}) {
     let o = [];
     function c($) {
       o.push($);
     }
     i(c, "onDestroy");
     function g() {
-      o.forEach(($) => $()), n13.getExtension("WEBGL_lose_context").loseContext();
+      o.forEach(($) => $()), n14.getExtension("WEBGL_lose_context").loseContext();
     }
     i(g, "destroy");
     let m = null;
@@ -1562,13 +4627,13 @@
         return;
       m = $;
       let Te = $.reduce((ye, Se) => ye + Se.size, 0);
-      $.reduce((ye, Se, st) => (n13.vertexAttribPointer(st, Se.size, n13.FLOAT, false, Te * 4, ye), n13.enableVertexAttribArray(st), ye + Se.size * 4), 0);
+      $.reduce((ye, Se, st) => (n14.vertexAttribPointer(st, Se.size, n14.FLOAT, false, Te * 4, ye), n14.enableVertexAttribArray(st), ye + Se.size * 4), 0);
     }
     i(P, "setVertexFormat");
-    let [I, j] = nt(($) => n13.bindTexture(n13.TEXTURE_2D, $)), [y, X] = nt(($) => n13.bindBuffer(n13.ARRAY_BUFFER, $)), [S, q] = nt(($) => n13.bindBuffer(n13.ELEMENT_ARRAY_BUFFER, $)), [E, K] = nt(($) => n13.bindFramebuffer(n13.FRAMEBUFFER, $)), [Q, te] = nt(($) => n13.bindRenderbuffer(n13.RENDERBUFFER, $)), [k2, pe] = nt(({ x: $, y: Te, w: ye, h: Se }) => {
-      n13.viewport($, Te, ye, Se);
-    }), [C, Ae] = nt(($) => n13.useProgram($));
-    return k2({ x: 0, y: 0, w: n13.drawingBufferWidth, h: n13.drawingBufferHeight }), { gl: n13, opts: e, onDestroy: c, destroy: g, pushTexture2D: I, popTexture2D: j, pushArrayBuffer: y, popArrayBuffer: X, pushElementArrayBuffer: S, popElementArrayBuffer: q, pushFramebuffer: E, popFramebuffer: K, pushRenderbuffer: Q, popRenderbuffer: te, pushViewport: k2, popViewport: pe, pushProgram: C, popProgram: Ae, setVertexFormat: P };
+    let [I, j] = nt(($) => n14.bindTexture(n14.TEXTURE_2D, $)), [y2, X] = nt(($) => n14.bindBuffer(n14.ARRAY_BUFFER, $)), [S, q] = nt(($) => n14.bindBuffer(n14.ELEMENT_ARRAY_BUFFER, $)), [E, K] = nt(($) => n14.bindFramebuffer(n14.FRAMEBUFFER, $)), [Q, te] = nt(($) => n14.bindRenderbuffer(n14.RENDERBUFFER, $)), [k2, pe] = nt(({ x: $, y: Te, w: ye, h: Se }) => {
+      n14.viewport($, Te, ye, Se);
+    }), [C, Ae] = nt(($) => n14.useProgram($));
+    return k2({ x: 0, y: 0, w: n14.drawingBufferWidth, h: n14.drawingBufferHeight }), { gl: n14, opts: e, onDestroy: c, destroy: g, pushTexture2D: I, popTexture2D: j, pushArrayBuffer: y2, popArrayBuffer: X, pushElementArrayBuffer: S, popElementArrayBuffer: q, pushFramebuffer: E, popFramebuffer: K, pushRenderbuffer: Q, popRenderbuffer: te, pushViewport: k2, popViewport: pe, pushProgram: C, popProgram: Ae, setVertexFormat: P };
   }
   i(Kn, "initGfx");
   var ve = class n12 {
@@ -1642,30 +4707,30 @@
       }), e / this.assets.size;
     }
   };
-  function Yn(n13) {
-    return fetch(n13).then((e) => {
+  function Yn(n14) {
+    return fetch(n14).then((e) => {
       if (!e.ok)
-        throw new Error(`Failed to fetch "${n13}"`);
+        throw new Error(`Failed to fetch "${n14}"`);
       return e;
     });
   }
   i(Yn, "fetchURL");
-  function Et(n13) {
-    return Yn(n13).then((e) => e.json());
+  function Et(n14) {
+    return Yn(n14).then((e) => e.json());
   }
   i(Et, "fetchJSON");
-  function Lr(n13) {
-    return Yn(n13).then((e) => e.text());
+  function Lr(n14) {
+    return Yn(n14).then((e) => e.text());
   }
   i(Lr, "fetchText");
-  function Vr(n13) {
-    return Yn(n13).then((e) => e.arrayBuffer());
+  function Vr(n14) {
+    return Yn(n14).then((e) => e.arrayBuffer());
   }
   i(Vr, "fetchArrayBuffer");
-  function St(n13) {
+  function St(n14) {
     let e = new Image();
-    return e.crossOrigin = "anonymous", e.src = n13, new Promise((o, c) => {
-      e.onload = () => o(e), e.onerror = () => c(new Error(`Failed to load image from "${n13}"`));
+    return e.crossOrigin = "anonymous", e.src = n14, new Promise((o, c) => {
+      e.onload = () => o(e), e.onerror = () => c(new Error(`Failed to load image from "${n14}"`));
     });
   }
   i(St, "loadImg");
@@ -1673,7 +4738,7 @@
   var _r = 1.70158 + 1;
   var kr = 2 * Math.PI / 3;
   var Nr = 2 * Math.PI / 4.5;
-  var en = { linear: (n13) => n13, easeInSine: (n13) => 1 - Math.cos(n13 * Math.PI / 2), easeOutSine: (n13) => Math.sin(n13 * Math.PI / 2), easeInOutSine: (n13) => -(Math.cos(Math.PI * n13) - 1) / 2, easeInQuad: (n13) => n13 * n13, easeOutQuad: (n13) => 1 - (1 - n13) * (1 - n13), easeInOutQuad: (n13) => n13 < 0.5 ? 2 * n13 * n13 : 1 - Math.pow(-2 * n13 + 2, 2) / 2, easeInCubic: (n13) => n13 * n13 * n13, easeOutCubic: (n13) => 1 - Math.pow(1 - n13, 3), easeInOutCubic: (n13) => n13 < 0.5 ? 4 * n13 * n13 * n13 : 1 - Math.pow(-2 * n13 + 2, 3) / 2, easeInQuart: (n13) => n13 * n13 * n13 * n13, easeOutQuart: (n13) => 1 - Math.pow(1 - n13, 4), easeInOutQuart: (n13) => n13 < 0.5 ? 8 * n13 * n13 * n13 * n13 : 1 - Math.pow(-2 * n13 + 2, 4) / 2, easeInQuint: (n13) => n13 * n13 * n13 * n13 * n13, easeOutQuint: (n13) => 1 - Math.pow(1 - n13, 5), easeInOutQuint: (n13) => n13 < 0.5 ? 16 * n13 * n13 * n13 * n13 * n13 : 1 - Math.pow(-2 * n13 + 2, 5) / 2, easeInExpo: (n13) => n13 === 0 ? 0 : Math.pow(2, 10 * n13 - 10), easeOutExpo: (n13) => n13 === 1 ? 1 : 1 - Math.pow(2, -10 * n13), easeInOutExpo: (n13) => n13 === 0 ? 0 : n13 === 1 ? 1 : n13 < 0.5 ? Math.pow(2, 20 * n13 - 10) / 2 : (2 - Math.pow(2, -20 * n13 + 10)) / 2, easeInCirc: (n13) => 1 - Math.sqrt(1 - Math.pow(n13, 2)), easeOutCirc: (n13) => Math.sqrt(1 - Math.pow(n13 - 1, 2)), easeInOutCirc: (n13) => n13 < 0.5 ? (1 - Math.sqrt(1 - Math.pow(2 * n13, 2))) / 2 : (Math.sqrt(1 - Math.pow(-2 * n13 + 2, 2)) + 1) / 2, easeInBack: (n13) => _r * n13 * n13 * n13 - 1.70158 * n13 * n13, easeOutBack: (n13) => 1 + _r * Math.pow(n13 - 1, 3) + 1.70158 * Math.pow(n13 - 1, 2), easeInOutBack: (n13) => n13 < 0.5 ? Math.pow(2 * n13, 2) * ((Zt + 1) * 2 * n13 - Zt) / 2 : (Math.pow(2 * n13 - 2, 2) * ((Zt + 1) * (n13 * 2 - 2) + Zt) + 2) / 2, easeInElastic: (n13) => n13 === 0 ? 0 : n13 === 1 ? 1 : -Math.pow(2, 10 * n13 - 10) * Math.sin((n13 * 10 - 10.75) * kr), easeOutElastic: (n13) => n13 === 0 ? 0 : n13 === 1 ? 1 : Math.pow(2, -10 * n13) * Math.sin((n13 * 10 - 0.75) * kr) + 1, easeInOutElastic: (n13) => n13 === 0 ? 0 : n13 === 1 ? 1 : n13 < 0.5 ? -(Math.pow(2, 20 * n13 - 10) * Math.sin((20 * n13 - 11.125) * Nr)) / 2 : Math.pow(2, -20 * n13 + 10) * Math.sin((20 * n13 - 11.125) * Nr) / 2 + 1, easeInBounce: (n13) => 1 - en.easeOutBounce(1 - n13), easeOutBounce: (n13) => n13 < 1 / 2.75 ? 7.5625 * n13 * n13 : n13 < 2 / 2.75 ? 7.5625 * (n13 -= 1.5 / 2.75) * n13 + 0.75 : n13 < 2.5 / 2.75 ? 7.5625 * (n13 -= 2.25 / 2.75) * n13 + 0.9375 : 7.5625 * (n13 -= 2.625 / 2.75) * n13 + 0.984375, easeInOutBounce: (n13) => n13 < 0.5 ? (1 - en.easeOutBounce(1 - 2 * n13)) / 2 : (1 + en.easeOutBounce(2 * n13 - 1)) / 2 };
+  var en = { linear: (n14) => n14, easeInSine: (n14) => 1 - Math.cos(n14 * Math.PI / 2), easeOutSine: (n14) => Math.sin(n14 * Math.PI / 2), easeInOutSine: (n14) => -(Math.cos(Math.PI * n14) - 1) / 2, easeInQuad: (n14) => n14 * n14, easeOutQuad: (n14) => 1 - (1 - n14) * (1 - n14), easeInOutQuad: (n14) => n14 < 0.5 ? 2 * n14 * n14 : 1 - Math.pow(-2 * n14 + 2, 2) / 2, easeInCubic: (n14) => n14 * n14 * n14, easeOutCubic: (n14) => 1 - Math.pow(1 - n14, 3), easeInOutCubic: (n14) => n14 < 0.5 ? 4 * n14 * n14 * n14 : 1 - Math.pow(-2 * n14 + 2, 3) / 2, easeInQuart: (n14) => n14 * n14 * n14 * n14, easeOutQuart: (n14) => 1 - Math.pow(1 - n14, 4), easeInOutQuart: (n14) => n14 < 0.5 ? 8 * n14 * n14 * n14 * n14 : 1 - Math.pow(-2 * n14 + 2, 4) / 2, easeInQuint: (n14) => n14 * n14 * n14 * n14 * n14, easeOutQuint: (n14) => 1 - Math.pow(1 - n14, 5), easeInOutQuint: (n14) => n14 < 0.5 ? 16 * n14 * n14 * n14 * n14 * n14 : 1 - Math.pow(-2 * n14 + 2, 5) / 2, easeInExpo: (n14) => n14 === 0 ? 0 : Math.pow(2, 10 * n14 - 10), easeOutExpo: (n14) => n14 === 1 ? 1 : 1 - Math.pow(2, -10 * n14), easeInOutExpo: (n14) => n14 === 0 ? 0 : n14 === 1 ? 1 : n14 < 0.5 ? Math.pow(2, 20 * n14 - 10) / 2 : (2 - Math.pow(2, -20 * n14 + 10)) / 2, easeInCirc: (n14) => 1 - Math.sqrt(1 - Math.pow(n14, 2)), easeOutCirc: (n14) => Math.sqrt(1 - Math.pow(n14 - 1, 2)), easeInOutCirc: (n14) => n14 < 0.5 ? (1 - Math.sqrt(1 - Math.pow(2 * n14, 2))) / 2 : (Math.sqrt(1 - Math.pow(-2 * n14 + 2, 2)) + 1) / 2, easeInBack: (n14) => _r * n14 * n14 * n14 - 1.70158 * n14 * n14, easeOutBack: (n14) => 1 + _r * Math.pow(n14 - 1, 3) + 1.70158 * Math.pow(n14 - 1, 2), easeInOutBack: (n14) => n14 < 0.5 ? Math.pow(2 * n14, 2) * ((Zt + 1) * 2 * n14 - Zt) / 2 : (Math.pow(2 * n14 - 2, 2) * ((Zt + 1) * (n14 * 2 - 2) + Zt) + 2) / 2, easeInElastic: (n14) => n14 === 0 ? 0 : n14 === 1 ? 1 : -Math.pow(2, 10 * n14 - 10) * Math.sin((n14 * 10 - 10.75) * kr), easeOutElastic: (n14) => n14 === 0 ? 0 : n14 === 1 ? 1 : Math.pow(2, -10 * n14) * Math.sin((n14 * 10 - 0.75) * kr) + 1, easeInOutElastic: (n14) => n14 === 0 ? 0 : n14 === 1 ? 1 : n14 < 0.5 ? -(Math.pow(2, 20 * n14 - 10) * Math.sin((20 * n14 - 11.125) * Nr)) / 2 : Math.pow(2, -20 * n14 + 10) * Math.sin((20 * n14 - 11.125) * Nr) / 2 + 1, easeInBounce: (n14) => 1 - en.easeOutBounce(1 - n14), easeOutBounce: (n14) => n14 < 1 / 2.75 ? 7.5625 * n14 * n14 : n14 < 2 / 2.75 ? 7.5625 * (n14 -= 1.5 / 2.75) * n14 + 0.75 : n14 < 2.5 / 2.75 ? 7.5625 * (n14 -= 2.25 / 2.75) * n14 + 0.9375 : 7.5625 * (n14 -= 2.625 / 2.75) * n14 + 0.984375, easeInOutBounce: (n14) => n14 < 0.5 ? (1 - en.easeOutBounce(1 - 2 * n14)) / 2 : (1 + en.easeOutBounce(2 * n14 - 1)) / 2 };
   var Ct = en;
   var At = class {
     static {
@@ -1724,7 +4789,7 @@
   var qi = 8;
   var $i = 4;
   var Qn = [{ name: "a_pos", size: 2 }, { name: "a_uv", size: 2 }, { name: "a_color", size: 4 }];
-  var zi = Qn.reduce((n13, e) => n13 + e.size, 0);
+  var zi = Qn.reduce((n14, e) => n14 + e.size, 0);
   var Zr = 2048;
   var Ki = Zr * 4 * zi;
   var Yi = Zr * 6;
@@ -1785,8 +4850,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
 `;
   var Ji = /* @__PURE__ */ new Set(["id", "require"]);
   var Qi = /* @__PURE__ */ new Set(["add", "update", "draw", "destroy", "inspect", "drawInspect"]);
-  function ut(n13) {
-    switch (n13) {
+  function ut(n14) {
+    switch (n14) {
       case "topleft":
         return new v(-1, -1);
       case "top":
@@ -1806,12 +4871,12 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       case "botright":
         return new v(1, 1);
       default:
-        return n13;
+        return n14;
     }
   }
   i(ut, "anchorPt");
-  function Zi(n13) {
-    switch (n13) {
+  function Zi(n14) {
+    switch (n14) {
       case "left":
         return 0;
       case "center":
@@ -1823,34 +4888,34 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
   }
   i(Zi, "alignPt");
-  function eo(n13) {
-    return n13.createBuffer(1, 1, 44100);
+  function eo(n14) {
+    return n14.createBuffer(1, 1, 44100);
   }
   i(eo, "createEmptyAudioBuffer");
-  var zo = i((n13 = {}) => {
-    let e = n13.root ?? document.body;
+  var zo = i((n14 = {}) => {
+    let e = n14.root ?? document.body;
     e === document.body && (document.body.style.width = "100%", document.body.style.height = "100%", document.body.style.margin = "0px", document.documentElement.style.width = "100%", document.documentElement.style.height = "100%");
-    let o = n13.canvas ?? (() => {
+    let o = n14.canvas ?? (() => {
       let t = document.createElement("canvas");
       return e.appendChild(t), t;
-    })(), c = n13.scale ?? 1, g = n13.width && n13.height && !n13.stretch && !n13.letterbox;
-    g ? (o.width = n13.width * c, o.height = n13.height * c) : (o.width = o.parentElement.offsetWidth, o.height = o.parentElement.offsetHeight);
+    })(), c = n14.scale ?? 1, g = n14.width && n14.height && !n14.stretch && !n14.letterbox;
+    g ? (o.width = n14.width * c, o.height = n14.height * c) : (o.width = o.parentElement.offsetWidth, o.height = o.parentElement.offsetHeight);
     let m = ["outline: none", "cursor: default"];
     if (g) {
       let t = o.width, r = o.height;
       m.push(`width: ${t}px`), m.push(`height: ${r}px`);
     } else
       m.push("width: 100%"), m.push("height: 100%");
-    n13.crisp && (m.push("image-rendering: pixelated"), m.push("image-rendering: crisp-edges")), o.style.cssText = m.join(";");
-    let P = n13.pixelDensity || window.devicePixelRatio;
+    n14.crisp && (m.push("image-rendering: pixelated"), m.push("image-rendering: crisp-edges")), o.style.cssText = m.join(";");
+    let P = n14.pixelDensity || window.devicePixelRatio;
     o.width *= P, o.height *= P, o.tabIndex = 0;
     let I = document.createElement("canvas");
     I.width = sn, I.height = sn;
-    let j = I.getContext("2d", { willReadFrequently: true }), y = Ir({ canvas: o, touchToMouse: n13.touchToMouse, gamepads: n13.gamepads, pixelDensity: n13.pixelDensity, maxFPS: n13.maxFPS }), X = [], S = y.canvas.getContext("webgl", { antialias: true, depth: true, stencil: true, alpha: true, preserveDrawingBuffer: true }), q = Kn(S, { texFilter: n13.texFilter }), E = (() => {
-      let t = ht(Xn, Jn), r = Re.fromImage(q, new ImageData(new Uint8ClampedArray([255, 255, 255, 255]), 1, 1)), s = n13.width && n13.height ? new rt(q, n13.width * P * c, n13.height * P * c) : new rt(q, S.drawingBufferWidth, S.drawingBufferHeight), u = null, a = 1;
-      n13.background && (u = J(n13.background), a = Array.isArray(n13.background) ? n13.background[3] : 1, S.clearColor(u.r / 255, u.g / 255, u.b / 255, a ?? 1)), S.enable(S.BLEND), S.blendFuncSeparate(S.SRC_ALPHA, S.ONE_MINUS_SRC_ALPHA, S.ONE, S.ONE_MINUS_SRC_ALPHA);
+    let j = I.getContext("2d", { willReadFrequently: true }), y2 = Ir({ canvas: o, touchToMouse: n14.touchToMouse, gamepads: n14.gamepads, pixelDensity: n14.pixelDensity, maxFPS: n14.maxFPS }), X = [], S = y2.canvas.getContext("webgl", { antialias: true, depth: true, stencil: true, alpha: true, preserveDrawingBuffer: true }), q = Kn(S, { texFilter: n14.texFilter }), E = (() => {
+      let t = ht(Xn, Jn), r = Re.fromImage(q, new ImageData(new Uint8ClampedArray([255, 255, 255, 255]), 1, 1)), s = n14.width && n14.height ? new rt(q, n14.width * P * c, n14.height * P * c) : new rt(q, S.drawingBufferWidth, S.drawingBufferHeight), u2 = null, a2 = 1;
+      n14.background && (u2 = J(n14.background), a2 = Array.isArray(n14.background) ? n14.background[3] : 1, S.clearColor(u2.r / 255, u2.g / 255, u2.b / 255, a2 ?? 1)), S.enable(S.BLEND), S.blendFuncSeparate(S.SRC_ALPHA, S.ONE_MINUS_SRC_ALPHA, S.ONE, S.ONE_MINUS_SRC_ALPHA);
       let h = new Qt(q, Qn, Ki, Yi), f = Re.fromImage(q, new ImageData(new Uint8ClampedArray([128, 128, 128, 255, 190, 190, 190, 255, 190, 190, 190, 255, 128, 128, 128, 255]), 2, 2), { wrap: "repeat", filter: "nearest" });
-      return { lastDrawCalls: 0, defShader: t, defTex: r, frameBuffer: s, postShader: null, postShaderUniform: null, renderer: h, transform: new Ue(), transformStack: [], bgTex: f, bgColor: u, bgAlpha: a, width: n13.width ?? S.drawingBufferWidth / P / c, height: n13.height ?? S.drawingBufferHeight / P / c, viewport: { x: 0, y: 0, width: S.drawingBufferWidth, height: S.drawingBufferHeight }, fixed: false };
+      return { lastDrawCalls: 0, defShader: t, defTex: r, frameBuffer: s, postShader: null, postShaderUniform: null, renderer: h, transform: new Ue(), transformStack: [], bgTex: f, bgColor: u2, bgAlpha: a2, width: n14.width ?? S.drawingBufferWidth / P / c, height: n14.height ?? S.drawingBufferHeight / P / c, viewport: { x: 0, y: 0, width: S.drawingBufferWidth, height: S.drawingBufferHeight }, fixed: false };
     })();
     class K {
       static {
@@ -1860,8 +4925,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       frames = [new oe(0, 0, 1, 1)];
       anims = {};
       slice9 = null;
-      constructor(r, s, u = {}, a = null) {
-        this.tex = r, s && (this.frames = s), this.anims = u, this.slice9 = a;
+      constructor(r, s, u2 = {}, a2 = null) {
+        this.tex = r, s && (this.frames = s), this.anims = u2, this.slice9 = a2;
       }
       get width() {
         return this.tex.width * this.frames[0].w;
@@ -1873,11 +4938,11 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         return typeof r == "string" ? K.fromURL(r, s) : Promise.resolve(K.fromImage(r, s));
       }
       static fromImage(r, s = {}) {
-        let [u, a] = k2.packer.add(r), h = s.frames ? s.frames.map((f) => new oe(a.x + f.x * a.w, a.y + f.y * a.h, f.w * a.w, f.h * a.h)) : Tt(s.sliceX || 1, s.sliceY || 1, a.x, a.y, a.w, a.h);
-        return new K(u, h, s.anims, s.slice9);
+        let [u2, a2] = k2.packer.add(r), h = s.frames ? s.frames.map((f) => new oe(a2.x + f.x * a2.w, a2.y + f.y * a2.h, f.w * a2.w, f.h * a2.h)) : Tt(s.sliceX || 1, s.sliceY || 1, a2.x, a2.y, a2.w, a2.h);
+        return new K(u2, h, s.anims, s.slice9);
       }
       static fromURL(r, s = {}) {
-        return St(r).then((u) => K.fromImage(u, s));
+        return St(r).then((u2) => K.fromImage(u2, s));
       }
     }
     class Q {
@@ -1889,7 +4954,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         this.buf = r;
       }
       static fromArrayBuffer(r) {
-        return new Promise((s, u) => te.ctx.decodeAudioData(r, s, u)).then((s) => new Q(s));
+        return new Promise((s, u2) => te.ctx.decodeAudioData(r, s, u2)).then((s) => new Q(s));
       }
       static fromURL(r) {
         return jn(r) ? Q.fromArrayBuffer(Pr(r)) : Vr(r).then((s) => Q.fromArrayBuffer(s));
@@ -1899,10 +4964,10 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       let t = new (window.AudioContext || window.webkitAudioContext)(), r = t.createGain();
       r.connect(t.destination);
       let s = new Q(eo(t));
-      return t.decodeAudioData(Hr.buffer.slice(0)).then((u) => {
-        s.buf = u;
-      }).catch((u) => {
-        console.error("Failed to load burp: ", u);
+      return t.decodeAudioData(Hr.buffer.slice(0)).then((u2) => {
+        s.buf = u2;
+      }).catch((u2) => {
+        console.error("Failed to load burp: ", u2);
       }), { ctx: t, masterNode: r, burpSnd: s };
     })(), k2 = { urlPrefix: "", sprites: new je(), fonts: new je(), bitmapFonts: new je(), sounds: new je(), shaders: new je(), custom: new je(), packer: new At(q, Xr, Jr), loaded: false };
     function pe(t) {
@@ -1943,73 +5008,73 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       }
     }
     function st(t, r, s = {}) {
-      let u = new FontFace(t, typeof r == "string" ? `url(${r})` : r);
-      return document.fonts.add(u), k2.fonts.add(t, u.load().catch((a) => {
-        throw new Error(`Failed to load font from "${r}": ${a}`);
-      }).then((a) => new Se(a, s)));
+      let u2 = new FontFace(t, typeof r == "string" ? `url(${r})` : r);
+      return document.fonts.add(u2), k2.fonts.add(t, u2.load().catch((a2) => {
+        throw new Error(`Failed to load font from "${r}": ${a2}`);
+      }).then((a2) => new Se(a2, s)));
     }
     i(st, "loadFont");
-    function on(t, r, s, u, a = {}) {
-      return k2.bitmapFonts.add(t, St(r).then((h) => bn(Re.fromImage(q, h, a), s, u, a.chars ?? zr)));
+    function on(t, r, s, u2, a2 = {}) {
+      return k2.bitmapFonts.add(t, St(r).then((h) => bn(Re.fromImage(q, h, a2), s, u2, a2.chars ?? zr)));
     }
     i(on, "loadBitmapFont");
-    function Tt(t = 1, r = 1, s = 0, u = 0, a = 1, h = 1) {
-      let f = [], b = a / t, p = h / r;
+    function Tt(t = 1, r = 1, s = 0, u2 = 0, a2 = 1, h = 1) {
+      let f = [], b = a2 / t, p = h / r;
       for (let d = 0; d < r; d++)
         for (let w = 0; w < t; w++)
-          f.push(new oe(s + w * b, u + d * p, b, p));
+          f.push(new oe(s + w * b, u2 + d * p, b, p));
       return f;
     }
     i(Tt, "slice");
     function Ot(t, r) {
-      return t = pe(t), Ae(typeof r == "string" ? new Promise((s, u) => {
-        Et(r).then((a) => {
-          Ot(t, a).then(s).catch(u);
+      return t = pe(t), Ae(typeof r == "string" ? new Promise((s, u2) => {
+        Et(r).then((a2) => {
+          Ot(t, a2).then(s).catch(u2);
         });
       }) : K.from(t).then((s) => {
-        let u = {};
-        for (let a in r) {
-          let h = r[a], f = s.frames[0], b = Xr * f.w, p = Jr * f.h, d = h.frames ? h.frames.map((A) => new oe(f.x + (h.x + A.x) / b * f.w, f.y + (h.y + A.y) / p * f.h, A.w / b * f.w, A.h / p * f.h)) : Tt(h.sliceX || 1, h.sliceY || 1, f.x + h.x / b * f.w, f.y + h.y / p * f.h, h.width / b * f.w, h.height / p * f.h), w = new K(s.tex, d, h.anims);
-          k2.sprites.addLoaded(a, w), u[a] = w;
+        let u2 = {};
+        for (let a2 in r) {
+          let h = r[a2], f = s.frames[0], b = Xr * f.w, p = Jr * f.h, d = h.frames ? h.frames.map((A) => new oe(f.x + (h.x + A.x) / b * f.w, f.y + (h.y + A.y) / p * f.h, A.w / b * f.w, A.h / p * f.h)) : Tt(h.sliceX || 1, h.sliceY || 1, f.x + h.x / b * f.w, f.y + h.y / p * f.h, h.width / b * f.w, h.height / p * f.h), w = new K(s.tex, d, h.anims);
+          k2.sprites.addLoaded(a2, w), u2[a2] = w;
         }
-        return u;
+        return u2;
       }));
     }
     i(Ot, "loadSpriteAtlas");
     function Rt(t, r = {}) {
-      let s = document.createElement("canvas"), u = t[0].width, a = t[0].height;
-      s.width = u * t.length, s.height = a;
+      let s = document.createElement("canvas"), u2 = t[0].width, a2 = t[0].height;
+      s.width = u2 * t.length, s.height = a2;
       let h = s.getContext("2d");
       t.forEach((b, p) => {
-        b instanceof ImageData ? h.putImageData(b, p * u, 0) : h.drawImage(b, p * u, 0);
+        b instanceof ImageData ? h.putImageData(b, p * u2, 0) : h.drawImage(b, p * u2, 0);
       });
-      let f = h.getImageData(0, 0, t.length * u, a);
+      let f = h.getImageData(0, 0, t.length * u2, a2);
       return K.fromImage(f, { ...r, sliceX: t.length, sliceY: 1 });
     }
     i(Rt, "createSpriteSheet");
     function Ye(t, r, s = { sliceX: 1, sliceY: 1, anims: {} }) {
-      return r = pe(r), Array.isArray(r) ? r.some((u) => typeof u == "string") ? k2.sprites.add(t, Promise.all(r.map((u) => typeof u == "string" ? St(u) : Promise.resolve(u))).then((u) => Rt(u, s))) : k2.sprites.addLoaded(t, Rt(r, s)) : typeof r == "string" ? k2.sprites.add(t, K.from(r, s)) : k2.sprites.addLoaded(t, K.fromImage(r, s));
+      return r = pe(r), Array.isArray(r) ? r.some((u2) => typeof u2 == "string") ? k2.sprites.add(t, Promise.all(r.map((u2) => typeof u2 == "string" ? St(u2) : Promise.resolve(u2))).then((u2) => Rt(u2, s))) : k2.sprites.addLoaded(t, Rt(r, s)) : typeof r == "string" ? k2.sprites.add(t, K.from(r, s)) : k2.sprites.addLoaded(t, K.fromImage(r, s));
     }
     i(Ye, "loadSprite");
     function an(t, r) {
       return r = pe(r), k2.sprites.add(t, new Promise(async (s) => {
-        let u = typeof r == "string" ? await Et(r) : r, a = await Promise.all(u.frames.map(St)), h = document.createElement("canvas");
-        h.width = u.width, h.height = u.height * u.frames.length;
+        let u2 = typeof r == "string" ? await Et(r) : r, a2 = await Promise.all(u2.frames.map(St)), h = document.createElement("canvas");
+        h.width = u2.width, h.height = u2.height * u2.frames.length;
         let f = h.getContext("2d");
-        a.forEach((p, d) => {
-          f.drawImage(p, 0, d * u.height);
+        a2.forEach((p, d) => {
+          f.drawImage(p, 0, d * u2.height);
         });
-        let b = await Ye(null, h, { sliceY: u.frames.length, anims: u.anims });
+        let b = await Ye(null, h, { sliceY: u2.frames.length, anims: u2.anims });
         s(b);
       }));
     }
     i(an, "loadPedit");
     function un(t, r, s) {
       r = pe(r), s = pe(s), typeof r == "string" && !s && (s = Mr(r) + ".json");
-      let u = typeof s == "string" ? Et(s) : Promise.resolve(s);
-      return k2.sprites.add(t, u.then((a) => {
-        let h = a.meta.size, f = a.frames.map((p) => new oe(p.frame.x / h.w, p.frame.y / h.h, p.frame.w / h.w, p.frame.h / h.h)), b = {};
-        for (let p of a.meta.frameTags)
+      let u2 = typeof s == "string" ? Et(s) : Promise.resolve(s);
+      return k2.sprites.add(t, u2.then((a2) => {
+        let h = a2.meta.size, f = a2.frames.map((p) => new oe(p.frame.x / h.w, p.frame.y / h.h, p.frame.w / h.w, p.frame.h / h.h)), b = {};
+        for (let p of a2.meta.frameTags)
           p.from === p.to ? b[p.name] = p.from : b[p.name] = { from: p.from, to: p.to, speed: 10, loop: true, pingpong: p.direction === "pingpong" };
         return K.from(r, { frames: f, anims: b });
       }));
@@ -2021,8 +5086,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     i(cn, "loadShader");
     function hn(t, r, s) {
       r = pe(r), s = pe(s);
-      let u = i((h) => h ? Lr(h) : Promise.resolve(null), "resolveUrl"), a = Promise.all([u(r), u(s)]).then(([h, f]) => ht(h, f));
-      return k2.shaders.add(t, a);
+      let u2 = i((h) => h ? Lr(h) : Promise.resolve(null), "resolveUrl"), a2 = Promise.all([u2(r), u2(s)]).then(([h, f]) => ht(h, f));
+      return k2.shaders.add(t, a2);
     }
     i(hn, "loadShaderURL");
     function ln(t, r) {
@@ -2108,7 +5173,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     i(pn, "resolveShader");
     function Ft(t) {
       if (!t)
-        return Ft(n13.font ?? Ni);
+        return Ft(n14.font ?? Ni);
       if (typeof t == "string") {
         let r = Gt(t), s = Mt(t);
         if (r)
@@ -2130,19 +5195,19 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(gn, "volume");
     function It(t, r = {}) {
-      let s = te.ctx, u = r.paused ?? false, a = s.createBufferSource(), h = new be(), f = s.createGain(), b = r.seek ?? 0, p = 0, d = 0, w = false;
-      a.loop = !!r.loop, a.detune.value = r.detune ?? 0, a.playbackRate.value = r.speed ?? 1, a.connect(f), a.onended = () => {
-        N() >= a.buffer?.duration && h.trigger();
+      let s = te.ctx, u2 = r.paused ?? false, a2 = s.createBufferSource(), h = new be(), f = s.createGain(), b = r.seek ?? 0, p = 0, d = 0, w = false;
+      a2.loop = !!r.loop, a2.detune.value = r.detune ?? 0, a2.playbackRate.value = r.speed ?? 1, a2.connect(f), a2.onended = () => {
+        N() >= a2.buffer?.duration && h.trigger();
       }, f.connect(te.masterNode), f.gain.value = r.volume ?? 1;
       let A = i((M) => {
-        a.buffer = M.buf, u || (p = s.currentTime, a.start(0, b), w = true);
+        a2.buffer = M.buf, u2 || (p = s.currentTime, a2.start(0, b), w = true);
       }, "start"), D = mn(t);
       D instanceof ve && D.onLoad(A);
       let N = i(() => {
-        if (!a.buffer)
+        if (!a2.buffer)
           return 0;
-        let M = u ? d - p : s.currentTime - p, O = a.buffer.duration;
-        return a.loop ? M % O : Math.min(M, O);
+        let M = u2 ? d - p : s.currentTime - p, O = a2.buffer.duration;
+        return a2.loop ? M % O : Math.min(M, O);
       }, "getTime"), _ = i((M) => {
         let O = s.createBufferSource();
         return O.buffer = M.buffer, O.loop = M.loop, O.playbackRate.value = M.playbackRate.value, O.detune.value = M.detune.value, O.onended = M.onended, O.connect(f), O;
@@ -2150,38 +5215,38 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       return { stop() {
         this.paused = true, this.seek(0);
       }, set paused(M) {
-        if (u !== M)
-          if (u = M, M)
-            w && (a.stop(), w = false), d = s.currentTime;
+        if (u2 !== M)
+          if (u2 = M, M)
+            w && (a2.stop(), w = false), d = s.currentTime;
           else {
-            a = _(a);
+            a2 = _(a2);
             let O = d - p;
-            a.start(0, O), w = true, p = s.currentTime - O, d = 0;
+            a2.start(0, O), w = true, p = s.currentTime - O, d = 0;
           }
       }, get paused() {
-        return u;
+        return u2;
       }, play(M = 0) {
         this.seek(M), this.paused = false;
       }, seek(M) {
-        a.buffer?.duration && (M > a.buffer.duration || (u ? (a = _(a), p = d - M) : (a.stop(), a = _(a), p = s.currentTime - M, a.start(0, M), w = true, d = 0)));
+        a2.buffer?.duration && (M > a2.buffer.duration || (u2 ? (a2 = _(a2), p = d - M) : (a2.stop(), a2 = _(a2), p = s.currentTime - M, a2.start(0, M), w = true, d = 0)));
       }, set speed(M) {
-        a.playbackRate.value = M;
+        a2.playbackRate.value = M;
       }, get speed() {
-        return a.playbackRate.value;
+        return a2.playbackRate.value;
       }, set detune(M) {
-        a.detune.value = M;
+        a2.detune.value = M;
       }, get detune() {
-        return a.detune.value;
+        return a2.detune.value;
       }, set volume(M) {
         f.gain.value = Math.max(M, 0);
       }, get volume() {
         return f.gain.value;
       }, set loop(M) {
-        a.loop = M;
+        a2.loop = M;
       }, get loop() {
-        return a.loop;
+        return a2.loop;
       }, duration() {
-        return a.buffer?.duration ?? 0;
+        return a2.buffer?.duration ?? 0;
       }, time() {
         return N() % this.duration();
       }, onEnd(M) {
@@ -2200,24 +5265,24 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(wn, "makeCanvas");
     function ht(t = Xn, r = Jn) {
-      let s = Wi.replace("{{user}}", t ?? Xn), u = Xi.replace("{{user}}", r ?? Jn);
+      let s = Wi.replace("{{user}}", t ?? Xn), u2 = Xi.replace("{{user}}", r ?? Jn);
       try {
-        return new Jt(q, s, u, Qn.map((a) => a.name));
-      } catch (a) {
-        let f = /(?<type>^\w+) SHADER ERROR: 0:(?<line>\d+): (?<msg>.+)/, b = Br(a).match(f), p = Number(b.groups.line) - 14, d = b.groups.msg.trim(), w = b.groups.type.toLowerCase();
+        return new Jt(q, s, u2, Qn.map((a2) => a2.name));
+      } catch (a2) {
+        let f = /(?<type>^\w+) SHADER ERROR: 0:(?<line>\d+): (?<msg>.+)/, b = Br(a2).match(f), p = Number(b.groups.line) - 14, d = b.groups.msg.trim(), w = b.groups.type.toLowerCase();
         throw new Error(`${w} shader line ${p}: ${d}`);
       }
     }
     i(ht, "makeShader");
-    function bn(t, r, s, u) {
-      let a = t.width / r, h = {}, f = u.split("").entries();
+    function bn(t, r, s, u2) {
+      let a2 = t.width / r, h = {}, f = u2.split("").entries();
       for (let [b, p] of f)
-        h[p] = new oe(b % a * r, Math.floor(b / a) * s, r, s);
+        h[p] = new oe(b % a2 * r, Math.floor(b / a2) * s, r, s);
       return { tex: t, map: h, size: s };
     }
     i(bn, "makeFont");
-    function lt(t, r, s, u = E.defTex, a = E.defShader, h = {}) {
-      let f = pn(a);
+    function lt(t, r, s, u2 = E.defTex, a2 = E.defShader, h = {}) {
+      let f = pn(a2);
       if (!f || f instanceof ve)
         return;
       let b = E.fixed || s ? E.transform : C.cam.transform.mult(E.transform), p = [];
@@ -2225,7 +5290,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         let w = vn(b.multVec2(d.pos));
         p.push(w.x, w.y, d.uv.x, d.uv.y, d.color.r / 255, d.color.g / 255, d.color.b / 255, d.opacity);
       }
-      E.renderer.push(S.TRIANGLES, p, r, f, u, h);
+      E.renderer.push(S.TRIANGLES, p, r, f, u2, h);
     }
     i(lt, "drawRaw");
     function Pe() {
@@ -2287,21 +5352,21 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         throw new Error('drawUVQuad() requires property "width" and "height".');
       if (t.width <= 0 || t.height <= 0)
         return;
-      let r = t.width, s = t.height, a = ut(t.anchor || tn).scale(new v(r, s).scale(-0.5)), h = t.quad || new oe(0, 0, 1, 1), f = t.color || J(255, 255, 255), b = t.opacity ?? 1, p = t.tex ? Qr / t.tex.width : 0, d = t.tex ? Qr / t.tex.height : 0, w = h.x + p, A = h.y + d, D = h.w - p * 2, N = h.h - d * 2;
-      le(), ne(t.pos), se(t.angle), He(t.scale), ne(a), lt([{ pos: new v(-r / 2, s / 2), uv: new v(t.flipX ? w + D : w, t.flipY ? A : A + N), color: f, opacity: b }, { pos: new v(-r / 2, -s / 2), uv: new v(t.flipX ? w + D : w, t.flipY ? A + N : A), color: f, opacity: b }, { pos: new v(r / 2, -s / 2), uv: new v(t.flipX ? w : w + D, t.flipY ? A + N : A), color: f, opacity: b }, { pos: new v(r / 2, s / 2), uv: new v(t.flipX ? w : w + D, t.flipY ? A : A + N), color: f, opacity: b }], [0, 1, 3, 1, 2, 3], t.fixed, t.tex, t.shader, t.uniform), ae();
+      let r = t.width, s = t.height, a2 = ut(t.anchor || tn).scale(new v(r, s).scale(-0.5)), h = t.quad || new oe(0, 0, 1, 1), f = t.color || J(255, 255, 255), b = t.opacity ?? 1, p = t.tex ? Qr / t.tex.width : 0, d = t.tex ? Qr / t.tex.height : 0, w = h.x + p, A = h.y + d, D = h.w - p * 2, N = h.h - d * 2;
+      le(), ne(t.pos), se(t.angle), He(t.scale), ne(a2), lt([{ pos: new v(-r / 2, s / 2), uv: new v(t.flipX ? w + D : w, t.flipY ? A : A + N), color: f, opacity: b }, { pos: new v(-r / 2, -s / 2), uv: new v(t.flipX ? w + D : w, t.flipY ? A + N : A), color: f, opacity: b }, { pos: new v(r / 2, -s / 2), uv: new v(t.flipX ? w : w + D, t.flipY ? A + N : A), color: f, opacity: b }, { pos: new v(r / 2, s / 2), uv: new v(t.flipX ? w : w + D, t.flipY ? A : A + N), color: f, opacity: b }], [0, 1, 3, 1, 2, 3], t.fixed, t.tex, t.shader, t.uniform), ae();
     }
     i(Be, "drawUVQuad");
     function We(t) {
       if (!t.tex)
         throw new Error('drawTexture() requires property "tex".');
-      let r = t.quad ?? new oe(0, 0, 1, 1), s = t.tex.width * r.w, u = t.tex.height * r.h, a = new v(1);
+      let r = t.quad ?? new oe(0, 0, 1, 1), s = t.tex.width * r.w, u2 = t.tex.height * r.h, a2 = new v(1);
       if (t.tiled) {
-        let h = Math.ceil((t.width || s) / s), f = Math.ceil((t.height || u) / u), p = ut(t.anchor || tn).add(new v(1, 1)).scale(0.5).scale(h * s, f * u);
+        let h = Math.ceil((t.width || s) / s), f = Math.ceil((t.height || u2) / u2), p = ut(t.anchor || tn).add(new v(1, 1)).scale(0.5).scale(h * s, f * u2);
         for (let d = 0; d < h; d++)
           for (let w = 0; w < f; w++)
-            Be(Object.assign({}, t, { pos: (t.pos || new v(0)).add(new v(s * d, u * w)).sub(p), scale: a.scale(t.scale || new v(1)), tex: t.tex, quad: r, width: s, height: u, anchor: "topleft" }));
+            Be(Object.assign({}, t, { pos: (t.pos || new v(0)).add(new v(s * d, u2 * w)).sub(p), scale: a2.scale(t.scale || new v(1)), tex: t.tex, quad: r, width: s, height: u2, anchor: "topleft" }));
       } else
-        t.width && t.height ? (a.x = t.width / s, a.y = t.height / u) : t.width ? (a.x = t.width / s, a.y = a.x) : t.height && (a.y = t.height / u, a.x = a.y), Be(Object.assign({}, t, { scale: a.scale(t.scale || new v(1)), tex: t.tex, quad: r, width: s, height: u }));
+        t.width && t.height ? (a2.x = t.width / s, a2.y = t.height / u2) : t.width ? (a2.x = t.width / s, a2.y = a2.x) : t.height && (a2.y = t.height / u2, a2.x = a2.y), Be(Object.assign({}, t, { scale: a2.scale(t.scale || new v(1)), tex: t.tex, quad: r, width: s, height: u2 }));
     }
     i(We, "drawTexture");
     function yn(t) {
@@ -2316,12 +5381,12 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       We(Object.assign({}, t, { tex: r.data.tex, quad: s.scale(t.quad ?? new oe(0, 0, 1, 1)) }));
     }
     i(yn, "drawSprite");
-    function qe(t, r, s, u, a, h = 1) {
-      u = Ge(u % 360), a = Ge(a % 360), a <= u && (a += Math.PI * 2);
-      let f = [], b = Math.ceil((a - u) / Ge(8) * h), p = (a - u) / b;
-      for (let d = u; d < a; d += p)
+    function qe(t, r, s, u2, a2, h = 1) {
+      u2 = Ge(u2 % 360), a2 = Ge(a2 % 360), a2 <= u2 && (a2 += Math.PI * 2);
+      let f = [], b = Math.ceil((a2 - u2) / Ge(8) * h), p = (a2 - u2) / b;
+      for (let d = u2; d < a2; d += p)
         f.push(t.add(r * Math.cos(d), s * Math.sin(d)));
-      return f.push(t.add(r * Math.cos(a), s * Math.sin(a))), f;
+      return f.push(t.add(r * Math.cos(a2), s * Math.sin(a2))), f;
     }
     i(qe, "getArcPts");
     function ge(t) {
@@ -2329,35 +5394,35 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         throw new Error('drawRect() requires property "width" and "height".');
       if (t.width <= 0 || t.height <= 0)
         return;
-      let r = t.width, s = t.height, a = ut(t.anchor || tn).add(1, 1).scale(new v(r, s).scale(-0.5)), h = [new v(0, 0), new v(r, 0), new v(r, s), new v(0, s)];
+      let r = t.width, s = t.height, a2 = ut(t.anchor || tn).add(1, 1).scale(new v(r, s).scale(-0.5)), h = [new v(0, 0), new v(r, 0), new v(r, s), new v(0, s)];
       if (t.radius) {
         let f = Math.min(Math.min(r, s) / 2, t.radius);
         h = [new v(f, 0), new v(r - f, 0), ...qe(new v(r - f, f), f, f, 270, 360), new v(r, f), new v(r, s - f), ...qe(new v(r - f, s - f), f, f, 0, 90), new v(r - f, s), new v(f, s), ...qe(new v(f, s - f), f, f, 90, 180), new v(0, s - f), new v(0, f), ...qe(new v(f, f), f, f, 180, 270)];
       }
-      z(Object.assign({}, t, { offset: a, pts: h, ...t.gradient ? { colors: t.horizontal ? [t.gradient[0], t.gradient[1], t.gradient[1], t.gradient[0]] : [t.gradient[0], t.gradient[0], t.gradient[1], t.gradient[1]] } : {} }));
+      z(Object.assign({}, t, { offset: a2, pts: h, ...t.gradient ? { colors: t.horizontal ? [t.gradient[0], t.gradient[1], t.gradient[1], t.gradient[0]] : [t.gradient[0], t.gradient[0], t.gradient[1], t.gradient[1]] } : {} }));
     }
     i(ge, "drawRect");
     function l(t) {
       let { p1: r, p2: s } = t;
       if (!r || !s)
         throw new Error('drawLine() requires properties "p1" and "p2".');
-      let u = t.width || 1, a = s.sub(r).unit().normal().scale(u * 0.5), h = [r.sub(a), r.add(a), s.add(a), s.sub(a)].map((f) => ({ pos: new v(f.x, f.y), uv: new v(0), color: t.color ?? W.WHITE, opacity: t.opacity ?? 1 }));
+      let u2 = t.width || 1, a2 = s.sub(r).unit().normal().scale(u2 * 0.5), h = [r.sub(a2), r.add(a2), s.add(a2), s.sub(a2)].map((f) => ({ pos: new v(f.x, f.y), uv: new v(0), color: t.color ?? W.WHITE, opacity: t.opacity ?? 1 }));
       lt(h, [0, 1, 3, 1, 2, 3], t.fixed, E.defTex, t.shader, t.uniform);
     }
     i(l, "drawLine");
-    function x(t) {
+    function x2(t) {
       let r = t.pts;
       if (!r)
         throw new Error('drawLines() requires property "pts".');
       if (!(r.length < 2))
         if (t.radius && r.length >= 3) {
           let s = r[0].sdist(r[1]);
-          for (let a = 1; a < r.length - 1; a++)
-            s = Math.min(r[a].sdist(r[a + 1]), s);
-          let u = Math.min(t.radius, Math.sqrt(s) / 2);
+          for (let a2 = 1; a2 < r.length - 1; a2++)
+            s = Math.min(r[a2].sdist(r[a2 + 1]), s);
+          let u2 = Math.min(t.radius, Math.sqrt(s) / 2);
           l(Object.assign({}, t, { p1: r[0], p2: r[1] }));
-          for (let a = 1; a < r.length - 2; a++) {
-            let h = r[a], f = r[a + 1];
+          for (let a2 = 1; a2 < r.length - 2; a2++) {
+            let h = r[a2], f = r[a2 + 1];
             l(Object.assign({}, t, { p1: h, p2: f }));
           }
           l(Object.assign({}, t, { p1: r[r.length - 2], p2: r[r.length - 1] }));
@@ -2365,7 +5430,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
           for (let s = 0; s < r.length - 1; s++)
             l(Object.assign({}, t, { p1: r[s], p2: r[s + 1] })), t.join !== "none" && L(Object.assign({}, t, { pos: r[s], radius: t.width / 2 }));
     }
-    i(x, "drawLines");
+    i(x2, "drawLines");
     function R(t) {
       if (!t.p1 || !t.p2 || !t.p3)
         throw new Error('drawTriangle() requires properties "p1", "p2" and "p3".');
@@ -2383,11 +5448,11 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         throw new Error('drawEllipse() requires properties "radiusX" and "radiusY".');
       if (t.radiusX === 0 || t.radiusY === 0)
         return;
-      let r = t.start ?? 0, s = t.end ?? 360, u = ut(t.anchor ?? "center").scale(new v(-t.radiusX, -t.radiusY)), a = qe(u, t.radiusX, t.radiusY, r, s, t.resolution);
-      a.unshift(u);
-      let h = Object.assign({}, t, { pts: a, radius: 0, ...t.gradient ? { colors: [t.gradient[0], ...Array(a.length - 1).fill(t.gradient[1])] } : {} });
+      let r = t.start ?? 0, s = t.end ?? 360, u2 = ut(t.anchor ?? "center").scale(new v(-t.radiusX, -t.radiusY)), a2 = qe(u2, t.radiusX, t.radiusY, r, s, t.resolution);
+      a2.unshift(u2);
+      let h = Object.assign({}, t, { pts: a2, radius: 0, ...t.gradient ? { colors: [t.gradient[0], ...Array(a2.length - 1).fill(t.gradient[1])] } : {} });
       if (s - r >= 360 && t.outline) {
-        t.fill !== false && z(Object.assign(h, { outline: null })), z(Object.assign(h, { pts: a.slice(1), fill: false }));
+        t.fill !== false && z(Object.assign(h, { outline: null })), z(Object.assign(h, { pts: a2.slice(1), fill: false }));
         return;
       }
       z(h);
@@ -2399,10 +5464,10 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       let r = t.pts.length;
       if (!(r < 3)) {
         if (le(), ne(t.pos), He(t.scale), se(t.angle), ne(t.offset), t.fill !== false) {
-          let s = t.color ?? W.WHITE, u = t.pts.map((h, f) => ({ pos: new v(h.x, h.y), uv: new v(0, 0), color: t.colors && t.colors[f] ? t.colors[f].mult(s) : s, opacity: t.opacity ?? 1 })), a = [...Array(r - 2).keys()].map((h) => [0, h + 1, h + 2]).flat();
-          lt(u, t.indices ?? a, t.fixed, E.defTex, t.shader, t.uniform);
+          let s = t.color ?? W.WHITE, u2 = t.pts.map((h, f) => ({ pos: new v(h.x, h.y), uv: new v(0, 0), color: t.colors && t.colors[f] ? t.colors[f].mult(s) : s, opacity: t.opacity ?? 1 })), a2 = [...Array(r - 2).keys()].map((h) => [0, h + 1, h + 2]).flat();
+          lt(u2, t.indices ?? a2, t.fixed, E.defTex, t.shader, t.uniform);
         }
-        t.outline && x({ pts: [...t.pts, t.pts[0]], radius: t.radius, width: t.outline.width, color: t.outline.color, join: t.outline.join, uniform: t.uniform, fixed: t.fixed, opacity: t.opacity }), ae();
+        t.outline && x2({ pts: [...t.pts, t.pts[0]], radius: t.radius, width: t.outline.width, color: t.outline.color, join: t.outline.join, uniform: t.uniform, fixed: t.fixed, opacity: t.opacity }), ae();
       }
     }
     i(z, "drawPolygon");
@@ -2434,12 +5499,12 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     i(Zn, "applyCharTransform");
     let er = /\[(?<style>\w+)\](?<text>.*?)\[\/\k<style>\]/g;
     function es(t) {
-      let r = {}, s = t.replace(er, "$2"), u = 0;
-      for (let a of t.matchAll(er)) {
-        let h = a.index - u;
-        for (let f = 0; f < a.groups.text.length; f++)
-          r[f + h] = [a.groups.style];
-        u += a[0].length - a.groups.text.length;
+      let r = {}, s = t.replace(er, "$2"), u2 = 0;
+      for (let a2 of t.matchAll(er)) {
+        let h = a2.index - u2;
+        for (let f = 0; f < a2.groups.text.length; f++)
+          r[f + h] = [a2.groups.style];
+        u2 += a2[0].length - a2.groups.text.length;
       }
       return { charStyleMap: r, text: s };
     }
@@ -2451,11 +5516,11 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       let r = Ft(t.font);
       if (t.text === "" || r instanceof ve || !r)
         return { width: 0, height: 0, chars: [], opt: t };
-      let { charStyleMap: s, text: u } = es(t.text + ""), a = Fr(u);
+      let { charStyleMap: s, text: u2 } = es(t.text + ""), a2 = Fr(u2);
       if (r instanceof Se || typeof r == "string") {
         let Z = r instanceof Se ? r.fontface.family : r, H = r instanceof Se ? { outline: r.outline, filter: r.filter } : { outline: null, filter: Wn }, V = xn[Z] ?? { font: { tex: new Re(q, Yr, Wr, { filter: H.filter }), map: {}, size: rn }, cursor: new v(0), outline: H.outline };
         xn[Z] || (xn[Z] = V), r = V.font;
-        for (let fe of a)
+        for (let fe of a2)
           if (!V.font.map[fe]) {
             let U = j;
             U.clearRect(0, 0, I.width, I.height), U.font = `${r.size}px ${Z}`, U.textBaseline = "top", U.textAlign = "left", U.fillStyle = "#ffffff";
@@ -2468,8 +5533,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
           }
       }
       let h = t.size || r.size, f = T(t.scale ?? 1).scale(h / r.size), b = t.lineSpacing ?? 0, p = t.letterSpacing ?? 0, d = 0, w = 0, A = 0, D = [], N = [], _ = 0, M = null, O = null;
-      for (; _ < a.length; ) {
-        let Z = a[_];
+      for (; _ < a2.length; ) {
+        let Z = a2[_];
         if (Z === `
 `)
           A += h + b, D.push({ width: d - p, chars: N }), M = null, O = null, d = 0, N = [];
@@ -2477,7 +5542,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
           let H = r.map[Z];
           if (H) {
             let V = H.w * f.x;
-            t.width && d + V > t.width && (A += h + b, M != null && (_ -= N.length - M, Z = a[_], H = r.map[Z], V = H.w * f.x, N = N.slice(0, M - 1), d = O), M = null, O = null, D.push({ width: d - p, chars: N }), d = 0, N = []), N.push({ tex: r.tex, width: H.w, height: H.h, quad: new oe(H.x / r.tex.width, H.y / r.tex.height, H.w / r.tex.width, H.h / r.tex.height), ch: Z, pos: new v(d, A), opacity: t.opacity ?? 1, color: t.color ?? W.WHITE, scale: T(f), angle: 0 }), Z === " " && (M = N.length, O = d), d += V, w = Math.max(w, d), d += p;
+            t.width && d + V > t.width && (A += h + b, M != null && (_ -= N.length - M, Z = a2[_], H = r.map[Z], V = H.w * f.x, N = N.slice(0, M - 1), d = O), M = null, O = null, D.push({ width: d - p, chars: N }), d = 0, N = []), N.push({ tex: r.tex, width: H.w, height: H.h, quad: new oe(H.x / r.tex.width, H.y / r.tex.height, H.w / r.tex.width, H.h / r.tex.height), ch: Z, pos: new v(d, A), opacity: t.opacity ?? 1, color: t.color ?? W.WHITE, scale: T(f), angle: 0 }), Z === " " && (M = N.length, O = d), d += V, w = Math.max(w, d), d += p;
           }
         }
         _++;
@@ -2532,19 +5597,19 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(ns, "contentToView");
     function Nt() {
-      return ts(y.mousePos());
+      return ts(y2.mousePos());
     }
     i(Nt, "mousePos");
-    let nr = false, re = { inspect: false, timeScale: 1, showLog: true, fps: () => y.fps(), numFrames: () => y.numFrames(), stepFrame: dr, drawCalls: () => E.lastDrawCalls, clearLog: () => C.logs = [], log: (t) => {
-      let r = n13.logMax ?? qi;
-      C.logs.unshift({ msg: t, time: y.time() }), C.logs.length > r && (C.logs = C.logs.slice(0, r));
+    let nr = false, re = { inspect: false, timeScale: 1, showLog: true, fps: () => y2.fps(), numFrames: () => y2.numFrames(), stepFrame: dr, drawCalls: () => E.lastDrawCalls, clearLog: () => C.logs = [], log: (t) => {
+      let r = n14.logMax ?? qi;
+      C.logs.unshift({ msg: t, time: y2.time() }), C.logs.length > r && (C.logs = C.logs.slice(0, r));
     }, error: (t) => re.log(new Error(t.toString ? t.toString() : t)), curRecording: null, numObjects: () => On("*", { recursive: true }).length, get paused() {
       return nr;
     }, set paused(t) {
       nr = t, t ? te.ctx.suspend() : te.ctx.resume();
     } };
     function Me() {
-      return y.dt() * re.timeScale;
+      return y2.dt() * re.timeScale;
     }
     i(Me, "dt");
     function rs(...t) {
@@ -2577,10 +5642,10 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(jt, "calcTransform");
     function Un(t = []) {
-      let r = /* @__PURE__ */ new Map(), s = {}, u = new Ne(), a = [], h = null, f = false, b = { id: Gr(), hidden: false, transform: new Ue(), children: [], parent: null, set paused(d) {
+      let r = /* @__PURE__ */ new Map(), s = {}, u2 = new Ne(), a2 = [], h = null, f = false, b = { id: Gr(), hidden: false, transform: new Ue(), children: [], parent: null, set paused(d) {
         if (d !== f) {
           f = d;
-          for (let w of a)
+          for (let w of a2)
             w.paused = d;
         }
       }, get paused() {
@@ -2698,10 +5763,10 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         } else
           return this.c(d) != null;
       }, on(d, w) {
-        let A = u.on(d, w.bind(this));
+        let A = u2.on(d, w.bind(this));
         return h && h(() => A.cancel()), A;
       }, trigger(d, ...w) {
-        u.trigger(d, ...w), C.objEvents.trigger(d, this, ...w);
+        u2.trigger(d, ...w), C.objEvents.trigger(d, this, ...w);
       }, destroy() {
         this.parent && this.parent.remove(this);
       }, inspect() {
@@ -2718,12 +5783,12 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       }, onDestroy(d) {
         return this.on("destroy", d);
       }, clearEvents() {
-        u.clear();
+        u2.clear();
       } }, p = ["onKeyPress", "onKeyPressRepeat", "onKeyDown", "onKeyRelease", "onMousePress", "onMouseDown", "onMouseRelease", "onMouseMove", "onCharInput", "onMouseMove", "onTouchStart", "onTouchMove", "onTouchEnd", "onScroll", "onGamepadButtonPress", "onGamepadButtonDown", "onGamepadButtonRelease", "onGamepadStick"];
       for (let d of p)
         b[d] = (...w) => {
-          let A = y[d](...w);
-          return a.push(A), b.onDestroy(() => A.cancel()), A;
+          let A = y2[d](...w);
+          return a2.push(A), b.onDestroy(() => A.cancel()), A;
         };
       for (let d of t)
         b.use(d);
@@ -2731,8 +5796,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(Un, "make");
     function ze(t, r, s) {
-      return C.objEvents[t] || (C.objEvents[t] = new Ut()), C.objEvents.on(t, (u, ...a) => {
-        u.is(r) && s(u, ...a);
+      return C.objEvents[t] || (C.objEvents[t] = new Ut()), C.objEvents.on(t, (u2, ...a2) => {
+        u2.is(r) && s(u2, ...a2);
       });
     }
     i(ze, "on");
@@ -2752,53 +5817,53 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       }, cancel: () => r.destroy() };
     }, (t, r) => ze("draw", t, r)), En = Ee((t) => C.events.on("add", t), (t, r) => ze("add", t, r)), ir = Ee((t) => C.events.on("destroy", t), (t, r) => ze("destroy", t, r));
     function cs(t, r, s) {
-      return ze("collide", t, (u, a, h) => a.is(r) && s(u, a, h));
+      return ze("collide", t, (u2, a2, h) => a2.is(r) && s(u2, a2, h));
     }
     i(cs, "onCollide");
     function hs(t, r, s) {
-      return ze("collideUpdate", t, (u, a, h) => a.is(r) && s(u, a, h));
+      return ze("collideUpdate", t, (u2, a2, h) => a2.is(r) && s(u2, a2, h));
     }
     i(hs, "onCollideUpdate");
     function ls(t, r, s) {
-      return ze("collideEnd", t, (u, a, h) => a.is(r) && s(u, a, h));
+      return ze("collideEnd", t, (u2, a2, h) => a2.is(r) && s(u2, a2, h));
     }
     i(ls, "onCollideEnd");
     function Ht(t, r) {
       On(t, { recursive: true }).forEach(r), En(t, r);
     }
     i(Ht, "forAllCurrentAndFuture");
-    let ds = Ee((t) => y.onMousePress(t), (t, r) => {
+    let ds = Ee((t) => y2.onMousePress(t), (t, r) => {
       let s = [];
-      return Ht(t, (u) => {
-        if (!u.area)
+      return Ht(t, (u2) => {
+        if (!u2.area)
           throw new Error("onClick() requires the object to have area() component");
-        s.push(u.onClick(() => r(u)));
+        s.push(u2.onClick(() => r(u2)));
       }), ke.join(s);
     });
     function fs(t, r) {
       let s = [];
-      return Ht(t, (u) => {
-        if (!u.area)
+      return Ht(t, (u2) => {
+        if (!u2.area)
           throw new Error("onHover() requires the object to have area() component");
-        s.push(u.onHover(() => r(u)));
+        s.push(u2.onHover(() => r(u2)));
       }), ke.join(s);
     }
     i(fs, "onHover");
     function ms(t, r) {
       let s = [];
-      return Ht(t, (u) => {
-        if (!u.area)
+      return Ht(t, (u2) => {
+        if (!u2.area)
           throw new Error("onHoverUpdate() requires the object to have area() component");
-        s.push(u.onHoverUpdate(() => r(u)));
+        s.push(u2.onHoverUpdate(() => r(u2)));
       }), ke.join(s);
     }
     i(ms, "onHoverUpdate");
     function ps(t, r) {
       let s = [];
-      return Ht(t, (u) => {
-        if (!u.area)
+      return Ht(t, (u2) => {
+        if (!u2.area)
           throw new Error("onHoverEnd() requires the object to have area() component");
-        s.push(u.onHoverEnd(() => r(u)));
+        s.push(u2.onHoverEnd(() => r(u2)));
       }), ke.join(s);
     }
     i(ps, "onHoverEnd");
@@ -2826,17 +5891,17 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       }, moveTo(...r) {
         if (typeof r[0] == "number" && typeof r[1] == "number")
           return this.moveTo(T(r[0], r[1]), r[2]);
-        let s = r[0], u = r[1];
-        if (u === void 0) {
+        let s = r[0], u2 = r[1];
+        if (u2 === void 0) {
           this.pos = T(s);
           return;
         }
-        let a = s.sub(this.pos);
-        if (a.len() <= u * Me()) {
+        let a2 = s.sub(this.pos);
+        if (a2.len() <= u2 * Me()) {
           this.pos = T(s);
           return;
         }
-        this.move(a.unit().scale(u));
+        this.move(a2.unit().scale(u2));
       }, worldPos() {
         return this.parent ? this.parent.transform.multVec2(this.pos) : this.pos;
       }, screenPos() {
@@ -2883,7 +5948,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       return { id: "opacity", opacity: t ?? 1, inspect() {
         return `${mt(this.opacity, 1)}`;
       }, fadeOut(r = 1, s = Ct.linear) {
-        return Rn(this.opacity, 0, r, (u) => this.opacity = u, s);
+        return Rn(this.opacity, 0, r, (u2) => this.opacity = u2, s);
       } };
     }
     i(Us, "opacity");
@@ -2920,12 +5985,12 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     function Ts(t = {}) {
       let r = t.distance ?? As, s = false;
       return { id: "offscreen", require: ["pos"], isOffScreen() {
-        let u = this.screenPos(), a = new de(T(0), we(), xe());
-        return !vt(a, u) && a.sdistToPoint(u) > r * r;
-      }, onExitScreen(u) {
-        return this.on("exitView", u);
-      }, onEnterScreen(u) {
-        return this.on("enterView", u);
+        let u2 = this.screenPos(), a2 = new de(T(0), we(), xe());
+        return !vt(a2, u2) && a2.sdistToPoint(u2) > r * r;
+      }, onExitScreen(u2) {
+        return this.on("exitView", u2);
+      }, onEnterScreen(u2) {
+        return this.on("enterView", u2);
       }, update() {
         this.isOffScreen() ? (s || (this.trigger("exitView"), s = true), t.hide && (this.hidden = true), t.pause && (this.paused = true), t.destroy && this.destroy()) : (s && (this.trigger("enterView"), s = false), t.hide && (this.hidden = false), t.pause && (this.paused = false));
       } };
@@ -2938,88 +6003,88 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     function Os(t = {}) {
       let r = {}, s = /* @__PURE__ */ new Set();
       return { id: "area", collisionIgnore: t.collisionIgnore ?? [], add() {
-        this.area.cursor && this.onHover(() => y.setCursor(this.area.cursor)), this.onCollideUpdate((u, a) => {
-          r[u.id] || this.trigger("collide", u, a), r[u.id] = a, s.add(u.id);
+        this.area.cursor && this.onHover(() => y2.setCursor(this.area.cursor)), this.onCollideUpdate((u2, a2) => {
+          r[u2.id] || this.trigger("collide", u2, a2), r[u2.id] = a2, s.add(u2.id);
         });
       }, update() {
-        for (let u in r)
-          s.has(Number(u)) || (this.trigger("collideEnd", r[u].target), delete r[u]);
+        for (let u2 in r)
+          s.has(Number(u2)) || (this.trigger("collideEnd", r[u2].target), delete r[u2]);
         s.clear();
       }, drawInspect() {
-        let u = this.localArea();
+        let u2 = this.localArea();
         le(), He(this.area.scale), ne(this.area.offset);
-        let a = { outline: { width: 4 / De(), color: J(0, 0, 255) }, anchor: this.anchor, fill: false, fixed: pt(this) };
-        u instanceof de ? ge({ ...a, pos: u.pos, width: u.width, height: u.height }) : u instanceof Ke ? z({ ...a, pts: u.pts }) : u instanceof yt && L({ ...a, pos: u.center, radius: u.radius }), ae();
+        let a2 = { outline: { width: 4 / De(), color: J(0, 0, 255) }, anchor: this.anchor, fill: false, fixed: pt(this) };
+        u2 instanceof de ? ge({ ...a2, pos: u2.pos, width: u2.width, height: u2.height }) : u2 instanceof Ke ? z({ ...a2, pts: u2.pts }) : u2 instanceof yt && L({ ...a2, pos: u2.center, radius: u2.radius }), ae();
       }, area: { shape: t.shape ?? null, scale: t.scale ? T(t.scale) : T(1), offset: t.offset ?? T(0), cursor: t.cursor ?? null }, isClicked() {
-        return y.isMousePressed() && this.isHovering();
+        return y2.isMousePressed() && this.isHovering();
       }, isHovering() {
-        let u = pt(this) ? Nt() : sr(Nt());
-        return this.hasPoint(u);
-      }, checkCollision(u) {
-        return r[u.id] ?? null;
+        let u2 = pt(this) ? Nt() : sr(Nt());
+        return this.hasPoint(u2);
+      }, checkCollision(u2) {
+        return r[u2.id] ?? null;
       }, getCollisions() {
         return Object.values(r);
-      }, isColliding(u) {
-        return !!r[u.id];
-      }, isOverlapping(u) {
-        let a = r[u.id];
-        return a && a.hasOverlap();
-      }, onClick(u) {
-        let a = y.onMousePress("left", () => {
-          this.isHovering() && u();
+      }, isColliding(u2) {
+        return !!r[u2.id];
+      }, isOverlapping(u2) {
+        let a2 = r[u2.id];
+        return a2 && a2.hasOverlap();
+      }, onClick(u2) {
+        let a2 = y2.onMousePress("left", () => {
+          this.isHovering() && u2();
         });
-        return this.onDestroy(() => a.cancel()), a;
-      }, onHover(u) {
-        let a = false;
+        return this.onDestroy(() => a2.cancel()), a2;
+      }, onHover(u2) {
+        let a2 = false;
         return this.onUpdate(() => {
-          a ? a = this.isHovering() : this.isHovering() && (a = true, u());
+          a2 ? a2 = this.isHovering() : this.isHovering() && (a2 = true, u2());
         });
-      }, onHoverUpdate(u) {
+      }, onHoverUpdate(u2) {
         return this.onUpdate(() => {
-          this.isHovering() && u();
+          this.isHovering() && u2();
         });
-      }, onHoverEnd(u) {
-        let a = false;
+      }, onHoverEnd(u2) {
+        let a2 = false;
         return this.onUpdate(() => {
-          a ? this.isHovering() || (a = false, u()) : a = this.isHovering();
+          a2 ? this.isHovering() || (a2 = false, u2()) : a2 = this.isHovering();
         });
-      }, onCollide(u, a) {
-        if (typeof u == "function" && a === void 0)
-          return this.on("collide", u);
-        if (typeof u == "string")
+      }, onCollide(u2, a2) {
+        if (typeof u2 == "function" && a2 === void 0)
+          return this.on("collide", u2);
+        if (typeof u2 == "string")
           return this.onCollide((h, f) => {
-            h.is(u) && a(h, f);
+            h.is(u2) && a2(h, f);
           });
-      }, onCollideUpdate(u, a) {
-        if (typeof u == "function" && a === void 0)
-          return this.on("collideUpdate", u);
-        if (typeof u == "string")
-          return this.on("collideUpdate", (h, f) => h.is(u) && a(h, f));
-      }, onCollideEnd(u, a) {
-        if (typeof u == "function" && a === void 0)
-          return this.on("collideEnd", u);
-        if (typeof u == "string")
-          return this.on("collideEnd", (h) => h.is(u) && a(h));
-      }, hasPoint(u) {
-        return _n(this.worldArea(), u);
-      }, resolveCollision(u) {
-        let a = this.checkCollision(u);
-        a && !a.resolved && (this.pos = this.pos.add(a.displacement), a.resolved = true);
+      }, onCollideUpdate(u2, a2) {
+        if (typeof u2 == "function" && a2 === void 0)
+          return this.on("collideUpdate", u2);
+        if (typeof u2 == "string")
+          return this.on("collideUpdate", (h, f) => h.is(u2) && a2(h, f));
+      }, onCollideEnd(u2, a2) {
+        if (typeof u2 == "function" && a2 === void 0)
+          return this.on("collideEnd", u2);
+        if (typeof u2 == "string")
+          return this.on("collideEnd", (h) => h.is(u2) && a2(h));
+      }, hasPoint(u2) {
+        return _n(this.worldArea(), u2);
+      }, resolveCollision(u2) {
+        let a2 = this.checkCollision(u2);
+        a2 && !a2.resolved && (this.pos = this.pos.add(a2.displacement), a2.resolved = true);
       }, localArea() {
         return this.area.shape ? this.area.shape : this.renderArea();
       }, worldArea() {
-        let u = this.localArea();
-        if (!(u instanceof Ke || u instanceof de))
+        let u2 = this.localArea();
+        if (!(u2 instanceof Ke || u2 instanceof de))
           throw new Error("Only support polygon and rect shapes for now");
-        let a = this.transform.clone().scale(T(this.area.scale ?? 1)).translate(this.area.offset);
-        if (u instanceof de) {
-          let h = ut(this.anchor || tn).add(1, 1).scale(-0.5).scale(u.width, u.height);
-          a.translate(h);
+        let a2 = this.transform.clone().scale(T(this.area.scale ?? 1)).translate(this.area.offset);
+        if (u2 instanceof de) {
+          let h = ut(this.anchor || tn).add(1, 1).scale(-0.5).scale(u2.width, u2.height);
+          a2.translate(h);
         }
-        return u.transform(a);
+        return u2.transform(a2);
       }, screenArea() {
-        let u = this.worldArea();
-        return pt(this) ? u : u.transform(C.cam.transform);
+        let u2 = this.worldArea();
+        return pt(this) ? u2 : u2.transform(C.cam.transform);
       } };
     }
     i(Os, "area");
@@ -3028,7 +6093,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(Qe, "getRenderProps");
     function Cn(t, r = {}) {
-      let s = null, u = null, a = null, h = new be();
+      let s = null, u2 = null, a2 = null, h = new be();
       if (!t)
         throw new Error("Please pass the resource name or data to sprite()");
       let f = i((b, p, d, w) => {
@@ -3058,16 +6123,16 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         }, "setSpriteData"), p = ct(t);
         p ? p.onLoad(b) : Tn(() => b(ct(t).data));
       }, update() {
-        if (!u)
+        if (!u2)
           return;
-        let b = s.anims[u.name];
+        let b = s.anims[u2.name];
         if (typeof b == "number") {
           this.frame = b;
           return;
         }
         if (b.speed === 0)
           throw new Error("Sprite anim speed cannot be 0");
-        u.timer += Me() * this.animSpeed, u.timer >= 1 / u.speed && (u.timer = 0, this.frame += a, (this.frame < Math.min(b.from, b.to) || this.frame > Math.max(b.from, b.to)) && (u.loop ? u.pingpong ? (this.frame -= a, a *= -1, this.frame += a) : this.frame = b.from : (this.frame = b.to, u.onEnd(), this.stop())));
+        u2.timer += Me() * this.animSpeed, u2.timer >= 1 / u2.speed && (u2.timer = 0, this.frame += a2, (this.frame < Math.min(b.from, b.to) || this.frame > Math.max(b.from, b.to)) && (u2.loop ? u2.pingpong ? (this.frame -= a2, a2 *= -1, this.frame += a2) : this.frame = b.from : (this.frame = b.to, u2.onEnd(), this.stop())));
       }, play(b, p = {}) {
         if (!s) {
           h.add(() => this.play(b, p));
@@ -3076,18 +6141,18 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         let d = s.anims[b];
         if (d === void 0)
           throw new Error(`Anim not found: ${b}`);
-        u && this.stop(), u = typeof d == "number" ? { name: b, timer: 0, loop: false, pingpong: false, speed: 0, onEnd: () => {
+        u2 && this.stop(), u2 = typeof d == "number" ? { name: b, timer: 0, loop: false, pingpong: false, speed: 0, onEnd: () => {
         } } : { name: b, timer: 0, loop: p.loop ?? d.loop ?? false, pingpong: p.pingpong ?? d.pingpong ?? false, speed: p.speed ?? d.speed ?? 10, onEnd: p.onEnd ?? (() => {
-        }) }, a = typeof d == "number" ? null : d.from < d.to ? 1 : -1, this.frame = typeof d == "number" ? d : d.from, this.trigger("animStart", b);
+        }) }, a2 = typeof d == "number" ? null : d.from < d.to ? 1 : -1, this.frame = typeof d == "number" ? d : d.from, this.trigger("animStart", b);
       }, stop() {
-        if (!u)
+        if (!u2)
           return;
-        let b = u.name;
-        u = null, this.trigger("animEnd", b);
+        let b = u2.name;
+        u2 = null, this.trigger("animEnd", b);
       }, numFrames() {
         return s?.frames.length ?? 0;
       }, curAnim() {
-        return u?.name;
+        return u2?.name;
       }, onAnimEnd(b) {
         return this.on("animEnd", b);
       }, onAnimStart(b) {
@@ -3101,13 +6166,13 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(Cn, "sprite");
     function Rs(t, r = {}) {
-      function s(a) {
-        let h = Xe(Object.assign(Qe(a), { text: a.text + "", size: a.textSize, font: a.font, width: r.width && a.width, align: a.align, letterSpacing: a.letterSpacing, lineSpacing: a.lineSpacing, transform: a.textTransform, styles: a.textStyles }));
-        return r.width || (a.width = h.width / (a.scale?.x || 1)), a.height = h.height / (a.scale?.y || 1), h;
+      function s(a2) {
+        let h = Xe(Object.assign(Qe(a2), { text: a2.text + "", size: a2.textSize, font: a2.font, width: r.width && a2.width, align: a2.align, letterSpacing: a2.letterSpacing, lineSpacing: a2.lineSpacing, transform: a2.textTransform, styles: a2.textStyles }));
+        return r.width || (a2.width = h.width / (a2.scale?.x || 1)), a2.height = h.height / (a2.scale?.y || 1), h;
       }
       i(s, "update");
-      let u = { id: "text", set text(a) {
-        t = a, s(this);
+      let u2 = { id: "text", set text(a2) {
+        t = a2, s(this);
       }, get text() {
         return t;
       }, textSize: r.size ?? ji, font: r.font, width: r.width ?? 0, height: 0, align: r.align, lineSpacing: r.lineSpacing, letterSpacing: r.letterSpacing, textTransform: r.transform, textStyles: r.styles, add() {
@@ -3117,7 +6182,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       }, renderArea() {
         return new de(T(0), this.width, this.height);
       } };
-      return s(u), u;
+      return s(u2), u2;
     }
     i(Rs, "text");
     function Ps(t, r = {}) {
@@ -3170,32 +6235,32 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       return { id: "timer", wait(t, r) {
         let s = [];
         r && s.push(r);
-        let u = 0, a = this.onUpdate(() => {
-          u += Me(), u >= t && (s.forEach((h) => h()), a.cancel());
+        let u2 = 0, a2 = this.onUpdate(() => {
+          u2 += Me(), u2 >= t && (s.forEach((h) => h()), a2.cancel());
         });
         return { get paused() {
-          return a.paused;
+          return a2.paused;
         }, set paused(h) {
-          a.paused = h;
-        }, cancel: a.cancel, onEnd(h) {
+          a2.paused = h;
+        }, cancel: a2.cancel, onEnd(h) {
           s.push(h);
         }, then(h) {
           return this.onEnd(h), this;
         } };
       }, loop(t, r) {
-        let s = null, u = i(() => {
-          s = this.wait(t, u), r();
+        let s = null, u2 = i(() => {
+          s = this.wait(t, u2), r();
         }, "newAction");
-        return s = this.wait(0, u), { get paused() {
+        return s = this.wait(0, u2), { get paused() {
           return s.paused;
-        }, set paused(a) {
-          s.paused = a;
+        }, set paused(a2) {
+          s.paused = a2;
         }, cancel: () => s.cancel() };
-      }, tween(t, r, s, u, a = Ct.linear) {
+      }, tween(t, r, s, u2, a2 = Ct.linear) {
         let h = 0, f = [], b = this.onUpdate(() => {
           h += Me();
           let p = Math.min(h / s, 1);
-          u(Ve(t, r, a(p))), p === 1 && (b.cancel(), u(r), f.forEach((d) => d()));
+          u2(Ve(t, r, a2(p))), p === 1 && (b.cancel(), u2(r), f.forEach((d) => d()));
         });
         return { get paused() {
           return b.paused;
@@ -3208,47 +6273,47 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         }, cancel() {
           b.cancel();
         }, finish() {
-          b.cancel(), u(r), f.forEach((p) => p());
+          b.cancel(), u2(r), f.forEach((p) => p());
         } };
       } };
     }
     i(An, "timer");
     let Fs = 640, Is = 65536;
     function Ls(t = {}) {
-      let r = null, s = null, u = false;
+      let r = null, s = null, u2 = false;
       return { id: "body", require: ["pos", "area"], vel: new v(0), jumpForce: t.jumpForce ?? Fs, gravityScale: t.gravityScale ?? 1, isStatic: t.isStatic ?? false, mass: t.mass ?? 1, add() {
         if (this.mass === 0)
           throw new Error("Can't set body mass to 0");
-        this.onCollideUpdate((a, h) => {
-          if (a.is("body") && !h.resolved && (this.trigger("beforePhysicsResolve", h), a.trigger("beforePhysicsResolve", h.reverse()), !h.resolved && !(this.isStatic && a.isStatic))) {
-            if (!this.isStatic && !a.isStatic) {
-              let f = this.mass + a.mass;
-              this.pos = this.pos.add(h.displacement.scale(a.mass / f)), a.pos = a.pos.add(h.displacement.scale(-this.mass / f)), this.transform = jt(this), a.transform = jt(a);
+        this.onCollideUpdate((a2, h) => {
+          if (a2.is("body") && !h.resolved && (this.trigger("beforePhysicsResolve", h), a2.trigger("beforePhysicsResolve", h.reverse()), !h.resolved && !(this.isStatic && a2.isStatic))) {
+            if (!this.isStatic && !a2.isStatic) {
+              let f = this.mass + a2.mass;
+              this.pos = this.pos.add(h.displacement.scale(a2.mass / f)), a2.pos = a2.pos.add(h.displacement.scale(-this.mass / f)), this.transform = jt(this), a2.transform = jt(a2);
             } else {
-              let f = !this.isStatic && a.isStatic ? h : h.reverse();
+              let f = !this.isStatic && a2.isStatic ? h : h.reverse();
               f.source.pos = f.source.pos.add(f.displacement), f.source.transform = jt(f.source);
             }
-            h.resolved = true, this.trigger("physicsResolve", h), a.trigger("physicsResolve", h.reverse());
+            h.resolved = true, this.trigger("physicsResolve", h), a2.trigger("physicsResolve", h.reverse());
           }
-        }), this.onPhysicsResolve((a) => {
-          C.gravity && (a.isBottom() && this.isFalling() ? (this.vel.y = 0, r = a.target, s = a.target.pos, u ? u = false : this.trigger("ground", r)) : a.isTop() && this.isJumping() && (this.vel.y = 0, this.trigger("headbutt", a.target)));
+        }), this.onPhysicsResolve((a2) => {
+          C.gravity && (a2.isBottom() && this.isFalling() ? (this.vel.y = 0, r = a2.target, s = a2.target.pos, u2 ? u2 = false : this.trigger("ground", r)) : a2.isTop() && this.isJumping() && (this.vel.y = 0, this.trigger("headbutt", a2.target)));
         });
       }, update() {
         if (!C.gravity || this.isStatic)
           return;
-        if (u && (r = null, s = null, this.trigger("fallOff"), u = false), r)
+        if (u2 && (r = null, s = null, this.trigger("fallOff"), u2 = false), r)
           if (!this.isColliding(r) || !r.exists() || !r.is("body"))
-            u = true;
+            u2 = true;
           else {
             !r.pos.eq(s) && t.stickToPlatform !== false && this.moveBy(r.pos.sub(s)), s = r.pos;
             return;
           }
-        let a = this.vel.y;
-        this.vel.y += C.gravity * this.gravityScale * Me(), this.vel.y = Math.min(this.vel.y, t.maxVelocity ?? Is), a < 0 && this.vel.y >= 0 && this.trigger("fall"), this.move(this.vel);
-      }, onPhysicsResolve(a) {
-        return this.on("physicsResolve", a);
-      }, onBeforePhysicsResolve(a) {
-        return this.on("beforePhysicsResolve", a);
+        let a2 = this.vel.y;
+        this.vel.y += C.gravity * this.gravityScale * Me(), this.vel.y = Math.min(this.vel.y, t.maxVelocity ?? Is), a2 < 0 && this.vel.y >= 0 && this.trigger("fall"), this.move(this.vel);
+      }, onPhysicsResolve(a2) {
+        return this.on("physicsResolve", a2);
+      }, onBeforePhysicsResolve(a2) {
+        return this.on("beforePhysicsResolve", a2);
       }, curPlatform() {
         return r;
       }, isGrounded() {
@@ -3257,16 +6322,16 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         return this.vel.y > 0;
       }, isJumping() {
         return this.vel.y < 0;
-      }, jump(a) {
-        r = null, s = null, this.vel.y = -a || -this.jumpForce;
-      }, onGround(a) {
-        return this.on("ground", a);
-      }, onFall(a) {
-        return this.on("fall", a);
-      }, onFallOff(a) {
-        return this.on("fallOff", a);
-      }, onHeadbutt(a) {
-        return this.on("headbutt", a);
+      }, jump(a2) {
+        r = null, s = null, this.vel.y = -a2 || -this.jumpForce;
+      }, onGround(a2) {
+        return this.on("ground", a2);
+      }, onFall(a2) {
+        return this.on("fall", a2);
+      }, onFallOff(a2) {
+        return this.on("fallOff", a2);
+      }, onHeadbutt(a2) {
+        return this.on("headbutt", a2);
       } };
     }
     i(Ls, "body");
@@ -3305,8 +6370,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       return { id: "health", hurt(s = 1) {
         this.setHP(t - s), this.trigger("hurt", s);
       }, heal(s = 1) {
-        let u = t;
-        this.setHP(t + s), this.trigger("heal", t - u);
+        let u2 = t;
+        this.setHP(t + s), this.trigger("heal", t - u2);
       }, hp() {
         return t;
       }, maxHP() {
@@ -3331,24 +6396,24 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         throw new Error("lifespan() requires time");
       let s = r.fade ?? 0;
       return { id: "lifespan", async add() {
-        await hr(t), s > 0 && this.opacity && await Rn(this.opacity, 0, s, (u) => this.opacity = u, Ct.linear), this.destroy();
+        await hr(t), s > 0 && this.opacity && await Rn(this.opacity, 0, s, (u2) => this.opacity = u2, Ct.linear), this.destroy();
       } };
     }
     i(js, "lifespan");
     function Hs(t, r, s) {
       if (!t)
         throw new Error("state() requires an initial state");
-      let u = {};
-      function a(p) {
-        u[p] || (u[p] = { enter: new be(), end: new be(), update: new be(), draw: new be() });
+      let u2 = {};
+      function a2(p) {
+        u2[p] || (u2[p] = { enter: new be(), end: new be(), update: new be(), draw: new be() });
       }
-      i(a, "initStateEvents");
+      i(a2, "initStateEvents");
       function h(p, d, w) {
-        return a(d), u[d][p].add(w);
+        return a2(d), u2[d][p].add(w);
       }
       i(h, "on");
       function f(p, d, ...w) {
-        a(d), u[d][p].trigger(...w);
+        a2(d), u2[d][p].trigger(...w);
       }
       i(f, "trigger");
       let b = false;
@@ -3414,7 +6479,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       if (!C.scenes[t])
         throw new Error(`Scene not found: ${t}`);
       C.events.onOnce("frameEnd", () => {
-        C.events.trigger("sceneLeave", t), y.events.clear(), C.events.clear(), C.objEvents.clear(), [...C.root.children].forEach((s) => {
+        C.events.trigger("sceneLeave", t), y2.events.clear(), C.events.clear(), C.objEvents.clear(), [...C.root.children].forEach((s) => {
           (!s.stay || s.scenesToStay && !s.scenesToStay.includes(t)) && C.root.remove(s);
         }), C.root.clearEvents(), pr(), C.cam = { pos: null, scale: T(1), angle: 0, shake: 0, transform: new Ue() }, C.scenes[t](...r);
       });
@@ -3437,10 +6502,10 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(ar, "setData");
     function ur(t, ...r) {
-      let s = t(Ze), u;
-      typeof s == "function" ? u = s(...r)(Ze) : u = s;
-      for (let a in u)
-        Ze[a] = u[a], n13.global !== false && (window[a] = u[a]);
+      let s = t(Ze), u2;
+      typeof s == "function" ? u2 = s(...r)(Ze) : u2 = s;
+      for (let a2 in u2)
+        Ze[a2] = u2[a2], n14.global !== false && (window[a2] = u2[a2]);
       return Ze;
     }
     i(ur, "plug");
@@ -3451,9 +6516,9 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     let Js;
     ((O) => (O[O.None = 0] = "None", O[O.Left = 1] = "Left", O[O.Top = 2] = "Top", O[O.LeftTop = 3] = "LeftTop", O[O.Right = 4] = "Right", O[O.Horizontal = 5] = "Horizontal", O[O.RightTop = 6] = "RightTop", O[O.HorizontalTop = 7] = "HorizontalTop", O[O.Bottom = 8] = "Bottom", O[O.LeftBottom = 9] = "LeftBottom", O[O.Vertical = 10] = "Vertical", O[O.LeftVertical = 11] = "LeftVertical", O[O.RightBottom = 12] = "RightBottom", O[O.HorizontalBottom = 13] = "HorizontalBottom", O[O.RightVertical = 14] = "RightVertical", O[O.All = 15] = "All"))(Js ||= {});
     function cr(t = {}) {
-      let r = T(0), s = t.isObstacle ?? false, u = t.cost ?? 0, a = t.edges ?? [], h = i(() => {
+      let r = T(0), s = t.isObstacle ?? false, u2 = t.cost ?? 0, a2 = t.edges ?? [], h = i(() => {
         let b = { left: 1, top: 2, right: 4, bottom: 8 };
-        return a.map((p) => b[p] || 0).reduce((p, d) => p | d, 0);
+        return a2.map((p) => b[p] || 0).reduce((p, d) => p | d, 0);
       }, "getEdgeMask"), f = h();
       return { id: "tile", tilePosOffset: t.offset ?? T(0), set tilePos(b) {
         let p = this.getLevel();
@@ -3465,13 +6530,13 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       }, get isObstacle() {
         return s;
       }, set cost(b) {
-        u !== b && (u = b, this.getLevel().invalidateNavigationMap());
+        u2 !== b && (u2 = b, this.getLevel().invalidateNavigationMap());
       }, get cost() {
-        return u;
+        return u2;
       }, set edges(b) {
-        a = b, f = h(), this.getLevel().invalidateNavigationMap();
+        a2 = b, f = h(), this.getLevel().invalidateNavigationMap();
       }, get edges() {
-        return a;
+        return a2;
       }, get edgeMask() {
         return f;
       }, getLevel() {
@@ -3490,7 +6555,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     function Qs(t, r) {
       if (!r.tileWidth || !r.tileHeight)
         throw new Error("Must provide tileWidth and tileHeight.");
-      let s = gt([qt(r.pos ?? T(0))]), u = t.length, a = 0, h = null, f = null, b = null, p = null, d = i((U) => U.x + U.y * a, "tile2Hash"), w = i((U) => T(Math.floor(U % a), Math.floor(U / a)), "hash2Tile"), A = i(() => {
+      let s = gt([qt(r.pos ?? T(0))]), u2 = t.length, a2 = 0, h = null, f = null, b = null, p = null, d = i((U) => U.x + U.y * a2, "tile2Hash"), w = i((U) => T(Math.floor(U % a2), Math.floor(U / a2)), "hash2Tile"), A = i(() => {
         h = [];
         for (let U of s.children)
           D(U);
@@ -3561,8 +6626,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         let B = w(U), F = w(G);
         return B.dist(F);
       }, "getHeuristic"), V = i((U, G) => {
-        let B = [], F = Math.floor(U % a), Y = F > 0 && b[U] & 1 && f[U - 1] !== 1 / 0, ee = U >= a && b[U] & 2 && f[U - a] !== 1 / 0, ue = F < a - 1 && b[U] & 4 && f[U + 1] !== 1 / 0, me = U < a * u - a - 1 && b[U] & 8 && f[U + a] !== 1 / 0;
-        return G ? (Y && (ee && B.push(U - a - 1), B.push(U - 1), me && B.push(U + a - 1)), ee && B.push(U - a), ue && (ee && B.push(U - a + 1), B.push(U + 1), me && B.push(U + a + 1)), me && B.push(U + a)) : (Y && B.push(U - 1), ee && B.push(U - a), ue && B.push(U + 1), me && B.push(U + a)), B;
+        let B = [], F = Math.floor(U % a2), Y = F > 0 && b[U] & 1 && f[U - 1] !== 1 / 0, ee = U >= a2 && b[U] & 2 && f[U - a2] !== 1 / 0, ue = F < a2 - 1 && b[U] & 4 && f[U + 1] !== 1 / 0, me = U < a2 * u2 - a2 - 1 && b[U] & 8 && f[U + a2] !== 1 / 0;
+        return G ? (Y && (ee && B.push(U - a2 - 1), B.push(U - 1), me && B.push(U + a2 - 1)), ee && B.push(U - a2), ue && (ee && B.push(U - a2 + 1), B.push(U + 1), me && B.push(U + a2 + 1)), me && B.push(U + a2)) : (Y && B.push(U - 1), ee && B.push(U - a2), ue && B.push(U + 1), me && B.push(U + a2)), B;
       }, "getNeighbours"), fe = { id: "level", tileWidth() {
         return r.tileWidth;
       }, tileHeight() {
@@ -3591,13 +6656,13 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         let ue = s.add(F);
         return Y && (ue.tilePosOffset = ue.pos.clone()), ue.tilePos = B, h && (D(ue), this.trigger("spatial_map_changed"), this.trigger("navigation_map_invalid")), ue;
       }, numColumns() {
-        return a;
+        return a2;
       }, numRows() {
-        return u;
+        return u2;
       }, levelWidth() {
-        return a * this.tileWidth();
+        return a2 * this.tileWidth();
       }, levelHeight() {
-        return u * this.tileHeight();
+        return u2 * this.tileHeight();
       }, tile2Pos(...U) {
         return T(...U).scale(this.tileWidth(), this.tileHeight());
       }, pos2Tile(...U) {
@@ -3620,7 +6685,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       }, onNavigationMapChanged(U) {
         return this.on("navigation_map_changed", U);
       }, getTilePath(U, G, B = {}) {
-        if (f || M(), b || O(), p || ie(), U.x < 0 || U.x >= a || U.y < 0 || U.y >= u || G.x < 0 || G.x >= a || G.y < 0 || G.y >= u)
+        if (f || M(), b || O(), p || ie(), U.x < 0 || U.x >= a2 || U.y < 0 || U.y >= u2 || G.x < 0 || G.x >= a2 || G.y < 0 || G.y >= u2)
           return null;
         let F = d(U), Y = d(G);
         if (f[Y] === 1 / 0)
@@ -3659,41 +6724,41 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         s.invalidateNavigationMap(), s.trigger("navigation_map_changed");
       }), t.forEach((U, G) => {
         let B = U.split("");
-        a = Math.max(B.length, a), B.forEach((F, Y) => {
+        a2 = Math.max(B.length, a2), B.forEach((F, Y) => {
           s.spawn(F, T(Y, G));
         });
       }), s;
     }
     i(Qs, "addLevel");
     function Zs(t = {}) {
-      let r = null, s = null, u = null, a = null;
+      let r = null, s = null, u2 = null, a2 = null;
       return { id: "agent", require: ["pos", "tile"], agentSpeed: t.speed ?? 100, allowDiagonals: t.allowDiagonals ?? true, getDistanceToTarget() {
         return r ? this.pos.dist(r) : 0;
       }, getNextLocation() {
-        return s && u ? s[u] : null;
+        return s && u2 ? s[u2] : null;
       }, getPath() {
         return s ? s.slice() : null;
       }, getTarget() {
         return r;
       }, isNavigationFinished() {
-        return s ? u === null : true;
+        return s ? u2 === null : true;
       }, isTargetReachable() {
         return s !== null;
       }, isTargetReached() {
         return r ? this.pos.eq(r) : true;
       }, setTarget(h) {
-        r = h, s = this.getLevel().getPath(this.pos, r, { allowDiagonals: this.allowDiagonals }), u = s ? 0 : null, s ? (a || (a = this.getLevel().onNavigationMapChanged(() => {
-          s && u !== null && (s = this.getLevel().getPath(this.pos, r, { allowDiagonals: this.allowDiagonals }), u = s ? 0 : null, s ? this.trigger("navigation-next", this, s[u]) : this.trigger("navigation-ended", this));
-        }), this.onDestroy(() => a.cancel())), this.trigger("navigation-started", this), this.trigger("navigation-next", this, s[u])) : this.trigger("navigation-ended", this);
+        r = h, s = this.getLevel().getPath(this.pos, r, { allowDiagonals: this.allowDiagonals }), u2 = s ? 0 : null, s ? (a2 || (a2 = this.getLevel().onNavigationMapChanged(() => {
+          s && u2 !== null && (s = this.getLevel().getPath(this.pos, r, { allowDiagonals: this.allowDiagonals }), u2 = s ? 0 : null, s ? this.trigger("navigation-next", this, s[u2]) : this.trigger("navigation-ended", this));
+        }), this.onDestroy(() => a2.cancel())), this.trigger("navigation-started", this), this.trigger("navigation-next", this, s[u2])) : this.trigger("navigation-ended", this);
       }, update() {
-        if (s && u !== null) {
-          if (this.pos.sdist(s[u]) < 2)
-            if (u === s.length - 1) {
-              this.pos = r.clone(), u = null, this.trigger("navigation-ended", this), this.trigger("target-reached", this);
+        if (s && u2 !== null) {
+          if (this.pos.sdist(s[u2]) < 2)
+            if (u2 === s.length - 1) {
+              this.pos = r.clone(), u2 = null, this.trigger("navigation-ended", this), this.trigger("target-reached", this);
               return;
             } else
-              u++, this.trigger("navigation-next", this, s[u]);
-          this.moveTo(s[u], this.agentSpeed);
+              u2++, this.trigger("navigation-next", this, s[u2]);
+          this.moveTo(s[u2], this.agentSpeed);
         }
       }, onNavigationStarted(h) {
         return this.on("navigation-started", h);
@@ -3709,21 +6774,21 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(Zs, "agent");
     function ei(t) {
-      let r = y.canvas.captureStream(t), s = te.ctx.createMediaStreamDestination();
+      let r = y2.canvas.captureStream(t), s = te.ctx.createMediaStreamDestination();
       te.masterNode.connect(s);
-      let u = new MediaRecorder(r), a = [];
-      return u.ondataavailable = (h) => {
-        h.data.size > 0 && a.push(h.data);
-      }, u.onerror = () => {
+      let u2 = new MediaRecorder(r), a2 = [];
+      return u2.ondataavailable = (h) => {
+        h.data.size > 0 && a2.push(h.data);
+      }, u2.onerror = () => {
         te.masterNode.disconnect(s), r.getTracks().forEach((h) => h.stop());
-      }, u.start(), { resume() {
-        u.resume();
+      }, u2.start(), { resume() {
+        u2.resume();
       }, pause() {
-        u.pause();
+        u2.pause();
       }, stop() {
-        return u.stop(), te.masterNode.disconnect(s), r.getTracks().forEach((h) => h.stop()), new Promise((h) => {
-          u.onstop = () => {
-            h(new Blob(a, { type: "video/mp4" }));
+        return u2.stop(), te.masterNode.disconnect(s), r.getTracks().forEach((h) => h.stop()), new Promise((h) => {
+          u2.onstop = () => {
+            h(new Blob(a2, { type: "video/mp4" }));
           };
         });
       }, download(h = "kaboom.mp4") {
@@ -3732,7 +6797,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(ei, "record");
     function ti() {
-      return document.activeElement === y.canvas;
+      return document.activeElement === y2.canvas;
     }
     i(ti, "isFocused");
     function ni(t) {
@@ -3743,17 +6808,17 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     function lr(t = 2, r = 1) {
       let s = 0;
       return { require: ["scale"], update() {
-        let u = Math.sin(s * t) * r;
-        u < 0 && this.destroy(), this.scale = T(u), s += Me();
+        let u2 = Math.sin(s * t) * r;
+        u2 < 0 && this.destroy(), this.scale = T(u2), s += Me();
       } };
     }
     i(lr, "boom");
     let oi = Ye(null, qr), ai = Ye(null, $r);
     function ui(t, r = {}) {
-      let s = gt([qt(t), or()]), u = (r.speed || 1) * 5, a = r.scale || 1;
-      s.add([Cn(ai), $t(0), Sn("center"), lr(u, a), ...r.comps ?? []]);
+      let s = gt([qt(t), or()]), u2 = (r.speed || 1) * 5, a2 = r.scale || 1;
+      s.add([Cn(ai), $t(0), Sn("center"), lr(u2, a2), ...r.comps ?? []]);
       let h = s.add([Cn(oi), $t(0), Sn("center"), An(), ...r.comps ?? []]);
-      return h.wait(0.4 / u, () => h.use(lr(u, a))), h.onDestroy(() => s.destroy()), s;
+      return h.wait(0.4 / u2, () => h.use(lr(u2, a2))), h.onDestroy(() => s.destroy()), s;
     }
     i(ui, "addKaboom");
     function dr() {
@@ -3768,8 +6833,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       target;
       displacement;
       resolved = false;
-      constructor(r, s, u, a = false) {
-        this.source = r, this.target = s, this.displacement = u, this.resolved = a;
+      constructor(r, s, u2, a2 = false) {
+        this.source = r, this.target = s, this.displacement = u2, this.resolved = a2;
       }
       reverse() {
         return new Pn(this.target, this.source, this.displacement.scale(-1), this.resolved);
@@ -3794,9 +6859,9 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       }
     }
     function ci() {
-      let t = {}, r = n13.hashGridSize || Hi, s = new Ue(), u = [];
-      function a(h) {
-        if (u.push(s.clone()), h.pos && s.translate(h.pos), h.scale && s.scale(h.scale), h.angle && s.rotate(h.angle), h.transform = s.clone(), h.c("area") && !h.paused) {
+      let t = {}, r = n14.hashGridSize || Hi, s = new Ue(), u2 = [];
+      function a2(h) {
+        if (u2.push(s.clone()), h.pos && s.translate(h.pos), h.scale && s.scale(h.scale), h.angle && s.rotate(h.angle), h.transform = s.clone(), h.c("area") && !h.paused) {
           let f = h, p = f.worldArea().bbox(), d = Math.floor(p.pos.x / r), w = Math.floor(p.pos.y / r), A = Math.ceil((p.pos.x + p.width) / r), D = Math.ceil((p.pos.y + p.height) / r), N = /* @__PURE__ */ new Set();
           for (let _ = d; _ <= A; _++)
             for (let M = w; M <= D; M++)
@@ -3828,9 +6893,9 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
                 O.push(f);
               }
         }
-        h.children.forEach(a), s = u.pop();
+        h.children.forEach(a2), s = u2.pop();
       }
-      i(a, "checkObj"), a(C.root);
+      i(a2, "checkObj"), a2(C.root);
     }
     i(ci, "checkFrame");
     function hi() {
@@ -3841,8 +6906,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     function li() {
       let t = $();
       C.events.numListeners("loading") > 0 ? C.events.trigger("loading", t) : Ce(() => {
-        let r = we() / 2, s = 24, u = T(we() / 2, xe() / 2).sub(T(r / 2, s / 2));
-        ge({ pos: T(0), width: we(), height: xe(), color: J(0, 0, 0) }), ge({ pos: u, width: r, height: s, fill: false, outline: { width: 4 } }), ge({ pos: u, width: r * t, height: s });
+        let r = we() / 2, s = 24, u2 = T(we() / 2, xe() / 2).sub(T(r / 2, s / 2));
+        ge({ pos: T(0), width: we(), height: xe(), color: J(0, 0, 0) }), ge({ pos: u2, width: r, height: s, fill: false, outline: { width: 4 } }), ge({ pos: u2, width: r * t, height: s });
       });
     }
     i(li, "drawLoadScreen");
@@ -3850,8 +6915,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
       Ce(() => {
         let s = T(8);
         le(), ne(t);
-        let u = Xe({ text: r, font: nn, size: 16, pos: s, color: J(255, 255, 255), fixed: true }), a = u.width + s.x * 2, h = u.height + s.x * 2;
-        t.x + a >= we() && ne(T(-a, 0)), t.y + h >= xe() && ne(T(0, -h)), ge({ width: a, height: h, color: J(0, 0, 0), radius: 4, opacity: 0.8, fixed: true }), Je(u), ae();
+        let u2 = Xe({ text: r, font: nn, size: 16, pos: s, color: J(255, 255, 255), fixed: true }), a2 = u2.width + s.x * 2, h = u2.height + s.x * 2;
+        t.x + a2 >= we() && ne(T(-a2, 0)), t.y + h >= xe() && ne(T(0, -h)), ge({ width: a2, height: h, color: J(0, 0, 0), radius: 4, opacity: 0.8, fixed: true }), Je(u2), ae();
       });
     }
     i(fr, "drawInspectText");
@@ -3865,8 +6930,8 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
           }
         if (C.root.drawInspect(), t) {
           let r = [], s = t.inspect();
-          for (let u in s)
-            s[u] ? r.push(`${u}: ${s[u]}`) : r.push(`${u}`);
+          for (let u2 in s)
+            s[u2] ? r.push(`${u2}: ${s[u2]}`) : r.push(`${u2}`);
           fr(ns(Nt()), r.join(`
 `));
         }
@@ -3884,20 +6949,20 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         let t = 8, r = Xe({ text: re.timeScale.toFixed(1), font: nn, size: 16, color: J(255, 255, 255), pos: T(-t), anchor: "botright", fixed: true });
         ge({ width: r.width + t * 2 + t * 4, height: r.height + t * 2, anchor: "botright", color: J(0, 0, 0), opacity: 0.8, radius: 4, fixed: true });
         for (let s = 0; s < 2; s++) {
-          let u = re.timeScale < 1;
-          R({ p1: T(-r.width - t * (u ? 2 : 3.5), -t), p2: T(-r.width - t * (u ? 2 : 3.5), -t - r.height), p3: T(-r.width - t * (u ? 3.5 : 2), -t - r.height / 2), pos: T(-s * t * 1 + (u ? -t * 0.5 : 0), 0), color: J(255, 255, 255), fixed: true });
+          let u2 = re.timeScale < 1;
+          R({ p1: T(-r.width - t * (u2 ? 2 : 3.5), -t), p2: T(-r.width - t * (u2 ? 2 : 3.5), -t - r.height), p3: T(-r.width - t * (u2 ? 3.5 : 2), -t - r.height / 2), pos: T(-s * t * 1 + (u2 ? -t * 0.5 : 0), 0), color: J(255, 255, 255), fixed: true });
         }
         Je(r), ae();
       }), re.curRecording && Ce(() => {
-        le(), ne(0, xe()), ne(24, -24), L({ radius: 12, color: J(255, 0, 0), opacity: In(0, 1, y.time() * 4), fixed: true }), ae();
+        le(), ne(0, xe()), ne(24, -24), L({ radius: 12, color: J(255, 0, 0), opacity: In(0, 1, y2.time() * 4), fixed: true }), ae();
       }), re.showLog && C.logs.length > 0 && Ce(() => {
         le(), ne(0, xe()), ne(8, -8);
         let t = 8, r = [];
-        for (let u of C.logs) {
-          let a = "", h = u.msg instanceof Error ? "error" : "info";
-          a += `[time]${u.time.toFixed(2)}[/time]`, a += " ", a += `[${h}]${u.msg?.toString ? u.msg.toString() : u.msg}[/${h}]`, r.push(a);
+        for (let u2 of C.logs) {
+          let a2 = "", h = u2.msg instanceof Error ? "error" : "info";
+          a2 += `[time]${u2.time.toFixed(2)}[/time]`, a2 += " ", a2 += `[${h}]${u2.msg?.toString ? u2.msg.toString() : u2.msg}[/${h}]`, r.push(a2);
         }
-        C.logs = C.logs.filter((u) => y.time() - u.time < (n13.logTime || $i));
+        C.logs = C.logs.filter((u2) => y2.time() - u2.time < (n14.logTime || $i));
         let s = Xe({ text: r.join(`
 `), font: nn, pos: T(t, -t), anchor: "botleft", size: 16, width: we() * 0.6, lineSpacing: t / 2, fixed: true, styles: { time: { color: J(127, 127, 127) }, info: { color: J(255, 255, 255) }, error: { color: J(255, 0, 127) } } });
         ge({ width: s.width + t * 2, height: s.height + t * 2, anchor: "botleft", color: J(0, 0, 0), radius: 4, opacity: 0.8, fixed: true }), Je(s), ae();
@@ -3909,7 +6974,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(fi, "onLoading");
     function mi(t) {
-      y.onResize(t);
+      y2.onResize(t);
     }
     i(mi, "onResize");
     function pi(t) {
@@ -3917,10 +6982,10 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(pi, "onError");
     function gi(t) {
-      console.error(t), te.ctx.suspend(), y.run(() => {
+      console.error(t), te.ctx.suspend(), y2.run(() => {
         dt(), Ce(() => {
-          let u = we(), a = xe(), h = { size: 36, width: u - 32 * 2, letterSpacing: 4, lineSpacing: 4, font: nn, fixed: true };
-          ge({ width: u, height: a, color: J(0, 0, 255), fixed: true });
+          let u2 = we(), a2 = xe(), h = { size: 36, width: u2 - 32 * 2, letterSpacing: 4, lineSpacing: 4, font: nn, fixed: true };
+          ge({ width: u2, height: a2, color: J(0, 0, 255), fixed: true });
           let f = Xe({ ...h, text: "Error", pos: T(32), color: J(255, 128, 0), fixed: true });
           Je(f), tr({ ...h, text: t.message, pos: T(32, 32 + f.height + 16), fixed: true }), ae(), C.events.trigger("error", t);
         }), ft();
@@ -3933,7 +6998,7 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     i(wi, "onCleanup");
     function bi() {
       C.events.onOnce("frameEnd", () => {
-        y.quit(), S.clear(S.COLOR_BUFFER_BIT | S.DEPTH_BUFFER_BIT | S.STENCIL_BUFFER_BIT);
+        y2.quit(), S.clear(S.COLOR_BUFFER_BIT | S.DEPTH_BUFFER_BIT | S.STENCIL_BUFFER_BIT);
         let t = S.getParameter(S.MAX_TEXTURE_IMAGE_UNITS);
         for (let r = 0; r < t; r++)
           S.activeTexture(S.TEXTURE0 + r), S.bindTexture(S.TEXTURE_2D, null), S.bindTexture(S.TEXTURE_CUBE_MAP, null);
@@ -3942,390 +7007,847 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     }
     i(bi, "quit");
     let Kt = true;
-    y.run(() => {
+    y2.run(() => {
       try {
-        k2.loaded || $() === 1 && !Kt && (k2.loaded = true, C.events.trigger("load")), !k2.loaded && n13.loadingScreen !== false || Kt ? (dt(), li(), ft()) : (re.paused || dr(), ci(), dt(), hi(), n13.debug !== false && di(), ft()), Kt && (Kt = false), C.events.trigger("frameEnd");
+        k2.loaded || $() === 1 && !Kt && (k2.loaded = true, C.events.trigger("load")), !k2.loaded && n14.loadingScreen !== false || Kt ? (dt(), li(), ft()) : (re.paused || dr(), ci(), dt(), hi(), n14.debug !== false && di(), ft()), Kt && (Kt = false), C.events.trigger("frameEnd");
       } catch (t) {
         gi(t);
       }
     });
     function mr() {
       let t = P, r = S.drawingBufferWidth / t, s = S.drawingBufferHeight / t;
-      if (n13.letterbox) {
-        if (!n13.width || !n13.height)
+      if (n14.letterbox) {
+        if (!n14.width || !n14.height)
           throw new Error("Letterboxing requires width and height defined.");
-        let u = r / s, a = n13.width / n13.height;
-        if (u > a) {
-          let h = s * a, f = (r - h) / 2;
+        let u2 = r / s, a2 = n14.width / n14.height;
+        if (u2 > a2) {
+          let h = s * a2, f = (r - h) / 2;
           E.viewport = { x: f, y: 0, width: h, height: s };
         } else {
-          let h = r / a, f = (s - h) / 2;
+          let h = r / a2, f = (s - h) / 2;
           E.viewport = { x: 0, y: f, width: r, height: h };
         }
         return;
       }
-      if (n13.stretch && (!n13.width || !n13.height))
+      if (n14.stretch && (!n14.width || !n14.height))
         throw new Error("Stretching requires width and height defined.");
       E.viewport = { x: 0, y: 0, width: r, height: s };
     }
     i(mr, "updateViewport");
     function pr() {
-      y.onHide(() => {
-        n13.backgroundAudio || te.ctx.suspend();
-      }), y.onShow(() => {
-        !n13.backgroundAudio && !re.paused && te.ctx.resume();
-      }), y.onResize(() => {
-        if (y.isFullscreen())
+      y2.onHide(() => {
+        n14.backgroundAudio || te.ctx.suspend();
+      }), y2.onShow(() => {
+        !n14.backgroundAudio && !re.paused && te.ctx.resume();
+      }), y2.onResize(() => {
+        if (y2.isFullscreen())
           return;
-        let t = n13.width && n13.height;
-        t && !n13.stretch && !n13.letterbox || (o.width = o.offsetWidth * P, o.height = o.offsetHeight * P, mr(), t || (E.frameBuffer.free(), E.frameBuffer = new rt(q, S.drawingBufferWidth, S.drawingBufferHeight), E.width = S.drawingBufferWidth / P, E.height = S.drawingBufferHeight / P));
-      }), n13.debug !== false && (y.onKeyPress("f1", () => re.inspect = !re.inspect), y.onKeyPress("f2", () => re.clearLog()), y.onKeyPress("f8", () => re.paused = !re.paused), y.onKeyPress("f7", () => {
+        let t = n14.width && n14.height;
+        t && !n14.stretch && !n14.letterbox || (o.width = o.offsetWidth * P, o.height = o.offsetHeight * P, mr(), t || (E.frameBuffer.free(), E.frameBuffer = new rt(q, S.drawingBufferWidth, S.drawingBufferHeight), E.width = S.drawingBufferWidth / P, E.height = S.drawingBufferHeight / P));
+      }), n14.debug !== false && (y2.onKeyPress("f1", () => re.inspect = !re.inspect), y2.onKeyPress("f2", () => re.clearLog()), y2.onKeyPress("f8", () => re.paused = !re.paused), y2.onKeyPress("f7", () => {
         re.timeScale = mt(Le(re.timeScale - 0.2, 0, 2), 1);
-      }), y.onKeyPress("f9", () => {
+      }), y2.onKeyPress("f9", () => {
         re.timeScale = mt(Le(re.timeScale + 0.2, 0, 2), 1);
-      }), y.onKeyPress("f10", () => re.stepFrame())), n13.burp && y.onKeyPress("b", () => Lt());
+      }), y2.onKeyPress("f10", () => re.stepFrame())), n14.burp && y2.onKeyPress("b", () => Lt());
     }
     i(pr, "initEvents"), mr(), pr();
-    let Ze = { VERSION: ki, loadRoot: Te, loadProgress: $, loadSprite: Ye, loadSpriteAtlas: Ot, loadSound: ln, loadBitmapFont: on, loadFont: st, loadShader: cn, loadShaderURL: hn, loadAseprite: un, loadPedit: an, loadBean: dn, loadJSON: ye, load: Ae, getSprite: Pt, getSound: Dt, getFont: Mt, getBitmapFont: Gt, getShader: Bt, getAsset: fn, Asset: ve, SpriteData: K, SoundData: Q, width: we, height: xe, center: zt, dt: Me, time: y.time, screenshot: y.screenshot, record: ei, isFocused: ti, setCursor: y.setCursor, getCursor: y.getCursor, setCursorLocked: y.setCursorLocked, isCursorLocked: y.isCursorLocked, setFullscreen: y.setFullscreen, isFullscreen: y.isFullscreen, isTouchscreen: y.isTouchscreen, onLoad: Tn, onLoading: fi, onResize: mi, onGamepadConnect: y.onGamepadConnect, onGamepadDisconnect: y.onGamepadDisconnect, onError: pi, onCleanup: wi, camPos: rs, camScale: ss, camRot: is, shake: os, toScreen: rr, toWorld: sr, setGravity: gs, getGravity: ws, setBackground: bs, getBackground: vs, getGamepads: y.getGamepads, add: gt, make: Un, destroy: ni, destroyAll: si, get: On, readd: ri, pos: qt, scale: $t, rotate: ys, color: xs, opacity: Us, anchor: Sn, area: Os, sprite: Cn, text: Rs, polygon: Ps, rect: Ds, circle: Gs, uvquad: Ms, outline: Bs, body: Ls, doubleJump: Vs, shader: _s, timer: An, fixed: ks, stay: or, health: Ns, lifespan: js, z: Es, move: Cs, offscreen: Ts, follow: Ss, state: Hs, fadeIn: qs, mask: $s, drawon: zs, tile: cr, agent: Zs, on: ze, onUpdate: as, onDraw: us, onAdd: En, onDestroy: ir, onClick: ds, onCollide: cs, onCollideUpdate: hs, onCollideEnd: ls, onHover: fs, onHoverUpdate: ms, onHoverEnd: ps, onKeyDown: y.onKeyDown, onKeyPress: y.onKeyPress, onKeyPressRepeat: y.onKeyPressRepeat, onKeyRelease: y.onKeyRelease, onMouseDown: y.onMouseDown, onMousePress: y.onMousePress, onMouseRelease: y.onMouseRelease, onMouseMove: y.onMouseMove, onCharInput: y.onCharInput, onTouchStart: y.onTouchStart, onTouchMove: y.onTouchMove, onTouchEnd: y.onTouchEnd, onScroll: y.onScroll, onHide: y.onHide, onShow: y.onShow, onGamepadButtonDown: y.onGamepadButtonDown, onGamepadButtonPress: y.onGamepadButtonPress, onGamepadButtonRelease: y.onGamepadButtonRelease, onGamepadStick: y.onGamepadStick, mousePos: Nt, mouseDeltaPos: y.mouseDeltaPos, isKeyDown: y.isKeyDown, isKeyPressed: y.isKeyPressed, isKeyPressedRepeat: y.isKeyPressedRepeat, isKeyReleased: y.isKeyReleased, isMouseDown: y.isMouseDown, isMousePressed: y.isMousePressed, isMouseReleased: y.isMouseReleased, isMouseMoved: y.isMouseMoved, isGamepadButtonPressed: y.isGamepadButtonPressed, isGamepadButtonDown: y.isGamepadButtonDown, isGamepadButtonReleased: y.isGamepadButtonReleased, getGamepadStick: y.getGamepadStick, charInputted: y.charInputted, loop: ii, wait: hr, play: It, volume: gn, burp: Lt, audioCtx: te.ctx, Line: Ie, Rect: de, Circle: yt, Polygon: Ke, Vec2: v, Color: W, Mat4: Ue, Quad: oe, RNG: bt, rand: xt, randi: Ln, randSeed: yr, vec2: T, rgb: J, hsl2rgb: vr, quad: ce, choose: Ur, chance: xr, lerp: Ve, tween: Rn, easings: Ct, map: _e, mapc: br, wave: In, deg2rad: Ge, rad2deg: ot, clamp: Le, testLineLine: it, testRectRect: Er, testRectLine: Sr, testRectPoint: vt, testCirclePolygon: Tr, testLinePoint: Cr, testLineCircle: Vn, drawSprite: yn, drawText: tr, formatText: Xe, drawRect: ge, drawLine: l, drawLines: x, drawTriangle: R, drawCircle: L, drawEllipse: he, drawUVQuad: Be, drawPolygon: z, drawFormattedText: Je, drawMasked: $e, drawSubtracted: kt, pushTransform: le, popTransform: ae, pushTranslate: ne, pushScale: He, pushRotate: se, pushMatrix: _t, usePostEffect: Vt, makeCanvas: wn, debug: re, scene: Ks, go: Ys, onSceneLeave: Ws, addLevel: Qs, getData: Xs, setData: ar, download: Xt, downloadJSON: Dr, downloadText: kn, downloadBlob: Nn, plug: ur, ASCII_CHARS: zr, canvas: y.canvas, addKaboom: ui, LEFT: v.LEFT, RIGHT: v.RIGHT, UP: v.UP, DOWN: v.DOWN, RED: W.RED, GREEN: W.GREEN, BLUE: W.BLUE, YELLOW: W.YELLOW, MAGENTA: W.MAGENTA, CYAN: W.CYAN, WHITE: W.WHITE, BLACK: W.BLACK, quit: bi, Event: be, EventHandler: Ne, EventController: ke };
-    if (n13.plugins && n13.plugins.forEach(ur), n13.global !== false)
+    let Ze = { VERSION: ki, loadRoot: Te, loadProgress: $, loadSprite: Ye, loadSpriteAtlas: Ot, loadSound: ln, loadBitmapFont: on, loadFont: st, loadShader: cn, loadShaderURL: hn, loadAseprite: un, loadPedit: an, loadBean: dn, loadJSON: ye, load: Ae, getSprite: Pt, getSound: Dt, getFont: Mt, getBitmapFont: Gt, getShader: Bt, getAsset: fn, Asset: ve, SpriteData: K, SoundData: Q, width: we, height: xe, center: zt, dt: Me, time: y2.time, screenshot: y2.screenshot, record: ei, isFocused: ti, setCursor: y2.setCursor, getCursor: y2.getCursor, setCursorLocked: y2.setCursorLocked, isCursorLocked: y2.isCursorLocked, setFullscreen: y2.setFullscreen, isFullscreen: y2.isFullscreen, isTouchscreen: y2.isTouchscreen, onLoad: Tn, onLoading: fi, onResize: mi, onGamepadConnect: y2.onGamepadConnect, onGamepadDisconnect: y2.onGamepadDisconnect, onError: pi, onCleanup: wi, camPos: rs, camScale: ss, camRot: is, shake: os, toScreen: rr, toWorld: sr, setGravity: gs, getGravity: ws, setBackground: bs, getBackground: vs, getGamepads: y2.getGamepads, add: gt, make: Un, destroy: ni, destroyAll: si, get: On, readd: ri, pos: qt, scale: $t, rotate: ys, color: xs, opacity: Us, anchor: Sn, area: Os, sprite: Cn, text: Rs, polygon: Ps, rect: Ds, circle: Gs, uvquad: Ms, outline: Bs, body: Ls, doubleJump: Vs, shader: _s, timer: An, fixed: ks, stay: or, health: Ns, lifespan: js, z: Es, move: Cs, offscreen: Ts, follow: Ss, state: Hs, fadeIn: qs, mask: $s, drawon: zs, tile: cr, agent: Zs, on: ze, onUpdate: as, onDraw: us, onAdd: En, onDestroy: ir, onClick: ds, onCollide: cs, onCollideUpdate: hs, onCollideEnd: ls, onHover: fs, onHoverUpdate: ms, onHoverEnd: ps, onKeyDown: y2.onKeyDown, onKeyPress: y2.onKeyPress, onKeyPressRepeat: y2.onKeyPressRepeat, onKeyRelease: y2.onKeyRelease, onMouseDown: y2.onMouseDown, onMousePress: y2.onMousePress, onMouseRelease: y2.onMouseRelease, onMouseMove: y2.onMouseMove, onCharInput: y2.onCharInput, onTouchStart: y2.onTouchStart, onTouchMove: y2.onTouchMove, onTouchEnd: y2.onTouchEnd, onScroll: y2.onScroll, onHide: y2.onHide, onShow: y2.onShow, onGamepadButtonDown: y2.onGamepadButtonDown, onGamepadButtonPress: y2.onGamepadButtonPress, onGamepadButtonRelease: y2.onGamepadButtonRelease, onGamepadStick: y2.onGamepadStick, mousePos: Nt, mouseDeltaPos: y2.mouseDeltaPos, isKeyDown: y2.isKeyDown, isKeyPressed: y2.isKeyPressed, isKeyPressedRepeat: y2.isKeyPressedRepeat, isKeyReleased: y2.isKeyReleased, isMouseDown: y2.isMouseDown, isMousePressed: y2.isMousePressed, isMouseReleased: y2.isMouseReleased, isMouseMoved: y2.isMouseMoved, isGamepadButtonPressed: y2.isGamepadButtonPressed, isGamepadButtonDown: y2.isGamepadButtonDown, isGamepadButtonReleased: y2.isGamepadButtonReleased, getGamepadStick: y2.getGamepadStick, charInputted: y2.charInputted, loop: ii, wait: hr, play: It, volume: gn, burp: Lt, audioCtx: te.ctx, Line: Ie, Rect: de, Circle: yt, Polygon: Ke, Vec2: v, Color: W, Mat4: Ue, Quad: oe, RNG: bt, rand: xt, randi: Ln, randSeed: yr, vec2: T, rgb: J, hsl2rgb: vr, quad: ce, choose: Ur, chance: xr, lerp: Ve, tween: Rn, easings: Ct, map: _e, mapc: br, wave: In, deg2rad: Ge, rad2deg: ot, clamp: Le, testLineLine: it, testRectRect: Er, testRectLine: Sr, testRectPoint: vt, testCirclePolygon: Tr, testLinePoint: Cr, testLineCircle: Vn, drawSprite: yn, drawText: tr, formatText: Xe, drawRect: ge, drawLine: l, drawLines: x2, drawTriangle: R, drawCircle: L, drawEllipse: he, drawUVQuad: Be, drawPolygon: z, drawFormattedText: Je, drawMasked: $e, drawSubtracted: kt, pushTransform: le, popTransform: ae, pushTranslate: ne, pushScale: He, pushRotate: se, pushMatrix: _t, usePostEffect: Vt, makeCanvas: wn, debug: re, scene: Ks, go: Ys, onSceneLeave: Ws, addLevel: Qs, getData: Xs, setData: ar, download: Xt, downloadJSON: Dr, downloadText: kn, downloadBlob: Nn, plug: ur, ASCII_CHARS: zr, canvas: y2.canvas, addKaboom: ui, LEFT: v.LEFT, RIGHT: v.RIGHT, UP: v.UP, DOWN: v.DOWN, RED: W.RED, GREEN: W.GREEN, BLUE: W.BLUE, YELLOW: W.YELLOW, MAGENTA: W.MAGENTA, CYAN: W.CYAN, WHITE: W.WHITE, BLACK: W.BLACK, quit: bi, Event: be, EventHandler: Ne, EventController: ke };
+    if (n14.plugins && n14.plugins.forEach(ur), n14.global !== false)
       for (let t in Ze)
         window[t] = Ze[t];
-    return n13.focus !== false && y.canvas.focus(), Ze;
+    return n14.focus !== false && y2.canvas.focus(), Ze;
   }, "default");
 
-  // src/util.js
+  // ../kaboom-extra/dist/kaboom-extra.mjs
+  var u = Object.defineProperty;
+  var n13 = (o, e) => u(o, "name", { value: e, configurable: true });
+  function a(o) {
+    let e = [], r = "", i2 = o.add;
+    return { layers(t, s) {
+      e = t, r = s ?? t[0];
+    }, layer(t) {
+      return { id: "layer", add() {
+        if (e.indexOf(t) == -1)
+          throw new Error(`no layer "${t}"`);
+        let s = e.indexOf(t);
+        this.z = s * 1e3 + (this.userZ ?? 0);
+      }, inspect() {
+        return t;
+      } };
+    }, z(t) {
+      return { id: "z", userZ: t };
+    }, add(t) {
+      if (e.length == 0)
+        return i2(t);
+      let s = i2(t);
+      return s.use(this.layer(r)), s;
+    } };
+  }
+  n13(a, "layerPlugin");
+  function y(o) {
+    return { areKeysPressed(e) {
+      for (let r of e)
+        if (o.isKeyPressed(r))
+          return true;
+      return false;
+    }, areKeysDown(e) {
+      for (let r of e)
+        if (o.isKeyDown(r))
+          return true;
+      return false;
+    }, areKeysReleased(e) {
+      for (let r of e)
+        if (o.isKeyReleased(r))
+          return true;
+      return false;
+    }, onKeysPressed(e, r) {
+      return o.onUpdate(() => {
+        this.areKeysPressed(e) && r();
+      });
+    }, onKeysDown(e, r) {
+      return o.onUpdate(() => {
+        this.areKeysDown(e) && r();
+      });
+    }, onKeysReleased(e, r) {
+      return o.onUpdate(() => {
+        this.areKeysReleased(e) && r();
+      });
+    } };
+  }
+  n13(y, "moreKeysPlugin");
+  var x = { layerPlugin: a, moreKeysPlugin: y };
+
+  // src/classes/gameData.ts
+  var GameData = class {
+    debug;
+    songs;
+    player;
+    settings;
+    constructor() {
+      this.debug = true;
+      this.songs = [];
+      this.settings = k.getData("settings") || {
+        demoMusic: true,
+        volume: 1
+      };
+      this.player = k.getData("player") || {
+        skin: "bean",
+        sword: "sword"
+      };
+    }
+    setSetting(key, value) {
+      this.settings[key] = value;
+      k.setData("settings", this.settings);
+    }
+    setPlayerSetting(key, value) {
+      this.player[key] = value;
+      k.debug.log(`player ${key} set to ${value}`);
+      k.setData("player", this.player);
+    }
+  };
+
+  // src/util.ts
+  var import_tja = __toESM(require_dist());
   function waitMs(ms, action) {
     const msToSec = ms / 1e3;
     k.wait(msToSec, action);
   }
+  function doubleTween(from, to, duration, setValue, easeFunc) {
+    k.tween(from, to, duration, (value) => {
+      setValue(value);
+    }, easeFunc).onEnd(() => {
+      k.tween(to, from, duration, (value) => {
+        setValue(value);
+      }, easeFunc);
+    });
+  }
+  function padlZero(str, len) {
+    return str.padStart(len, "0");
+  }
+  function complexAdd(obj, parent, comps) {
+    let parentObj = parent ?? k;
+    const newObj = parentObj.add(obj);
+    if (comps) {
+      for (const component of comps) {
+        newObj.use(component);
+      }
+    }
+    return newObj;
+  }
+  function loadTJA(tjaPath, remote) {
+    return k.load(new Promise((resolve, reject) => {
+      fetch(tjaPath).then((response) => {
+        return response.text();
+      }).then(async (text) => {
+        try {
+          const song = import_tja.TJAParser.parse(text);
+          const commands = song.courses[0].singleCourse.getCommands();
+          const chart = commands.toString().replace("#START,", "").replace(",#END", "");
+          const soungCourses = [];
+          song.courses.forEach((course) => {
+            soungCourses.push({
+              difficulty: course.stars,
+              chart: course.singleCourse.getCommands().toString().replace("#START,", "").replace(",#END", "")
+            });
+          });
+          if (!song.wave)
+            return reject("No sound file found");
+          if (!song.title)
+            return reject("No title found");
+          if (!song.subtitle)
+            return reject("No subtitle found");
+          if (!song.genre)
+            return reject("No genre found");
+          if (!song.bpm)
+            return reject("No BPM found");
+          const soundPath = remote ? song.wave : `sounds/music/${song.wave}`;
+          await k.loadSound(song.wave.slice(0, -3), soundPath);
+          gameData.songs.push({
+            title: song.title,
+            subtitle: song.subtitle,
+            genre: song.genre,
+            bpm: song.bpm,
+            offset: song.offset,
+            demoStart: song.demoStart,
+            chart,
+            sound: song.wave.slice(0, -3),
+            courses: soungCourses
+          });
+          resolve(song);
+        } catch (e) {
+          reject("Error parsing TJA file");
+        }
+      });
+    }));
+  }
 
-  // src/scene_game.js
-  var noteVel = 400;
-  var gameScene = () => k.scene("game", (songData) => {
-    const notes = [];
-    let playingAudio;
-    let gameData = {
-      score: 0,
-      combo: 0,
-      noteIndex: 0,
-      oldestNote: null
-    };
-    k.add([
-      k.pos(0),
-      k.rect(k.width(), k.height()),
-      k.color("ee8fcb")
-    ]);
-    const player = k.add([
+  // src/loader.ts
+  function loadAssets() {
+    k.loadSprite("logo", "sprites/images/logo.png");
+    k.loadSprite("star", "sprites/images/star.png");
+    k.loadSprite("sword", "sprites/sword.png");
+    k.loadSprite("sword_cut", "sprites/sword_cut.png");
+    k.loadSprite("apple_break", "sprites/apple_break.png");
+    k.loadAseprite("apple", "sprites/apple.png", "sprites/apple.json");
+    k.loadAseprite("green_apple", "sprites/green_apple.png", "sprites/green_apple.json");
+    k.loadAseprite("note_single", "sprites/notes_skin/note_single.png", "sprites/notes_skin/note_single.json");
+    k.loadSprite("bean", "sprites/players_skin/bean.png");
+    k.loadSprite("bag", "sprites/players_skin/bag.png");
+    k.loadSprite("bobo", "sprites/players_skin/bobo.png");
+    k.loadSprite("egg", "sprites/players_skin/egg.png");
+    k.loadSprite("pineapple", "sprites/players_skin/pineapple.png");
+    k.loadSound("slice", "sounds/effects/slice.mp3");
+    k.loadSound("metronome", "sounds/effects/metronome.wav");
+    k.loadSound("michelle", "sounds/music/michelle.mp3");
+    k.loadSound("Mus_ex", "sounds/music/death_of_glamour.ogg");
+    k.loadSound("snow_halation", "sounds/music/snow_halation.ogg");
+    loadTJA("charts/koi_no_mahou.tja");
+    loadTJA("charts/Gurenge.tja");
+    loadTJA("charts/Heartache.tja");
+    loadTJA("charts/Snow halation.tja");
+    k.loadBitmapFont("happy", "sprites/happy_28x36.png", 28, 36);
+    k.onLoad(() => {
+      k.go("click");
+    });
+  }
+
+  // src/classes/playData.ts
+  var PlayData = class {
+    score = 0;
+    combo = 0;
+    highScore = 0;
+    noteIndex = 0;
+    oldestNote = null;
+  };
+
+  // src/objects/game/obj_player.ts
+  var playerObj = () => {
+    const player = k.make([
       k.pos(k.center()),
-      k.z(100),
+      k.layer("player"),
       k.anchor("center"),
-      k.sprite("bean")
+      k.sprite(gameData.player.skin)
     ]);
-    const sep = 60;
-    const swordAnimationPoints = {
-      "0": {
-        "first": {
-          "start": {
-            pos: k.vec2(-50, 0),
-            angle: -20
-          },
-          "end": {
-            pos: k.vec2(-30, 20),
-            angle: -94
-          }
-        },
-        "second": {
-          "start": {
-            pos: k.vec2(-70, 0),
-            angle: 0
-          },
-          "end": {
-            pos: k.vec2(5, 20),
-            angle: -120
-          }
-        }
-      },
-      "1": {
-        "first": {
-          "start": {
-            pos: k.vec2(-10, 0),
-            angle: -43
-          },
-          "end": {
-            pos: k.vec2(10, -60),
-            angle: 43
-          }
-        },
-        "second": {
-          "start": {
-            pos: k.vec2(-10, 0),
-            angle: 43
-          },
-          "end": {
-            pos: k.vec2(10, -60),
-            angle: -43
-          }
-        }
-      },
-      "2": {
-        "first": {
-          "start": {
-            pos: k.vec2(50, 0),
-            angle: 20
-          },
-          "end": {
-            pos: k.vec2(30, 20),
-            angle: 94
-          }
-        },
-        "second": {
-          "start": {
-            pos: k.vec2(70, 0),
-            angle: 0
-          },
-          "end": {
-            pos: k.vec2(-5, 20),
-            angle: 120
-          }
+    return player;
+  };
+
+  // src/objects/game/obj_background.ts
+  var backgroundObj = (color) => {
+    const background = k.make([
+      k.layer("background"),
+      k.rect(k.width(), k.height()),
+      k.color(k.Color.fromHex("#ee8fcb"))
+    ]);
+    return background;
+  };
+
+  // src/components/comp_tweenAnim.ts
+  function tweenAnim(anim, time = 0.1) {
+    return {
+      id: "tweenAnim",
+      playTAnim(animName) {
+        const animEntry = anim[animName];
+        const animKeys = Object.keys(animEntry.start);
+        for (const animKey of animKeys) {
+          k.tween(animEntry.start[animKey], animEntry.end[animKey], time, (v2) => {
+            this[animKey] = v2;
+          }, k.easings.easeInOutCubic);
         }
       }
     };
-    const sword = player.add([
+  }
+
+  // src/animations/anim_sword.ts
+  var swordAnimation = () => {
+    return {
+      "0first": {
+        "start": {
+          pos: k.vec2(-50, 0),
+          angle: -20
+        },
+        "end": {
+          pos: k.vec2(-30, 20),
+          angle: -94
+        }
+      },
+      "0second": {
+        "start": {
+          pos: k.vec2(-70, 0),
+          angle: 0
+        },
+        "end": {
+          pos: k.vec2(5, 20),
+          angle: -120
+        }
+      },
+      "1first": {
+        "start": {
+          pos: k.vec2(-10, 0),
+          angle: -43
+        },
+        "end": {
+          pos: k.vec2(10, -60),
+          angle: 43
+        }
+      },
+      "1second": {
+        "start": {
+          pos: k.vec2(-10, 0),
+          angle: 43
+        },
+        "end": {
+          pos: k.vec2(10, -60),
+          angle: -43
+        }
+      },
+      "2first": {
+        "start": {
+          pos: k.vec2(50, 0),
+          angle: 20
+        },
+        "end": {
+          pos: k.vec2(30, 20),
+          angle: 94
+        }
+      },
+      "2second": {
+        "start": {
+          pos: k.vec2(70, 0),
+          angle: 0
+        },
+        "end": {
+          pos: k.vec2(-5, 20),
+          angle: 120
+        }
+      }
+    };
+  };
+
+  // src/objects/game/obj_sword.ts
+  var swordObj = () => {
+    return k.make([
       k.pos(-20, 20),
-      k.z(100),
       k.rotate(90),
+      k.layer("sword"),
       k.anchor(k.vec2(0, 0.8)),
       k.sprite("sword"),
-      k.area(),
+      tweenAnim(swordAnimation(), 0.1),
       "sword",
       {
-        lastPoint: null,
+        lastRail: null,
         variantUsed: true,
-        pointStatus: "start",
-        hit(point) {
-          if (this.lastPoint !== point)
+        hit(rail) {
+          if (this.lastRail !== rail)
             this.variantUsed = true;
-          const swordAnimationPoint = swordAnimationPoints[point][this.variantUsed ? "first" : "second"];
-          k.tween(swordAnimationPoint.start.angle, swordAnimationPoint.end.angle, 0.1, (v2) => {
-            sword.angle = v2;
-          }, k.easings.easeInOutCubic);
-          k.tween(swordAnimationPoint.start.pos, swordAnimationPoint.end.pos, 0.1, (v2) => {
-            sword.pos = v2;
-          }, k.easings.easeInOutCubic);
-          this.lastPoint = point;
+          this.playTAnim(String(rail) + (this.variantUsed ? "first" : "second"));
+          this.lastRail = rail;
           this.variantUsed = !this.variantUsed;
         }
       }
     ]);
-    const actionPointSize = 80;
+  };
+
+  // src/objects/game/obj_note.ts
+  var directionByRail = (rail) => {
+    return {
+      "0": k.RIGHT,
+      "1": k.DOWN,
+      "2": k.LEFT
+    }[rail];
+  };
+  var valuesByRail = (rail) => {
+    return {
+      "0": {
+        anchor: "right",
+        dir: k.vec2(-50, 0)
+      },
+      "1": {
+        anchor: "bot",
+        dir: k.vec2(0, -50)
+      },
+      "2": {
+        anchor: "left",
+        dir: k.vec2(50, 0)
+      }
+    }[rail];
+  };
+  var noteStates = [
+    "active",
+    "hit",
+    "miss",
+    "destroy"
+  ];
+  function noteSingleObj(rail, vel, pos) {
+    const note = k.make([
+      k.pos(pos),
+      k.layer("note"),
+      k.anchor(k.vec2(0, 0.28)),
+      k.sprite("note_single"),
+      k.area(),
+      k.move(directionByRail(rail), vel),
+      k.opacity(1),
+      k.state("active", noteStates),
+      "note",
+      {
+        type: "single",
+        rail
+      }
+    ]);
+    note.onStateEnter("hit", () => {
+      k.play("slice", { loop: false, volume: 0.5 });
+      note.play("hit", { loop: false });
+      note.enterState("miss");
+    });
+    note.onStateEnter("miss", () => {
+      note.enterState("destroy");
+    });
+    note.onStateEnter("destroy", () => {
+      note.unuse("move");
+      note.use(k.lifespan(0.1, { fade: 0.1 }));
+    });
+    return note;
+  }
+  function noteSliderObj(rail, vel, pos) {
+    let notes = [];
+    let destroyedIndex = 0;
+    let removingNote = false;
+    const slider = k.make([
+      k.pos(pos),
+      k.layer("note"),
+      k.move(directionByRail(rail), vel),
+      k.opacity(1),
+      k.anchor(valuesByRail(rail).anchor),
+      k.area({ shape: new k.Rect(k.vec2(0), 0, 0) }),
+      k.state("active", noteStates),
+      "note",
+      {
+        type: "slider",
+        notes: [],
+        notesIndex: 0,
+        active: true,
+        endedCreation: false,
+        addNote() {
+          const subnote = k.add([
+            k.pos(this.pos.add(valuesByRail(rail).dir.scale(this.notesIndex))),
+            k.layer("note"),
+            k.anchor(k.vec2(0, 0.28)),
+            k.sprite("green_apple"),
+            k.area(),
+            k.move(directionByRail(rail), vel),
+            k.opacity(1),
+            k.state("active", noteStates),
+            "subnote",
+            {
+              rail
+            }
+          ]);
+          subnote.onStateEnter("hit", () => {
+            k.play("slice", { loop: false, volume: 0.5 });
+            subnote.unuse("move");
+            subnote.play("cut", { loop: false });
+            subnote.enterState("destroy");
+          });
+          subnote.onStateEnter("miss", () => {
+            subnote.use(k.move(k.DOWN, 100));
+            subnote.enterState("destroy");
+          });
+          subnote.onStateEnter("destroy", () => {
+            subnote.use(k.lifespan(0.1, { fade: 0.1 }));
+          });
+          subnote.onStateUpdate("destroy", () => {
+            if (rail === 0) {
+              if (notes?.[destroyedIndex]?.pos?.x >= this?.pos?.x) {
+                removingNote = false;
+              }
+            }
+            if (rail === 1) {
+              if (notes?.[destroyedIndex]?.pos?.y >= this?.pos?.y) {
+                removingNote = false;
+              }
+            }
+            if (rail === 2) {
+              if (notes?.[destroyedIndex]?.pos?.x <= this?.pos?.x) {
+                removingNote = false;
+              }
+            }
+          });
+          this.updateArea();
+          this.notesIndex++;
+          notes.push(subnote);
+        },
+        updateArea() {
+          if (rail === 0) {
+            this.use(k.area({ shape: new k.Rect(k.vec2(30, 0), 50 * (this.notesIndex + 1), 63) }));
+          }
+          if (rail === 1) {
+            this.use(k.area({ shape: new k.Rect(k.vec2(0, 30), 63, 50 * (this.notesIndex + 1)) }));
+          }
+          if (rail === 2) {
+            this.use(k.area({ shape: new k.Rect(k.vec2(-30, 0), 50 * (this.notesIndex + 1), 63) }));
+          }
+        },
+        end() {
+          this.endedCreation = true;
+        }
+      }
+    ]);
+    slider.onStateEnter("active", () => {
+      const addLoop = k.loop(50 / vel, () => {
+        if (slider.endedCreation)
+          addLoop.cancel();
+        slider.addNote();
+      });
+    });
+    slider.onStateEnter("hit", () => {
+      slider.unuse("move");
+    });
+    slider.onStateUpdate("hit", () => {
+      if (removingNote)
+        return;
+      notes[destroyedIndex]?.enterState("hit");
+      removingNote = true;
+      destroyedIndex++;
+    });
+    slider.onStateEnter("destroy", () => {
+      slider.destroy();
+      k.get("subnote").forEach((subnote) => {
+        subnote.enterState("destroy");
+      });
+    });
+    slider.onStateEnter("miss", () => {
+      slider.destroy();
+      k.get("subnote").forEach((subnote) => {
+        subnote.enterState("miss");
+      });
+    });
+    return slider;
+  }
+
+  // src/objects/game/obj_play_info.ts
+  var playInfoObj = () => {
+    const playInfo = k.make([
+      k.pos(k.center().x, k.height() - 200),
+      k.anchor("top"),
+      k.layer("ui"),
+      k.rect(k.width(), 200),
+      k.color(k.Color.fromHex("#1f102a")),
+      {
+        setCombo(amount) {
+          combo.text = "x" + padlZero(String(amount), 3);
+        },
+        setScore(amount) {
+          score.text = padlZero(String(amount), 8);
+        }
+      }
+    ]);
+    const score = playInfo.add([
+      k.pos(k.center().x - 10, 20 + 10),
+      k.anchor("right"),
+      k.text(padlZero(String(0), 8), { size: 40 })
+    ]);
+    const combo = playInfo.add([
+      k.pos(score.pos.add(k.vec2(0, 40))),
+      k.anchor("right"),
+      k.text("x" + padlZero(String(0), 3), { size: 28 })
+    ]);
+    return playInfo;
+  };
+
+  // src/objects/game/obj_hit_point.ts
+  var hitPointSize = 60;
+  var hitPointObj = (pos) => {
+    const noteHitPoint = k.make([
+      k.pos(pos),
+      k.z(50),
+      k.anchor("center"),
+      k.circle(20),
+      k.color(k.BLACK),
+      k.opacity(0.1),
+      k.area({ shape: new k.Rect(k.vec2(0), hitPointSize, hitPointSize) }),
+      {
+        greatHit() {
+          for (let i2 = 0; i2 < 3; i2++) {
+            const hitParticle = this.add([
+              k.pos(),
+              k.anchor("center"),
+              k.scale(0.5),
+              k.sprite("star"),
+              k.lifespan(0.2, { fade: 0.2 })
+            ]);
+            let gotoX = 0;
+            if (i2 === 0)
+              gotoX = -100;
+            if (i2 === 1)
+              gotoX = 0;
+            if (i2 === 2)
+              gotoX = 100;
+            doubleTween(hitParticle.pos.x, gotoX, 0.2, (v2) => hitParticle.pos.x = v2, k.easings.linear);
+            doubleTween(hitParticle.pos.y, hitParticle.pos.y + -100, 0.2, (v2) => hitParticle.pos.y = v2, k.easings.linear);
+          }
+        }
+      }
+    ]);
+    return noteHitPoint;
+  };
+
+  // src/scenes/scene_game.ts
+  var loadGameScene = () => k.scene("game", (songData) => {
+    const playData = new PlayData();
+    const noteStack = [];
+    const noteVel = 400;
+    const hitPointSize2 = 60;
+    let playingAudio = null;
+    k.layers([
+      "background",
+      "note",
+      "player",
+      "sword",
+      "default",
+      "ui"
+    ], "default");
+    const background = k.add(backgroundObj("#ee8fcb"));
+    const player = k.add(playerObj());
+    const sword = player.add(swordObj());
+    const playInfo = k.add(playInfoObj());
+    const songTitle = k.add([
+      k.pos(k.center()),
+      k.anchor("center"),
+      k.text("", { size: 26 }),
+      k.lifespan(1, { fade: 1 })
+    ]);
+    const songSubtitle = songTitle.add([
+      k.pos(0, 100),
+      k.anchor("center"),
+      k.text("", { size: 22 })
+    ]);
     const noteHitPoints = k.add([
       k.pos(k.center()),
       k.anchor("center")
     ]);
-    function addNoteHitPoint(pos, point) {
-      const noteHitPoint = noteHitPoints.add([
-        k.pos(pos),
-        k.z(50),
-        k.anchor("center"),
-        k.circle(20),
-        k.color(k.BLACK),
-        k.opacity(0.1),
-        k.area({ shape: new Rect(vec2(0), actionPointSize, actionPointSize) })
-      ]);
-      noteHitPoint.add([
-        k.pos(),
-        {
-          cradius: 20,
-          copacity: 0,
-          playNiceAnim() {
-            this.copacity = 0.2;
-            k.tween(this.cradius, 30, 0.1, (v2) => {
-              this.cradius = v2;
-            }).onEnd(() => {
-              this.copacity = 0;
-              k.tween(this.cradius, 20, 0.1, (v2) => {
-                this.cradius = v2;
-              });
-            });
-          },
-          draw() {
-            k.drawCircle({
-              radius: this.cradius,
-              opacity: this.copacity,
-              outline: {
-                color: k.BLACK,
-                width: 4
-              },
-              fill: false
-            });
-          }
-        },
-        "corner"
-      ]);
-    }
-    addNoteHitPoint(k.vec2(-100, 0), 0);
-    addNoteHitPoint(k.vec2(0, -100), 1);
-    addNoteHitPoint(k.vec2(100, 0), 2);
-    const spawnPoints = k.add([
+    noteHitPoints.add(hitPointObj(k.vec2(-100, 0)));
+    noteHitPoints.add(hitPointObj(k.vec2(0, -100)));
+    noteHitPoints.add(hitPointObj(k.vec2(100, 0)));
+    const railPoints = k.add([
       k.pos(k.center()),
       k.anchor("center")
     ]);
-    spawnPoints.add([
+    railPoints.add([
       k.pos(-k.width() / 2, 0),
       k.anchor("center")
     ]);
-    spawnPoints.add([
+    railPoints.add([
       k.pos(0, -k.height() / 2),
       k.anchor("center")
     ]);
-    spawnPoints.add([
+    railPoints.add([
       k.pos(k.width() / 2, 0),
       k.anchor("center")
     ]);
-    const score = k.add([
-      k.pos(k.center().x, 20),
-      k.anchor("top"),
-      k.text("0", { size: 40 })
-    ]);
-    function addScore(amount, message = "") {
+    function addScore(amount, message, rail) {
+      const hitPoint = noteHitPoints.children[rail];
       let comboBonus = 0;
-      if (combo.comboBonus >= 10)
+      if (playData.combo >= 10)
         comboBonus = 10;
-      gameData.score += amount + comboBonus;
-      score.text = gameData.score;
+      if (playData.combo >= 20)
+        comboBonus = 20;
+      if (playData.combo >= 50)
+        comboBonus = 50;
+      if (playData.combo >= 100)
+        comboBonus = 100;
+      if (playData.combo >= 200)
+        comboBonus = 200;
+      if (playData.combo >= 500)
+        comboBonus = 500;
+      if (playData.combo >= 1e3)
+        comboBonus = 1e3;
+      playData.score += amount + comboBonus;
+      playInfo.setScore(playData.score);
       k.add([
-        k.pos(k.center().x, 90),
+        k.pos(hitPoint.worldPos().add(k.vec2(0, -40))),
         k.anchor("top"),
-        k.text(message, { size: 28, align: "right" }),
+        k.text(message, { size: 18, align: "center" }),
         k.move(k.UP, 100),
         k.opacity(),
-        k.lifespan(0.4, { fade: 1 })
+        k.lifespan(0.4, { fade: 0.4 })
       ]);
     }
-    const combo = k.add([
-      k.pos(k.center().x, 60),
-      k.anchor("top"),
-      k.text("x0", { size: 28 })
-    ]);
     function addCombo(amount) {
-      gameData.combo += amount;
-      combo.text = "x" + gameData.combo;
+      playData.combo += amount;
+      playInfo.setCombo(playData.combo);
     }
     function resetCombo() {
-      gameData.combo = 0;
-      gameData.oldestNote = notes[gameData.noteIndex];
-      combo.text = "x" + gameData.combo;
+      playData.combo = 0;
+      playInfo.setCombo(playData.combo);
+      k.shake(1);
     }
-    const songInfo = k.add([
-      k.pos(k.center().x, k.height() - 20),
-      k.anchor("bot"),
-      k.text("", { size: 22 })
-    ]);
-    function tryHitNote(point) {
-      const hitPoint = noteHitPoints.children[point];
-      k.get("note").forEach((note) => {
-        if (hitPoint.isColliding(note)) {
-          note.play("cut", { loop: false });
-          note.unuse("move");
-          note.use(lifespan(0.1, { fade: 0.1 }));
-          note.removeNote();
-          const noteDis = note.worldPos().dist(hitPoint.worldPos());
-          if (noteDis < 10) {
-            addScore(300, "Great!");
-            hitPoint.get("corner")[0].playNiceAnim();
-          } else {
-            addScore(100, "Good");
-          }
-          if (note?.id === gameData.oldestNote?.id) {
-            addCombo(1);
-          } else {
-            resetCombo();
-          }
-          gameData.noteIndex++;
-          gameData.oldestNote = notes[gameData.noteIndex];
+    function registerMiss(rail) {
+      addScore(0, "Miss", rail);
+      playData.noteIndex++;
+      playData.oldestNote = noteStack[playData.noteIndex];
+    }
+    function onHitRail(rail) {
+      const hitPoint = noteHitPoints.children[rail];
+      const hittedNote = k.get("note").filter((note) => hitPoint.isColliding(note) && note.state === "active")[0];
+      sword.hit(rail);
+      if (gameData.debug) {
+        hitPoint.use(k.color(k.RED));
+        hitPoint.use(k.opacity(1));
+        const cleanUp = k.wait(0.05, () => {
+          hitPoint.use(k.color(k.BLACK));
+          hitPoint.use(k.opacity(0.1));
+          cleanUp.cancel();
+        });
+      }
+      if (!hittedNote)
+        return;
+      hittedNote.enterState("hit");
+      const noteDis = hittedNote.worldPos().dist(hitPoint.worldPos());
+      if (noteDis > 30) {
+        if (rail === 0) {
+          if (hittedNote.worldPos().x > hitPoint.worldPos().x)
+            addScore(30, "Late", rail);
+          else
+            addScore(30, "Early", rail);
+        } else if (rail === 1) {
+          if (hittedNote.worldPos().y < hitPoint.worldPos().y)
+            addScore(30, "Early", rail);
+          else
+            addScore(30, "Late", rail);
+        } else if (rail === 2) {
+          if (hittedNote.worldPos().x < hitPoint.worldPos().x)
+            addScore(30, "Late", rail);
+          else
+            addScore(30, "Early", rail);
+        }
+      } else if (noteDis < 15) {
+        addScore(100, "Great!", rail);
+        hitPoint.greatHit();
+      } else {
+        addScore(50, "Good", rail);
+      }
+      ;
+      if (hittedNote?.id === playData.oldestNote?.id)
+        addCombo(1);
+      else
+        resetCombo();
+      playData.noteIndex++;
+      playData.oldestNote = noteStack[playData.noteIndex];
+    }
+    function onHitUpdate(rail) {
+    }
+    function onHitEnd(rail) {
+      const hitPoint = noteHitPoints.children[rail];
+      const unhittedNote = k.get("note").filter((note) => hitPoint.isColliding(note))[0];
+      if (!unhittedNote)
+        return;
+      if (unhittedNote.type === "slider") {
+        unhittedNote.enterState("miss");
+      }
+    }
+    function addSingle(rail) {
+      const railPoint = railPoints.children[rail].worldPos();
+      const single = noteSingleObj(rail, noteVel, railPoint);
+      single.onUpdate(() => {
+        if (single.state === "active" && single.hasPoint(k.center())) {
+          single.enterState("miss");
+          registerMiss(rail);
         }
       });
-      sword.hit(point);
+      noteStack.push(single);
+      if (!playData.oldestNote)
+        playData.oldestNote = single;
+      k.add(single);
+      return single;
     }
-    function makeNote(point) {
-      const spawnPoint = spawnPoints.children[point];
-      const moveTo = {
-        "0": RIGHT,
-        "1": DOWN,
-        "2": LEFT
-      };
-      const note = k.make([
-        k.pos(spawnPoint.worldPos()),
-        k.z(50),
-        k.anchor(k.vec2(0, 0.28)),
-        k.sprite("apple"),
-        k.area(),
-        k.move(moveTo[point.toString()], noteVel),
-        k.opacity(1),
-        "note",
-        {
-          point,
-          removeNote() {
-            k.play("slice", { loop: false, volume: 0.5 });
-            k.add([
-              k.pos(note.worldPos()),
-              k.anchor("center"),
-              k.sprite("apple_break"),
-              k.move(k.vec2(moveTo[point.toString()].x * -1, point.toString() == "1" ? -1 : 1), 1e3),
-              k.opacity(),
-              k.lifespan(0.05, { fade: 0.05 })
-            ]);
-          }
-        }
-      ]);
-      note.onUpdate(() => {
-        if (note.hasPoint(k.center())) {
-          gameData.noteIndex++;
-          note.destroy();
-          resetCombo();
+    function addSlider(rail) {
+      const railPoint = railPoints.children[rail].worldPos();
+      const slider = noteSliderObj(rail, noteVel, railPoint);
+      slider.onUpdate(() => {
+        if (slider.active && slider.hasPoint(k.center())) {
+          slider.enterState("miss");
+          registerMiss(rail);
         }
       });
-      notes.push(note);
-      if (!gameData.oldestNote)
-        gameData.oldestNote = note;
-      return note;
-    }
-    function addTempoNotes() {
-      const tempoNoteComps = (pos, angle, dir) => [
-        k.pos(pos),
-        k.anchor("center"),
-        k.rotate(angle),
-        k.rect(2, 80),
-        k.move(dir, noteVel),
-        k.opacity(1),
-        k.lifespan((k.width() / 2 - 100) / noteVel),
-        "tempo_note"
-      ];
-      k.add(tempoNoteComps(spawnPoints.children[0].worldPos(), 0, RIGHT));
-      k.add(tempoNoteComps(spawnPoints.children[1].worldPos(), 90, DOWN));
-      k.add(tempoNoteComps(spawnPoints.children[2].worldPos(), 0, LEFT));
+      noteStack.push(slider);
+      if (!playData.oldestNote)
+        playData.oldestNote = slider;
+      k.add(slider);
+      return slider;
     }
     function startSong(songData2) {
       const bpm = songData2.bpm;
       const bps = bpm / 60;
       const bpms = 1e3 / bps;
-      const msPerMeasure = bpms * 4;
+      const msPerMeasure = bpms * 4 / (4 / 4);
       const distanceOfPoint = (k.width() / 2 - 100) / noteVel;
-      songInfo.text = `${songData2.name} from ${songData2.artist}`;
+      songTitle.text = songData2.title;
+      songSubtitle.text = songData2.subtitle;
       k.wait(songData2.offset + distanceOfPoint, () => {
-        playingAudio = k.play(songData2.fileName);
+        playingAudio = k.play(songData2.sound);
       });
       k.wait(0, () => {
-        const measures = songData2.chart.trim().replace(/(\r\n|\n|\r)/gm, "").replace(/\s/g, "").split(",");
+        let curSlider = null;
+        const measures = songData2.chart.split(",,");
         measures.forEach((measure, mi) => {
           const chartNotes = measure.split("");
           const msPerNote = msPerMeasure / chartNotes.length;
           waitMs(msPerMeasure * mi, () => {
             chartNotes.forEach((note, i2) => {
-              if (note !== "0") {
-                const note2 = makeNote(parseInt(note) - 1);
+              const numberNote = Number(note);
+              if (numberNote === 0)
+                return;
+              else if (numberNote === 1 || numberNote === 2 || numberNote === 3) {
                 waitMs(msPerNote * i2, () => {
-                  k.add(note2);
+                  addSingle(numberNote - 1);
+                });
+              } else if (numberNote === 5 || numberNote === 6 || numberNote === 7) {
+                const sliderRail = numberNote - 5;
+                waitMs(msPerNote * i2, () => {
+                  curSlider = addSlider(sliderRail);
+                });
+              } else if (numberNote === 8) {
+                waitMs(msPerNote * (i2 - 1), () => {
+                  curSlider?.end();
                 });
               }
             });
@@ -4333,261 +7855,235 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
         });
       });
     }
+    function exitGame() {
+      playingAudio?.stop();
+      k.go("song_selection");
+    }
     k.onUpdate(() => {
-      if (k.isKeyPressed("left"))
-        tryHitNote(0);
-      if (k.isKeyPressed("up"))
-        tryHitNote(1);
-      if (k.isKeyPressed("right"))
-        tryHitNote(2);
-      if (k.isKeyPressed("escape")) {
-        playingAudio?.stop();
-        k.go("song_selection");
-      }
+      if (k.isKeyPressed("left") || k.isKeyPressed("a"))
+        onHitRail(0);
+      if (k.isKeyPressed("up") || k.isKeyPressed("w"))
+        onHitRail(1);
+      if (k.isKeyPressed("right") || k.isKeyPressed("d"))
+        onHitRail(2);
+      if (k.isKeyDown("left") || k.isKeyDown("a"))
+        onHitUpdate(0);
+      if (k.isKeyDown("up") || k.isKeyDown("a"))
+        onHitUpdate(1);
+      if (k.isKeyDown("right") || k.isKeyDown("a"))
+        onHitUpdate(2);
+      if (k.isKeyReleased("left") || k.isKeyReleased("a"))
+        onHitEnd(0);
+      if (k.isKeyReleased("up") || k.isKeyReleased("a"))
+        onHitEnd(1);
+      if (k.isKeyReleased("right") || k.isKeyReleased("a"))
+        onHitEnd(2);
+      if (k.isKeyPressed("escape"))
+        exitGame();
     });
     startSong(songData);
   });
 
-  // src/scene_song_selection.js
-  var deathByGlamour = {
-    "name": "Death by Glamour",
-    "fileName": "Mus_ex",
-    "offset": -0.13,
-    "artist": "Toby Fox",
-    "bpm": 148,
-    "demoStart": 60,
-    "chart": `
-0000000000000,
-323232,
-1001202120020010,
-0011200020120000,
-1001202120020010,
-0011200020020000,
-1001201120120010,
-0011201110120000,
-1001201220120010,
-30,
-112010,
-300,
-300,
-2000,
-100010001000200200200200100100100000000000000000
-    `
+  // src/objects/ui/obj_song_box.ts
+  var songBoxHeight = 100;
+  var songBox = (songData) => {
+    const songBox2 = k.make([
+      k.pos(),
+      k.anchor("center"),
+      "song",
+      {
+        songData,
+        justSelected: false,
+        justDeselected: false,
+        select() {
+          k.tween(this.pos.x, 40, 0.2, (v2) => {
+            this.pos.x = v2;
+          }, k.easings.easeInOutQuad);
+          this.justSelected = true;
+        },
+        deselect() {
+          k.tween(this.pos.x, 0, 0.2, (v2) => {
+            this.pos.x = v2;
+          }, k.easings.easeInOutQuad);
+          this.justDeselected = true;
+        },
+        onSelect(action) {
+          return k.onUpdate(() => {
+            if (this.justSelected) {
+              action(this.songData);
+              this.justSelected = false;
+            }
+            ;
+          });
+        },
+        onDeselect(action) {
+          return k.onUpdate(() => {
+            if (this.justDeselected) {
+              action(this.songData);
+              this.justDeselected = false;
+            }
+            ;
+          });
+        }
+      }
+    ]);
+    songBox2.add([
+      k.pos(),
+      k.rect(400, songBoxHeight),
+      k.color(k.Color.fromHex("#873e84")),
+      k.opacity(0.5)
+    ]);
+    songBox2.add([
+      k.pos(10, 10),
+      k.text(songData.title, { size: 20 })
+    ]);
+    songBox2.add([
+      k.pos(10, 30),
+      k.text(songData.subtitle, { size: 15 })
+    ]);
+    songBox2.add([
+      k.pos(10, 70),
+      k.text("*".repeat(songData.courses[0].difficulty), { size: 20 })
+    ]);
+    return songBox2;
   };
-  var koiNoMahou = {
-    "name": "Koi no Mahou",
-    "fileName": "koi_no_mahou",
-    "artist": "ICHIKO",
-    "bpm": 152,
-    "offset": 1.38,
-    "demoStart": 56.464,
-    "chart": `
-    ,
-    1331,
-    3130,
-    0111,
-    1111,
-    1112,
-    2211,
-    3001,
-    1110,
-    2220,
-    1212,
-    1212,
-    1212,
-    30030030,
-    0,
-    0,
-    0,
-    1111,
-    1012,
-    1202,
-    1212,
-    0121,
-    1111,
-    0111,
-    10020000,
-    1112,
-    2211,
-    30000002,
-    1111,
-    1111,
-    2121,
-    00000002,
-    1111,
-    1111,
-    2211,
-    1111,
-    0,
-    1101,
-    1101,
-    1111,
-    1212,
-    1002,
-    1202,
-    1101,
-    2222,
-    3002,
-    1201,
-    1120,
-    1221,
-    3011,
-    1210,
-    1211,
-    2222,
-    3333,
-    2233,
-    0,
-    ,       
-    `
-  };
-  var snowHalation = {
-    "name": "Snow Halation",
-    "fileName": "snow_halation",
-    "artist": "u's",
-    "bpm": 173,
-    "offset": -12.596,
-    "demoStart": 51.434,
-    "chart": `
-1,
-3,
-1,
-,
-3,
-1,
-3,
-22001100,
-12,
-1210,
-2121,
-,
-11,
-1120,
-3,
-1000030001002010030,
-10003001,
-0320,
-30002001,
-0120,
-1313,
-10320000,
-1313,
-10220000,
-10101022,
-01010105,
-000000000000000000000000000000000008000000000000,
-30030000,
-00101022,
-0111,
-1500,
-000000000000000000000008000000000000000000000000,
-00101022,
-00000011,
-10022005,
-000000000000000000000000000000000008000000000000,
-00101022,
-0111,
-1500,
-000000000000000000000008000000000000000000000000,
-00101022,
-00000011,
-10022005,
-000000000000000000000000000000000008000000000000,
-0111,
-10220000,
-00111010,
-11220000,
-00111100,
-3,
-12,
-1120,
-12,
-1120,
-12,
-1120,
-12,
-10040000,
-1111,
-1122,
-1111,
-2211,
-1111,
-1122,
-1111,
-33003300,
-0400,
-`
-  };
-  var songs = [koiNoMahou, snowHalation, deathByGlamour];
-  var sceneSongSelection = () => k.scene("song_selection", () => {
+
+  // src/scenes/scene_song_selection.ts
+  var loadSongSelectionScene = () => k.scene("song_selection", () => {
+    const songDatas = gameData.songs;
     let selectedSong = 0;
+    let demoSongVolume = 0;
     let demoSong = null;
     k.add([
-      k.pos(0),
       k.rect(k.width(), k.height()),
-      k.color("ee8fcb")
-    ]);
-    k.add([
-      k.pos(k.center().x, 90),
-      k.anchor("center"),
-      k.text("AppleBeat", { size: 32 })
+      k.color(k.Color.fromHex("#ee8fcb"))
     ]);
     k.add([
       k.pos(10, k.height() - 10),
       k.anchor("botleft"),
       k.text("AppleBeat 1.1.0 - 12/11/2023 - dev by lajbel", { size: 18 })
     ]);
-    songs.forEach((song, i2) => {
-      k.add([
-        k.pos(40, 290 + i2 * 40),
-        k.anchor("left"),
-        k.text(song.name, { size: 28, align: "left" }),
-        "song",
-        {
-          songData: song,
-          select() {
-            demoSong = k.play(song.fileName, { loop: true, volume: 0.5, seek: this.songData.demoStart });
-            k.tween(this.pos.x, 70, 0.2, (v2) => {
-              this.pos.x = v2;
-            }, k.easings.easeInOutQuad);
-          },
-          unselect() {
-            demoSong?.stop();
-            k.tween(this.pos.x, 40, 0.2, (v2) => {
-              this.pos.x = v2;
-            }, k.easings.easeInOutQuad);
-          }
-        }
-      ]);
-    });
-    const arrow = k.add([
-      k.pos(k.center().x + 200, 290),
-      k.anchor("center"),
-      k.text("<"),
-      "arrow"
+    k.add([
+      k.pos(k.width() / 2, 10),
+      k.anchor("top"),
+      k.text("Select a song!", { size: 32 })
     ]);
+    songDatas.forEach((songData, i2) => {
+      const songBoxObj = complexAdd(songBox(songData), null, [
+        k.pos(0, 80 + i2 * (100 + 20))
+      ]);
+      songBoxObj.onSelect((songData2) => {
+        demoSong = k.play(songData2.sound, { loop: true, volume: 0.5, seek: songData2.demoStart });
+      });
+    });
+    let menuKeys = ["up", "down", "w", "s"];
+    let menuKeysPressed = false;
+    k.onKeyPress((key) => {
+      if (!menuKeys.includes(key) && !menuKeysPressed)
+        return;
+      menuKeysPressed = true;
+      demoSong?.stop();
+      k.get("song")[selectedSong].deselect();
+      if (key === "down" || key === "s")
+        selectedSong = (selectedSong + 1) % songDatas.length;
+      if (key === "up" || key === "w")
+        selectedSong = (selectedSong - 1 + songDatas.length) % songDatas.length;
+      k.get("song")[selectedSong].select();
+      menuKeysPressed = false;
+    });
     k.onUpdate(() => {
-      if (k.isKeyPressed("down")) {
-        k.get("song")[selectedSong].unselect();
-        selectedSong = (selectedSong + 1) % songs.length;
-        k.get("song")[selectedSong].select();
-        arrow.pos = k.vec2(k.center().x + 200, 290 + selectedSong * 40);
-      }
-      if (k.isKeyPressed("up")) {
-        k.get("song")[selectedSong].unselect();
-        selectedSong = (selectedSong - 1 + songs.length) % songs.length;
-        k.get("song")[selectedSong].select();
-        arrow.pos = k.vec2(k.center().x + 200, 290 + selectedSong * 40);
-      }
       if (k.isKeyPressed("enter")) {
         demoSong?.stop();
-        k.go("game", songs[selectedSong]);
+        k.go("game", songDatas[selectedSong]);
       }
+      if (k.isKeyPressed("m")) {
+        gameData.setSetting("demoMusic", !gameData.settings.demoMusic);
+      }
+      if (k.isKeyPressed("1"))
+        gameData.setPlayerSetting("skin", "bean");
+      if (k.isKeyPressed("2"))
+        gameData.setPlayerSetting("skin", "bag");
+      if (k.isKeyPressed("3"))
+        gameData.setPlayerSetting("skin", "bobo");
+      if (k.isKeyPressed("4"))
+        gameData.setPlayerSetting("skin", "egg");
+      if (k.isKeyPressed("5"))
+        gameData.setPlayerSetting("skin", "pineapple");
+      demoSongVolume = gameData.settings.demoMusic ? 0.5 : 0;
+      if (demoSong?.volume)
+        demoSong.volume = demoSongVolume;
     });
     k.get("song")[selectedSong].select();
   });
 
-  // src/main.js
+  // src/scenes/scene_main_menu.ts
+  var loadMainMenuScene = () => k.scene("main_menu", () => {
+    k.add([
+      k.rect(k.width(), k.height()),
+      k.color(k.Color.fromHex("#ee8fcb"))
+    ]);
+    k.add([
+      k.sprite("logo"),
+      k.pos(k.width() / 2, 200),
+      k.anchor("center")
+    ]);
+    const menuOptions = {
+      "play": "song_selection",
+      "settings": "settings"
+    };
+    const menu = k.add([
+      k.pos(k.center())
+    ]);
+    Object.keys(menuOptions).forEach((option, i2) => {
+      menu.add([
+        k.pos(0, i2 * 50),
+        k.anchor("center"),
+        k.text(option, { size: 28 }),
+        k.color(k.Color.fromHex("#ffffff")),
+        k.anchor("center"),
+        k.area(),
+        k.state("active"),
+        {
+          option,
+          i: i2
+        }
+      ]);
+    });
+    let menuKeys = ["up", "down", "w", "s", "enter", "space"];
+    let selectedOption = 0;
+    k.onKeyPress((key) => {
+      if (!menuKeys.includes(key))
+        return;
+      if (key === "up" || key === "w")
+        selectedOption = (selectedOption - 1) % menu.children.length;
+      else if (key === "down" || key === "s")
+        selectedOption = (selectedOption + 1) % menu.children.length;
+      else if (key === "enter" || key === "space")
+        k.go(menuOptions[menu.children[selectedOption].option]);
+    });
+  });
+
+  // src/scenes/scene_click.ts
+  var loadClickScene = () => k.scene("click", () => {
+    k.add([
+      k.rect(k.width(), k.height()),
+      k.color(k.Color.fromHex("#000000"))
+    ]);
+    k.add([
+      k.pos(k.width() / 2, k.height() / 2),
+      k.text("Press ENTER for start", { size: 32 }),
+      k.anchor("center"),
+      k.color(k.Color.fromHex("#ffffff"))
+    ]);
+    k.onUpdate(() => {
+      if (k.isMousePressed() || k.isKeyPressed("enter") || k.isKeyPressed("space")) {
+        k.go("main_menu");
+      }
+    });
+  });
+
+  // src/main.ts
+  console.log(x, a);
   var k = zo({
     width: 720,
     height: 720,
@@ -4595,21 +8091,14 @@ vec4 frag(vec2 pos, vec2 uv, vec4 color, sampler2D tex) {
     letterbox: true,
     texFilter: "nearest",
     crisp: true,
-    font: "happy"
+    font: "happy",
+    background: [0, 0, 0],
+    plugins: [a]
   });
-  k.loadSprite("bean", "sprites/bean.png");
-  k.loadSprite("sword", "sprites/sword.png");
-  k.loadSprite("sword_cut", "sprites/sword_cut.png");
-  k.loadAseprite("apple", "sprites/apple.png", "sprites/apple.json");
-  k.loadSprite("apple_break", "sprites/apple_break.png");
-  k.loadSound("michelle", "sounds/music/michelle.mp3");
-  k.loadSound("Mus_ex", "sounds/music/death_of_glamour.ogg");
-  k.loadSound("koi_no_mahou", "sounds/music/koi_no_mahou.mp3");
-  k.loadSound("slice", "sounds/effects/slice.mp3");
-  k.loadSound("metronome", "sounds/effects/metronome.wav");
-  k.loadSound("snow_halation", "sounds/music/snow_halation.ogg");
-  k.loadBitmapFont("happy", "sprites/happy_28x36.png", 28, 36);
-  gameScene();
-  sceneSongSelection();
-  go("song_selection");
+  var gameData = new GameData();
+  loadAssets();
+  loadClickScene();
+  loadGameScene();
+  loadMainMenuScene();
+  loadSongSelectionScene();
 })();

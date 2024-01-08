@@ -1,6 +1,6 @@
 import { Anchor, AreaComp, GameObj, Vec2 } from "kaboom";
 import { k } from "../../main";
-import { Rail } from "../../types";
+import { Rail, NoteType } from "../../types";
 
 const directionByRail = (rail: Rail) => {
     return {
@@ -34,8 +34,17 @@ const noteStates = [
     "destroy",
 ]
 
+export function noteComp(type: NoteType, index: number, rail: Rail) {
+    return {
+        id: "note",
+        type,
+        index,
+        rail,
+    }
+}
+
 // Single note
-export function noteSingleObj(rail: Rail, vel: number, pos: Vec2) {
+export function noteSingleObj(rail: Rail, vel: number, pos: Vec2, index: number) {
     const note = k.make([
         k.pos(pos),
         k.layer("note"),
@@ -45,11 +54,7 @@ export function noteSingleObj(rail: Rail, vel: number, pos: Vec2) {
         k.move(directionByRail(rail), vel),
         k.opacity(1),
         k.state("active", noteStates),
-        "note",
-        {
-            type: "single",
-            rail,
-        }
+        noteComp("single", index, rail),
     ]);
 
     note.onStateEnter("hit", () => {
@@ -70,11 +75,7 @@ export function noteSingleObj(rail: Rail, vel: number, pos: Vec2) {
     return note;
 }
 
-export function noteSliderObj(rail: Rail, vel: number, pos: Vec2) {
-    let notes: GameObj<AreaComp | any>[] = [];
-    let destroyedIndex = 0;
-    let removingNote = false;
-
+export function noteSliderObj(rail: Rail, vel: number, pos: Vec2, index: number) {
     const slider = k.make([
         k.pos(pos),
         k.layer("note"),
@@ -83,19 +84,21 @@ export function noteSliderObj(rail: Rail, vel: number, pos: Vec2) {
         k.anchor(valuesByRail(rail).anchor as Anchor),
         k.area({ shape: new k.Rect(k.vec2(0), 0, 0) }),
         k.state("active", noteStates),
-        "note",
+        noteComp("slider", index, rail),
         {
-            type: "slider",
-            notes: [],
-            notesIndex: 0,
-            active: true,
-            endedCreation: false,
-            addNote() {
+            subNotes: new Array<GameObj>,
+            subNotesCount: 0,
+            isCreationFinished: false,
+            isRemovingSubNote: false,
+            removedSubNotes: 0,
+            addSubNote() {
+                const posStart = this.subNotesCount === 0 ? this.pos.add(valuesByRail(rail).dir.scale(this.subNotesCount)) : this.subNotes[this.subNotesCount - 1].pos.add(valuesByRail(rail).dir.scale(1));
+
                 const subnote = k.add([
-                    k.pos(this.pos.add(valuesByRail(rail).dir.scale(this.notesIndex))),
+                    k.pos(posStart),
                     k.layer("note"),
                     k.anchor(k.vec2(0, 0.28)),
-                    k.sprite("green_apple"),
+                    k.sprite("note_slider"),
                     k.area(),
                     k.move(directionByRail(rail), vel),
                     k.opacity(1),
@@ -119,52 +122,53 @@ export function noteSliderObj(rail: Rail, vel: number, pos: Vec2) {
                 });
 
                 subnote.onStateEnter("destroy", () => {
+                    this.trigger("subnote_destroy", subnote);
                     subnote.use(k.lifespan(0.1, { fade: 0.1 }));
                 });
 
                 subnote.onStateUpdate("destroy", () => {
                     if (rail === 0) {
-                        if (notes?.[destroyedIndex]?.pos?.x >= this?.pos?.x) {
-                            removingNote = false;
+                        if (this.subNotes?.[this.removedSubNotes]?.pos?.x >= this?.pos?.x) {
+                            this.isRemovingSubNote = false;
                         }
                     }
                     if (rail === 1) {
-                        if (notes?.[destroyedIndex]?.pos?.y >= this?.pos?.y) {
-                            removingNote = false;
+                        if (this.subNotes?.[this.removedSubNotes]?.pos?.y >= this?.pos?.y) {
+                            this.isRemovingSubNote = false;
                         }
                     }
                     if (rail === 2) {
-                        if (notes?.[destroyedIndex]?.pos?.x <= this?.pos?.x) {
-                            removingNote = false;
+                        if (this.subNotes?.[this.removedSubNotes]?.pos?.x <= this?.pos?.x) {
+                            this.isRemovingSubNote = false;
                         }
                     }
                 });
 
                 this.updateArea();
-                this.notesIndex++;
-                notes.push(subnote);
+                this.subNotesCount++;
+                this.subNotes.push(subnote);
             },
             updateArea() {
                 if (rail === 0) {
-                    this.use(k.area({ shape: new k.Rect(k.vec2(30, 0), 50 * (this.notesIndex + 1), 63) }))
+                    this.use(k.area({ shape: new k.Rect(k.vec2(30, 0), 50 * (this.subNotes.length), 63) }))
                 }
                 if (rail === 1) {
-                    this.use(k.area({ shape: new k.Rect(k.vec2(0, 30), 63, 50 * (this.notesIndex + 1)) }))
+                    this.use(k.area({ shape: new k.Rect(k.vec2(0, 30), 63, 50 * (this.subNotes.length)) }))
                 }
                 if (rail === 2) {
-                    this.use(k.area({ shape: new k.Rect(k.vec2(-30, 0), 50 * (this.notesIndex + 1), 63) }))
+                    this.use(k.area({ shape: new k.Rect(k.vec2(-30, 0), 50 * (this.subNotes.length), 63) }))
                 }
             },
             end() {
-                this.endedCreation = true;
-            }
+                this.isCreationFinished = true;
+            },
         }
     ]);
 
     slider.onStateEnter("active", () => {
         const addLoop = k.loop(50 / vel, () => {
-            if (slider.endedCreation) addLoop.cancel();
-            slider.addNote();
+            if (slider.isCreationFinished) return addLoop.cancel();
+            slider.addSubNote();
         });
     });
 
@@ -173,13 +177,14 @@ export function noteSliderObj(rail: Rail, vel: number, pos: Vec2) {
     });
 
     slider.onStateUpdate("hit", () => {
-        if (removingNote) return;
-        notes[destroyedIndex]?.enterState("hit");
-        removingNote = true;
-        destroyedIndex++;
+        if (slider.isRemovingSubNote) return;
+        slider.subNotes[slider.removedSubNotes]?.enterState("hit");
+        slider.isRemovingSubNote = true;
+        slider.removedSubNotes++;
     });
 
     slider.onStateEnter("destroy", () => {
+        slider.end();
         slider.destroy();
         k.get("subnote").forEach((subnote) => {
             subnote.enterState("destroy");
@@ -187,6 +192,7 @@ export function noteSliderObj(rail: Rail, vel: number, pos: Vec2) {
     });
 
     slider.onStateEnter("miss", () => {
+        slider.end();
         slider.destroy();
         k.get("subnote").forEach((subnote) => {
             subnote.enterState("miss");

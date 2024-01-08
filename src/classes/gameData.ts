@@ -1,9 +1,14 @@
-import type { Song, UserSettings } from "../types";
+import type { Song } from "../types";
 import { k } from "../main";
 
 type PlayerSettings = {
     skin: string,
     sword: string,
+}
+
+type UserSettings = {
+    volume: number,
+    demoMusic: boolean,
 }
 
 export class GameData {
@@ -13,7 +18,7 @@ export class GameData {
     settings: UserSettings;
 
     constructor() {
-        this.debug = true;
+        this.debug = false;
         this.songs = [];
         this.settings = k.getData("settings") || {
             demoMusic: true,

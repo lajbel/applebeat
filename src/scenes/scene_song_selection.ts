@@ -1,9 +1,11 @@
 import { AudioPlay } from "kaboom";
 import { k, gameData } from "../main";
+import { SceneState } from "../classes/SceneState";
 import { songBox } from "../objects/ui/obj_song_box";
 import { complexAdd } from "../util";
 
 export const loadSongSelectionScene = () => k.scene("song_selection", () => {
+    const sceneState = new SceneState();
     const songDatas = gameData.songs;
     let selectedSong = 0;
     let demoSongVolume = 0;
@@ -12,12 +14,6 @@ export const loadSongSelectionScene = () => k.scene("song_selection", () => {
     k.add([
         k.rect(k.width(), k.height()),
         k.color(k.Color.fromHex("#ee8fcb")),
-    ]);
-
-    k.add([
-        k.pos(10, k.height() - 10),
-        k.anchor("botleft"),
-        k.text("AppleBeat 1.1.0 - 12/11/2023 - dev by lajbel", { size: 18 })
     ]);
 
     k.add([
@@ -34,33 +30,30 @@ export const loadSongSelectionScene = () => k.scene("song_selection", () => {
         ]);
 
         songBoxObj.onSelect((songData) => {
-            demoSong = k.play(songData.sound, { loop: true, volume: 0.5, seek: songData.demoStart });
+            sceneState.setBackgroundMusic(songData.sound, { loop: true, volume: 0.5, seek: songData.demoStart });
         });
     });
 
     // Input
-    let menuKeys = ["up", "down", "w", "s"];
+    let menuKeys = ["up", "down", "w", "s", "escape"];
     let menuKeysPressed = false;
 
     k.onKeyPress((key) => {
         if (!menuKeys.includes(key) && !menuKeysPressed) return;
         menuKeysPressed = true;
 
-        demoSong?.stop();
         k.get("song")[selectedSong].deselect();
 
         if (key === "down" || key === "s") selectedSong = (selectedSong + 1) % songDatas.length;
         if (key === "up" || key === "w") selectedSong = (selectedSong - 1 + songDatas.length) % songDatas.length;
+        if (key === "escape") return sceneState.changeScene("main_menu");
 
         k.get("song")[selectedSong].select();
         menuKeysPressed = false;
     });
 
     k.onUpdate(() => {
-        if (k.isKeyPressed("enter")) {
-            demoSong?.stop();
-            k.go("game", songDatas[selectedSong]);
-        }
+        if (k.isKeyPressed("enter")) sceneState.changeScene("game", songDatas[selectedSong]);
 
         // TEMP
         if (k.isKeyPressed("m")) {

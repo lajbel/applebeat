@@ -1,6 +1,7 @@
-# Alpha 1.2.0 - TBD
+# Alpha 1.2.0 - 7/1/2024
 ## Mechanics
 - New note type: "Slider"
+- Added support for change the notes velocity (#SCROLL) and change the measure (#MEASURE)
 
 ## Graphics
 - New slider sprite: "Green Apple"

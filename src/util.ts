@@ -48,13 +48,13 @@ export function loadTJA(tjaPath: string, remote?: boolean) {
             try {
                 const song = TJAParser.parse(text);
                 const commands = song.courses[0].singleCourse.getCommands();
-                const chart = commands.toString().replace("#START,", "").replace(",#END", "");
+
                 const soungCourses: SongCourse[] = [];
 
                 song.courses.forEach((course) => {
                     soungCourses.push({
                         difficulty: course.stars,
-                        chart: course.singleCourse.getCommands().toString().replace("#START,", "").replace(",#END", ""),
+                        chart: course.singleCourse.getCommands(),
                     });
                 });
 
@@ -74,7 +74,7 @@ export function loadTJA(tjaPath: string, remote?: boolean) {
                     bpm: song.bpm,
                     offset: song.offset,
                     demoStart: song.demoStart,
-                    chart: chart,
+                    chart: commands,
                     sound: song.wave.slice(0, -3),
                     courses: soungCourses,
                 });

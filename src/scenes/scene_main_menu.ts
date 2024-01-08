@@ -1,6 +1,9 @@
 import { k } from "../main";
+import { SceneState } from "../classes/SceneState";
 
 export const loadMainMenuScene = () => k.scene("main_menu", () => {
+    const sceneState = new SceneState();
+
     // Background
     k.add([
         k.rect(k.width(), k.height()),
@@ -12,6 +15,13 @@ export const loadMainMenuScene = () => k.scene("main_menu", () => {
         k.sprite("logo"),
         k.pos(k.width() / 2, 200),
         k.anchor("center"),
+    ]);
+
+    // Info
+    k.add([
+        k.pos(k.center().x, k.height() - 10),
+        k.anchor("bot"),
+        k.text("JuicyBeat 1.1.0 - 12/11/2023 - dev by lajbel", { size: 18, align: "center" })
     ]);
 
     // Menu
@@ -28,7 +38,7 @@ export const loadMainMenuScene = () => k.scene("main_menu", () => {
         menu.add([
             k.pos(0, i * 50),
             k.anchor("center"),
-            k.text(option, { size: 28 }),
+            k.text(option, { size: 36 }),
             k.color(k.Color.fromHex("#ffffff")),
             k.anchor("center"),
             k.area(),
