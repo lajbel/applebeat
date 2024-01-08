@@ -1,12 +1,13 @@
 {
 	"name": "kaboom",
 	"scripts": {
-		"build": "esbuild --bundle src/main.js --outfile=docs/game.js",
-		"dev": "esbuild --bundle src/main.js --outfile=docs/game.js --servedir=docs/ --sourcemap",
+		"build": "esbuild --bundle src/main.ts --outfile=docs/game.js",
+		"dev": "esbuild --bundle src/main.ts --outfile=docs/game.js --servedir=docs/ --sourcemap",
 		"serve": "esbuild --servedir=."
 	},
 	"dependencies": {
 		"kaboom": "^3000.1.17",
+		"kaboom-extra": "file:../kaboom-extra",
 		"tja": "^0.1.3"
 	},
 	"devDependencies": {
